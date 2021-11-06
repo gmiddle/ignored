@@ -4,7 +4,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    color: white;
+    color: rgb(252, 236, 236);
     font-family: sans-serif;
     font-weight: bold;
   }
@@ -13,7 +13,7 @@ body {
     font-size: 50px;
     font-weight: bold;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 20%;
     margin-bottom: 50px;
 }
 
@@ -21,6 +21,21 @@ body {
     font-size: 30px;
     font-weight: bold;
     text-align: center;
-    margin-top: 50px;
+    margin-top: -2%;
     margin-bottom: 50px;
+}
+
+
+.splashButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    font-size: 20px;
+    padding:12px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid #ccc;
+    position: absolute;
+    left: 45%;
 }

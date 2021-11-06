@@ -1,0 +1,22 @@
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+
+.loginBtn{
+    color: black;
+    position: absolute;
+    top: 0;
+    right: 0;
+    float: right;
+    border-radius: 40px;
+    font-size: 14px;
+    padding:7px 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    margin-top: 10px;
+    margin-right: 10px;
+}

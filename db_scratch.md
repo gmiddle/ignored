@@ -11,7 +11,7 @@
 # create a .env file and add this:
     FLASK_APP=app
     FLASK_ENV=development
-    SECRET_KEY=lkasjdf09ajsdkfljalsiorj12n3490re9485309irefvn,u90818734902139489230
+    SECRET_KEY=77D28DC99A3474920AFDF2FAC094D298
     DATABASE_URL=postgresql://ignored_user:5F4DCC3B5AA765D61D8327DEB882CF99@localhost/ignored_db
 
 

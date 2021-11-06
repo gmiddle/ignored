@@ -10,6 +10,11 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    serverList = db.relationship("Server", back_populates="userList")
+    privateServerList = db.relationship("PrivateServer", back_populates="userList")
+    messages = db.relationship('Message', backref='user', lazy=True)
+    private_messages = db.relationship('PrivateMessage', backref='user', lazy=True)
+    friendships = db.relationship('Friendship', backref='user', lazy=True)
 
     @property
     def password(self):
@@ -26,5 +31,8 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'serverList': self.serverList,
+            'privateServerList': self.privateServerList,
+            'friendships': self.privateServerList
         }

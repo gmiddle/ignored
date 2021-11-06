@@ -10,7 +10,7 @@ const Splash = () => {
         <h1 className = "splashMainHeader"> IGNORED? STAY IN TOUCH </h1>
         <h2 className ="splashSubHeader"> A SITE THAT MAKES IT EASY TO TALK EVERY DAY AND HANG OUT MORE OFTEN</h2>
         <button className="splashButton">
-        <NavLink to="/login">Open Ignored</NavLink>
+        <NavLink to="/login" className="open">Open Ignored</NavLink>
         </button>
 
         < Footer/>

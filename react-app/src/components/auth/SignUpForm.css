@@ -1,0 +1,19 @@
+.signUpFormContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1300px;
+  height: 800px;
+}
+
+.signUpForm{
+  background-color: rgb(106, 106, 106);
+  border: 1px solid rgb(58, 57, 57);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signUpForm > *{
+  padding: 10px;
+}

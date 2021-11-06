@@ -6,7 +6,7 @@ class PrivateChannel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False, unique=True)
     topic = db.Column(db.String(80), nullable=False)
-    private_server_id = db.Column(db.Integer, db.ForeignKey('privateserver.id'), nullable=False)
+    private_server_id = db.Column(db.Integer, db.ForeignKey('private_servers.id'), nullable=False)
     private_messages = db.relationship('PrivateMessage', backref='private_channel', lazy=True)
 
 

@@ -7,11 +7,11 @@ class Friendship(db.Model):
     invite_id = db.Column(db.String(10), nullable=False, unique=True)
     accepted = db.Column(db.Boolean, nullable=False)
     profile_pic = db.Column(db.String(255))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    follower_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    follower_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
 
-   
+
 
     def to_dict(self):
         return {

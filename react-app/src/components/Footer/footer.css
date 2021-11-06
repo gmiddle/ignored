@@ -6,7 +6,7 @@
     text-align: center;
     width: 300px;
     position: absolute;
-    bottom: 0;
+    bottom: -15px;
     left: 30%;
     transform: translateX(-45%);
 }

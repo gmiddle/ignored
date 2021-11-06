@@ -1,5 +1,6 @@
 import './Splash.css'
 import { NavLink } from 'react-router-dom';
+import Footer from '../Footer/Index';
 const Splash = () => {
     return (
         <>
@@ -12,6 +13,7 @@ const Splash = () => {
         <NavLink to="/login">Open Ignored</NavLink>
         </button>
 
+        < Footer/>
         </div>
 
 

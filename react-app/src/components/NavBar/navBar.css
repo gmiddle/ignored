@@ -7,8 +7,8 @@ a {
 .loginBtn{
     color: black;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: .8px;
+    right: .8px;
     float: right;
     border-radius: 40px;
     font-size: 14px;
@@ -19,9 +19,11 @@ a {
     background-color: #fff;
     margin-top: 10px;
     margin-right: 10px;
+
 }
 
 .logo{
-    padding-left: 10px;
+    padding-top: 10px;
+    padding-left: 15px;
     transform: scale(1.5);
 }

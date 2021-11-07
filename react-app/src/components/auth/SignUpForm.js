@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import "./SignUpForm.css"
+import Footer from '../Footer/Index.js';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -93,6 +94,7 @@ const SignUpForm = () => {
         <button type='submit' className="signed">Sign Up</button>
         <a className="register" href="/sign-up">Already have an account?</a>
       </form>
+      <Footer />
     </div>
   );
 };

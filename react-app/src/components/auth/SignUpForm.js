@@ -92,21 +92,11 @@ const SignUpForm = () => {
             value={password}
           ></input>
         </div>
-        <div>
-          <input
-          placeholder="Confirm Password"
-            type='password'
-            name='repeat_password'
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>
-        </div>
         <button type='submit' className="signed">Sign Up</button>
         {!user?
         <button className="demoBtn" onClick={demoLogin}>Demo Login</button>
         : null}
-        <a className="register" href="/sign-up">Already have an account?</a>
+        <a className="register" href="/login">Already have an account?</a>
       </form>
       <Footer />
     </div>

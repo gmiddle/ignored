@@ -4,16 +4,127 @@
   justify-content: center;
   width: 1300px;
   height: 800px;
+  float: right;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
 .loginForm{
-  background-color: rgb(106, 106, 106);
+  background-color: #36393f;
   border: 1px solid rgb(58, 57, 57);
   padding: 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  margin-right: 200px;
+  width: 500px;
+  box-shadow:0 2px 10px 0 rgb(0 0 0 / 20%);
+  border-radius: 15px;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+
 }
 
 .loginForm > *{
   padding: 10px;
+}
+
+.welcomeBack{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  display: flex;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+.loginAccount{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  color: rgb(148, 148, 148);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+input{
+  border:none;
+  background-color: rgb(0 0 0 / 15%);
+  padding:10px;
+  height:40px;
+  font-size: 16px;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 5px;
+  border-color: black;
+  transition: border-color .2s ease-in-out;
+  color: white;
+  width: 325px;
+}
+
+.dontAccount{
+  display: inline;
+  font-size: 16px;
+  color: rgb(148, 148, 148);
+  padding-right: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+.register{
+  display: inline;
+  font-size: 16px;
+  color: #5562f3;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+.register:hover{
+  text-decoration: underline;
+  color: #3d4df8;
+}
+
+.logged{
+  background-color: #5562f3;
+  width:  70%;
+  color: white;
+  margin: 10px auto 0px;
+  border-radius: 7px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+.demoBtn{
+  background-color: #5562f3;
+  width: 70%;
+  color: white;
+  margin: 12px;
+  border-radius: 7px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+.logged:hover{
+  background-color: #3d4df8;
+}
+
+.demoBtn:hover{
+  background-color: #3d4df8;
+}
+
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }

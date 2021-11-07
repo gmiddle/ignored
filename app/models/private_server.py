@@ -8,7 +8,7 @@ class PrivateServer(db.Model):
     description = db.Column(db.String(750), nullable=False)
     serverImg = db.Column(db.String(255))
     serverInviteKey = db.Column(db.String(255), nullable=False, unique=True)
-    userList = db.relationship("User", back_populates="privateServerList")
+    # userList = db.relationship("User", back_populates="privateServerList")
     private_channels = db.relationship('PrivateChannel', backref='privateserver', lazy=True)
 
 

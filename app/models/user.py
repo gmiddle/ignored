@@ -3,6 +3,22 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
+subs = db.Table('subs',
+    db.Column('userId', db.Integer, db.ForeignKey('users.id')),
+    db.Column('serverId', db.Integer, db.ForeignKey('servers.id'))
+)
+
+privateSubs = db.Table('privateSubs',
+    db.Column('userId', db.Integer, db.ForeignKey('users.id')),
+    db.Column('privateServerId', db.Integer, db.ForeignKey('private_servers.id'))
+)
+
+friends = db.Table('friends',
+    db.Column('userId', db.Integer, db.ForeignKey('users.id')),
+    db.Column('privateServerId', db.Integer, db.ForeignKey('private_servers.id'))
+)
+
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -10,8 +26,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    serverList = db.relationship("Server", back_populates="userList")
-    privateServerList = db.relationship("PrivateServer", back_populates="userList")
+    serverList = db.relationship("Server", secondary=subs, backref=db.backref('subscribers', lazy="dynamic"))
+    privateServerList = db.relationship("PrivateServer", secondary=privateSubs, backref=db.backref('privateSubscribers', lazy="dynamic"))
+    # privateServerList = db.relationship("PrivateServer", back_populates="userList")
     messages = db.relationship('Message', backref='user', lazy=True)
     private_messages = db.relationship('PrivateMessage', backref='user', lazy=True)
     friendships = db.relationship('Friendship', backref='user', lazy=True)

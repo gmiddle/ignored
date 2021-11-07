@@ -1,5 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
+from .servers import seed_servers, undo_servers
+from .messages import seed_messages, undo_messages
 
 
 # Creates a seed group to hold our commands
@@ -11,6 +13,8 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
+    seed_servers()
+    seed_messages()
     # Add other seed functions here
 
 
@@ -18,4 +22,6 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    undo_servers()
+    undo_messages()
     # Add other undo functions here

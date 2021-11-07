@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import * as sessionActions from '../../store/session';
 import "./SignUpForm.css"
 import Footer from '../Footer/Index.js';
 
@@ -12,6 +13,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [credential, setCredential] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -43,6 +45,15 @@ const SignUpForm = () => {
 
   if (user) {
     return <Redirect to='/' />;
+  }
+
+
+  const demoLogin = async () => {
+    setCredential('demo@aa.io');
+    setPassword('password');
+    return dispatch(
+      sessionActions.login({credential: 'demo@aa.io', password: 'password'})
+    );
   }
 
   return (
@@ -92,6 +103,9 @@ const SignUpForm = () => {
           ></input>
         </div>
         <button type='submit' className="signed">Sign Up</button>
+        {!user?
+        <button className="demoBtn" onClick={demoLogin}>Demo Login</button>
+        : null}
         <a className="register" href="/sign-up">Already have an account?</a>
       </form>
       <Footer />

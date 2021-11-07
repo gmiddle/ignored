@@ -1,3 +1,4 @@
+
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -13,10 +14,11 @@ privateSubs = db.Table('privateSubs',
     db.Column('privateServerId', db.Integer, db.ForeignKey('private_servers.id'))
 )
 
-friends = db.Table('friends',
-    db.Column('userId', db.Integer, db.ForeignKey('users.id')),
-    db.Column('privateServerId', db.Integer, db.ForeignKey('private_servers.id'))
-)
+friendship = db.Table(
+    'friendships', db.metadata,
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), index=True),
+    db.Column('friend_id', db.Integer, db.ForeignKey('users.id')),
+    db.UniqueConstraint('user_id', 'friend_id', name='unique_friendships'))
 
 
 class User(db.Model, UserMixin):
@@ -28,10 +30,12 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     serverList = db.relationship("Server", secondary=subs, backref=db.backref('subscribers', lazy="dynamic"))
     privateServerList = db.relationship("PrivateServer", secondary=privateSubs, backref=db.backref('privateSubscribers', lazy="dynamic"))
-    # privateServerList = db.relationship("PrivateServer", back_populates="userList")
     messages = db.relationship('Message', backref='user', lazy=True)
     private_messages = db.relationship('PrivateMessage', backref='user', lazy=True)
-    friendships = db.relationship('Friendship', backref='user', lazy=True)
+    friendships = db.relationship('User',
+                           secondary=friendship,
+                           primaryjoin= id ==friendship.c.user_id,
+                           secondaryjoin= id ==friendship.c.friend_id)
 
     @property
     def password(self):

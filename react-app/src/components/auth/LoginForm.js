@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import * as sessionActions from '../../store/session';
+import Footer from '../Footer/Index.js';
 import './LoginForm.css'
 
 const LoginForm = () => {
@@ -83,7 +84,9 @@ const LoginForm = () => {
           <p className="dontAccount">Dont have an account?</p>
           <a className="register" href="/sign-up">Register</a>
           </div>
+
       </form>
+      <Footer/>
     </div>
   );
 };

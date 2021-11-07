@@ -47,15 +47,15 @@ const SignUpForm = () => {
   return (
     <div className='signUpFormContainer'>
       <form onSubmit={onSignUp} className='signUpForm'>
-        <h3>Regiester an Account</h3>
+        <h3 className="registerAccount">Create an Account</h3>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
         <div>
-          <label>User Name</label>
           <input
+          placeholder="User Name"
             type='text'
             name='username'
             onChange={updateUsername}
@@ -63,8 +63,8 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div>
-          <label>Email</label>
           <input
+          placeholder="Email"
             type='text'
             name='email'
             onChange={updateEmail}
@@ -72,8 +72,8 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div>
-          <label>Password</label>
           <input
+          placeholder="Password"
             type='password'
             name='password'
             onChange={updatePassword}
@@ -81,8 +81,8 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div>
-          <label>Repeat Password</label>
           <input
+          placeholder="Confirm Password"
             type='password'
             name='repeat_password'
             onChange={updateRepeatPassword}
@@ -90,8 +90,8 @@ const SignUpForm = () => {
             required={true}
           ></input>
         </div>
-        <button type='submit'>Sign Up</button>
-        <Link to='/login'>Already have an account?</Link>
+        <button type='submit' className="signed">Sign Up</button>
+        <a className="register" href="/sign-up">Already have an account?</a>
       </form>
     </div>
   );

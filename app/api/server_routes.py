@@ -4,6 +4,7 @@ from app.forms import ServerForm
 from app.models import Server, PrivateServer, db
 from werkzeug.security import generate_password_hash
 
+
 server_routes = Blueprint('servers', __name__)
 private_server_routes = Blueprint('private_servers', __name__)
 # GET all routes
@@ -43,7 +44,8 @@ def servers_post():
       name=form.data['Name'],
       description=form.data['Description'],
       serverImg=form.data['ServerImg'],
-      serverInviteKey = generate_password_hash(f"{form.data['Name']}")[-7:-1].upper()
+      serverInviteKey = generate_password_hash(f"{form.data['Name']}")[-7:-1].upper(),
+      ownerId = current_user.id
     )
     db.session.add(server)
     db.seesion.commit()

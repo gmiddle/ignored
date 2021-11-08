@@ -7,16 +7,16 @@
 }
 
 .chatArea{
-color: lightgray;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 15px;
-outline-width: 0;
-border-radius: 5px;
-margin: 20px;
-border-top: 1px solid gray;
-background-color: #474b53;
+    color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    outline-width: 0;
+    border-radius: 5px;
+    margin: 20px;
+    border-top: 1px solid gray;
+    background-color: #474b53;
 }
 
 .chatArea > form > input{
@@ -25,13 +25,18 @@ background-color: #474b53;
     border: none;
     outline-width: 0;
     color: white;
+    width: 100%;
     font-size: large;
 }
 
 .chatArea > form{
-flex:1
+    flex:1
 }
 
 .chatSubmitBtn{
     display: none;
+}
+
+.chatMessages{
+    flex:1;
 }

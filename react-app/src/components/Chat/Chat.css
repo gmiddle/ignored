@@ -1,0 +1,37 @@
+.chat{
+    display: flex;
+    flex-direction: column;
+    flex: 0.75;
+    background-color: #363a3f;
+    height: 100vh;
+}
+
+.chatArea{
+color: lightgray;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 15px;
+outline-width: 0;
+border-radius: 5px;
+margin: 20px;
+border-top: 1px solid gray;
+background-color: #474b53;
+}
+
+.chatArea > form > input{
+    padding: 15px;
+    background: transparent;
+    border: none;
+    outline-width: 0;
+    color: white;
+    font-size: large;
+}
+
+.chatArea > form{
+flex:1
+}
+
+.chatSubmitBtn{
+    display: none;
+}

@@ -45,6 +45,9 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
+        <Route exact path="/dashboard">
+            <h1>Dashboard</h1>
+          </Route>
       </Switch>
     </BrowserRouter>
   );

@@ -9,6 +9,7 @@ from .models import db, Server, PrivateServer, User, Channel, PrivateChannel, Me
 from .api.user_routes import user_routes
 from .api.server_routes import server_routes, private_server_routes
 from .api.auth_routes import auth_routes
+from .api.dashboard_routes import dashboard_routes
 
 from .seeds import seed_commands
 
@@ -34,6 +35,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(server_routes, url_prefix='/api/servers')
 app.register_blueprint(private_server_routes, url_prefix='/api/servers/private')
+app.register_blueprint(dashboard_routes, url_prefix='/dashboard')
 db.init_app(app)
 Migrate(app, db)
 

@@ -40,4 +40,3 @@
 
 
 - You should be able to see login prompt at localhost:3000 now (npm start should take you there automatically)
-

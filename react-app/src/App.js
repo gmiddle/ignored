@@ -7,6 +7,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Splash from './components/Splash/Index';
+import Sidebar from './components/SideBar/Index';
 import { authenticate } from './store/session';
 
 function App() {
@@ -46,8 +47,11 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
         <ProtectedRoute path='/dashboard' exact={true} >
-          <h1>dashboard</h1>
+          {/* sidebar */}
+        <Sidebar />
+        {/* chat */}
         </ProtectedRoute>
+
       </Switch>
     </BrowserRouter>
   );

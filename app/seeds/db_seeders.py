@@ -14,7 +14,7 @@ def seed_server():
         name='Demo Server',
         description='This is a demo server',
         serverImg='',
-        serverInviteKey=generate_password_hash('password')[0:9],
+        serverInviteKey=generate_password_hash('Demo Server')[-7:-1].upper(),
         channels='',
         # owner_id=1,
     )
@@ -32,7 +32,7 @@ def seed_server():
         new_server = Server(
             name=server_name,
             serverImg='',
-            serverInviteKey=generate_password_hash(server_name)[-8:]
+            serverInviteKey=generate_password_hash(server_name)[-7:-1].upper()
         )
         db.session.add(new_server)
     db.session.commit()
@@ -146,7 +146,7 @@ def seed_all():
     seed_server()
     seed_private_server()
     seed_channel()
-    
+
     seed_message()
     seed_private_message()
 

@@ -1,14 +1,15 @@
 from app.models import db, Server
+from werkzeug.security import generate_password_hash
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_servers():
     demoServer1 = Server(
-        name='demoServer1', description='A demo server for endpoint testing', serverImg='', serverInviteKey='server1key', channels=[])
+        name='demoServer1', description='A demo server for endpoint testing', ownerId=1, serverImg='', serverInviteKey=generate_password_hash('five5')[-7:-1].upper(), channels=[])
     demoServer2 = Server(
-        name='demoServer2', description='A demo server for endpoint testing', serverImg='', serverInviteKey='server2key', channels=[])
+        name='demoServer2', description='A demo server for endpoint testing', ownerId=1, serverImg='', serverInviteKey=generate_password_hash('t')[-7:-1].upper(), channels=[])
     demoServer3 = Server(
-        name='demoServer3', description='A demo server for endpoint testing', serverImg='', serverInviteKey='server3key', channels=[])
+        name='demoServer3', description='A demo server for endpoint testing', ownerId=2, serverImg='', serverInviteKey=generate_password_hash('t')[-7:-1].upper(), channels=[])
 
     db.session.add(demoServer1)
     db.session.add(demoServer2)

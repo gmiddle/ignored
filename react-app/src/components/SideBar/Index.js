@@ -20,20 +20,26 @@ const Sidebar = () => {
                         <h3>{'channels'}</h3>
                         </div>
                         <i class="fas fa-plus"></i> {/* add channel button */}
-
-
-
-                </div>
+                    </div>
             <div className="sideBarChannelList">
                 <SidebarChannel />
                 <SidebarChannel />
                 <SidebarChannel />
                 <SidebarChannel />
                 <SidebarChannel />
-
             </div>
         </div>
+        <div className="sideBarUser">
+            <div className="sideBarUserName">
+                <h3> user name</h3>
+                {/* {userName} */}
+                </div>
+                <div className="logoutIcon">
+                <i class="fas fa-cog"></i>
+                </div>
+            </div>
         </div>
+
     )
 }
 

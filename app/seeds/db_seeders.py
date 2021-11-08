@@ -1,4 +1,4 @@
-from app.models import db, Server, Channel
+from app.models import db, Server, Channel, Message
 from werkzeug.security import generate_password_hash, check_password_hash
 from faker import Faker
 import random
@@ -121,3 +121,36 @@ def seed_channel():
     db.session.commit()
 
 
+def seed_message():
+    for i in range(0, 200):
+        new_message = Message(
+            content=f'This is test message # {i}',
+            channel_id=random.randint(1, total_users + 1),
+            user_id=random.randint(1, total_users + 1),
+            # sent_date=dt.datetime.now()
+        )
+        db.session.add(new_message)
+    db.session.commit()
+
+
+def seed_all():
+    seed_server()
+    seed_user_server()
+    seed_channel()
+    seed_message()
+    seed_friends()
+
+
+def undo_all():
+    models = [
+        Server, Channel, Message,
+        # User_Server
+    ]
+    for model in models:
+        db.session.execute(f'TRUNCATE {model} RESTART IDENTITY CASCADE;')
+        db.session.commit()
+
+
+# if __name__ == '__main__':
+#     seed_all()
+#     # undo_all()

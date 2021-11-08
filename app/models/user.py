@@ -1,4 +1,5 @@
 
+from app.seeds import servers
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -28,6 +29,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    serverOwnerId = db.relationship('Server', backref='user', lazy=True)
     serverList = db.relationship("Server", secondary=subs, backref=db.backref('subscribers', lazy="dynamic"))
     privateServerList = db.relationship("PrivateServer", secondary=privateSubs, backref=db.backref('privateSubscribers', lazy="dynamic"))
     messages = db.relationship('Message', backref='user', lazy=True)

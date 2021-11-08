@@ -8,6 +8,7 @@ class Server(db.Model):
     description = db.Column(db.String(750), nullable=False)
     serverImg = db.Column(db.String(255))
     serverInviteKey = db.Column(db.String(255), nullable=False, unique=True)
+    ownerId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     channels = db.relationship('Channel', backref='server', lazy=True)
 
     def to_dict(self):
@@ -17,5 +18,6 @@ class Server(db.Model):
             'description': self.description,
             'serverImg': self.serverImg,
             'serverInviteKey': self.serverInviteKey,
+            'ownerId': self.ownerId,
             'channels': self.channels
         }

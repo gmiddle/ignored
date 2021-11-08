@@ -1,5 +1,5 @@
-from app.models import db, Server, Channel, Message
-from werkzeug.security import generate_password_hash, check_password_hash
+from app.models import db, Server, Channel, Message 
+from werkzeug.security import generate_password_hash
 from faker import Faker
 import random
 import datetime as dt
@@ -38,24 +38,24 @@ def seed_server():
     db.session.commit()
 
 
-def seed_user_server():
-    for i in range(1, total_servers + 1):
-        new_user_server = User_Server(
-            serverId=i,
-            userId=i
-        )
-        db.sessionadd(new_user_server)
-    db.session.commit()
+# def seed_user_server():
+#     for i in range(1, total_servers + 1):
+#         new_user_server = User_Server(
+#             serverId=i,
+#             userId=i
+#         )
+#         db.sessionadd(new_user_server)
+#     db.session.commit()
 
 
-def seed_friends():
-    for i in range(1, total_users - 1):
-        new_user_server = Friend(
-            sender_userId=i,
-            rec_userId=i
-        )
-        db.session.add(new_user_server)
-    db.session.commit()
+# def seed_friends():
+#     for i in range(1, total_users - 1):
+#         new_user_server = Friend(
+#             sender_userId=i,
+#             rec_userId=i
+#         )
+#         db.session.add(new_user_server)
+#     db.session.commit()
 
 
 def seed_channel():
@@ -135,16 +135,16 @@ def seed_message():
 
 def seed_all():
     seed_server()
-    seed_user_server()
+    # seed_user_server()
     seed_channel()
     seed_message()
-    seed_friends()
+    # seed_friends()
 
 
 def undo_all():
     models = [
         Server, Channel, Message,
-        # User_Server
+        # User_Server, Friend
     ]
     for model in models:
         db.session.execute(f'TRUNCATE {model} RESTART IDENTITY CASCADE;')

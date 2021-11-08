@@ -1,4 +1,6 @@
 from .db import db
+import uuid
+import base64
 
 class Server(db.Model):
     __tablename__ = 'servers'
@@ -19,3 +21,7 @@ class Server(db.Model):
             'serverInviteKey': self.serverInviteKey,
             'channels': self.channels
         }
+
+    def gen_server_key(self):
+       key = base64.b32encode(self.name)
+       return key

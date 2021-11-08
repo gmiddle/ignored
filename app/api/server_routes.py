@@ -1,7 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, Flask, redirect, request
 from flask_login import login_required, current_user
 from app.forms import ServerForm
-from app.models import Server, PrivateServer
+from app.models import Server, PrivateServer, db
 
 server_routes = Blueprint('servers', __name__)
 private_server_routes = Blueprint('private_servers', __name__)
@@ -37,6 +37,22 @@ def servers_post():
   """
   form = ServerForm()
 
+  if request.method == 'POST':
+
+    if form.validate_on_submit():
+      server = Server(
+        name=form.data['Name'],
+        description=form.data['Description'],
+        serverImg=form.data['ServerImg']
+      )
+      db.session.add(server)
+      db.seesion.commit()
+      return redirect('/')
+    else:
+      print(form.errors)
+      return "Bad data"
+
+      
 # POST a private_server
 @private_server_routes.route('/', methods=['POST'])
 def private_server_post():

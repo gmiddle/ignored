@@ -57,3 +57,30 @@ def servers_post():
 @private_server_routes.route('/', methods=['POST'])
 def private_server_post():
   pass
+
+# PUT edit server
+@server_routes.routes('/edit/<init: id>', methods=['PUT'])
+def servers_edit(id):
+  server_edit = Server.query.get_or_404(id)
+  form = ServerForm()
+  if form.validate_on_submit():
+    server_edit.name = form.data['Name'],
+    server_edit.description = form.data['Description'],
+    server_edit.serverImg = form.data['ServerImg']
+  try:
+    db.session.commit()
+    return redirect('/')
+  except:
+    print(form.errors)
+    return "Bad data"
+
+
+@server_routes.routes('/delete/<int: id>', methods=['DELETE'])
+def server_delete(id):
+  server = Server.query.get_or_404(id)
+  try:
+    db.session.delete(server)
+    db.session.commit()
+    return redirect('/')
+  except:
+    return "Server not found."

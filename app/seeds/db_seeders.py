@@ -1,4 +1,4 @@
-from app.models import db, Server, Channel, Message 
+from app.models import db, Server, Channel, Message, PrivateServer, PrivateChannel, PrivateMessage 
 from werkzeug.security import generate_password_hash
 from faker import Faker
 import random
@@ -38,24 +38,21 @@ def seed_server():
     db.session.commit()
 
 
-# def seed_user_server():
-#     for i in range(1, total_servers + 1):
-#         new_user_server = User_Server(
-#             serverId=i,
-#             userId=i
-#         )
-#         db.sessionadd(new_user_server)
-#     db.session.commit()
-
-
-# def seed_friends():
-#     for i in range(1, total_users - 1):
-#         new_user_server = Friend(
-#             sender_userId=i,
-#             rec_userId=i
-#         )
-#         db.session.add(new_user_server)
-#     db.session.commit()
+def seed_private_server():
+    for server in range(1, total_servers + 1):
+        users = []
+        for _ in range(1, 11):
+            while True:
+                user = random.randint(1, total_users)
+                if user not in users:
+                    new_private_server = PrivateServer(
+                        server_id=server,
+                        user_id=user
+                    )
+                    db.session.add(new_private_server)
+                    users.append(user)
+                    break
+    db.session.commit()
 
 
 def seed_channel():
@@ -133,24 +130,43 @@ def seed_message():
     db.session.commit()
 
 
+def seed_private_message():
+    for i in range(0, 200):
+        new_message = PrivateMessage(
+            content=f'This is test private message # {i}',
+            channel_id=random.randint(1, total_users + 1),
+            user_id=random.randint(1, total_users + 1),
+            # sent_date=dt.datetime.now()
+        )
+        db.session.add(new_message)
+    db.session.commit()
+
+
 def seed_all():
     seed_server()
-    # seed_user_server()
+    seed_private_server()
     seed_channel()
+    
     seed_message()
-    # seed_friends()
+    seed_private_message()
 
 
 def undo_all():
-    models = [
-        Server, Channel, Message,
-        # User_Server, Friend
-    ]
-    for model in models:
-        db.session.execute(f'TRUNCATE {model} RESTART IDENTITY CASCADE;')
-        db.session.commit()
+    db.session.execute(f'TRUNCATE Message RESTART IDENTITY CASCADE;')
+    db.session.commit()
+    db.session.execute(f'TRUNCATE PrivateMessage RESTART IDENTITY CASCADE;')
+    db.session.commit()
+    db.session.execute(f'TRUNCATE Channel RESTART IDENTITY CASCADE;')
+    db.session.commit()
+    db.session.execute(f'TRUNCATE PrivateServer RESTART IDENTITY CASCADE;')
+    db.session.commit()
+    db.session.execute(f'TRUNCATE Server RESTART IDENTITY CASCADE;')
+    db.session.commit()
+    db.session.execute(f'TRUNCATE User RESTART IDENTITY CASCADE;')
+    db.session.commit()
+
 
 
 # if __name__ == '__main__':
 #     seed_all()
-#     # undo_all()
+

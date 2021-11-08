@@ -15,6 +15,8 @@ const LoginForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  if (user) return <Redirect to="/dashboard" />;
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));

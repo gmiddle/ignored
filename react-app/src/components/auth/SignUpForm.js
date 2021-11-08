@@ -17,6 +17,9 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+
+  if (user) return <Redirect to="/dashboard" />;
+
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password) {

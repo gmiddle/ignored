@@ -1,6 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .servers import seed_servers, undo_servers
+from .set_relationships import set_relationsips
 # from .messages import seed_messages, undo_messages
 
 
@@ -25,3 +26,9 @@ def undo():
     undo_servers()
     # undo_messages()
     # Add other undo functions here
+
+@seed_commands.command('set')
+def set():
+    set_relationsips()
+        # undo_messages()
+        # Add other undo functions here

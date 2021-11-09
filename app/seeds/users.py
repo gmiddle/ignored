@@ -1,4 +1,7 @@
-from app.models import db, User
+from app.models import db, User, Server
+from werkzeug.security import generate_password_hash
+
+
 
 
 # Adds a demo user, you can add other users here if you want

@@ -24,10 +24,7 @@
 #serverDropDown{
     cursor:pointer;
 }
-#channelDropDown{
-    cursor:pointer;
-    margin-right: 5px;
-}
+
 
 #addChannel{
     cursor:pointer;
@@ -42,8 +39,9 @@ fas fa-plus:hover{
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    margin-left: 5px;
     background-color: #2f3135;
-    color: gray;
+    color: rgb(170, 170, 170);
 }
 
 .sideBarChannelNameText{

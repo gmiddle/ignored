@@ -21,7 +21,15 @@
 
 }
 
-fas fa-plus{
+#serverDropDown{
+    cursor:pointer;
+}
+#channelDropDown{
+    cursor:pointer;
+    margin-right: 5px;
+}
+
+#addChannel{
     cursor:pointer;
 }
 
@@ -64,4 +72,8 @@ fas fa-plus:hover{
 
 .logoutIcon{
     padding:10px;
+}
+
+.logoutIcon:hover{
+    cursor:pointer;
 }

@@ -11,15 +11,15 @@ const Sidebar = () => {
           <div className="sideBarTop">
                 {/* <h3>{servers}</h3>  render servers in h3*/}
                 <h3>{'servers'}</h3>
-                <i class="fas fa-chevron-circle-down"></i> {/* drop down for servers list */}
+                <i class="fas fa-chevron-circle-down" id="serverDropDown"></i> {/* drop down for servers list */}
             </div>
             <div className="sideBarChannels">
                 <div className="sideBarChannelName">
                     <div className="sideBarChannelNameText">
-                    <i class="fas fa-chevron-circle-down"></i> {/* drop down for channels list */}
+                    <i class="fas fa-chevron-circle-down" id="channelDropDown"></i> {/* drop down for channels list */}
                         <h3>{'channels'}</h3>
                         </div>
-                        <i class="fas fa-plus"></i> {/* add channel button */}
+                        <i class="fas fa-plus" id="addChannel"></i> {/* add channel button */}
                     </div>
             <div className="sideBarChannelList">
                 <SidebarChannel />

@@ -50,7 +50,7 @@ def servers_post():
       ownerId = current_user.id
     )
     db.session.add(server)
-    db.seesion.commit()
+    db.session.commit()
     return redirect('/')
   else:
     print(form.errors)

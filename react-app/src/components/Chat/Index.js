@@ -7,7 +7,6 @@ const Chat = () => {
         <div className='chat'>
             <ChatHeader />
             <div className='chatMessages'>
-                <Message />
                 {/* ADD MESSAGES */}
                 </div>
 

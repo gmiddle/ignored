@@ -13,6 +13,7 @@ def servers():
 
 @private_server_routes.route('/')
 def private_servers():
+
     private_servers = PrivateServer.query.all()
     return {'servers': [private_server.to_dict() for private_server in private_servers]}
 

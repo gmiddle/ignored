@@ -1,6 +1,6 @@
 from .db import db
-import uuid
-import base64
+
+
 
 class Server(db.Model):
     __tablename__ = 'servers'
@@ -12,6 +12,7 @@ class Server(db.Model):
     serverInviteKey = db.Column(db.String(255), nullable=False, unique=True)
     ownerId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     channels = db.relationship('Channel', backref='server', lazy=True)
+
 
     def to_dict(self):
         return {

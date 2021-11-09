@@ -12,14 +12,17 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
-  const [credential, setCredential] = useState('');
+
+
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+
+  if (user) return <Redirect to="/dashboard" />;
+
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    if (password) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
@@ -39,9 +42,6 @@ const SignUpForm = () => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
 
   if (user) {
     return <Redirect to='/' />;
@@ -49,10 +49,11 @@ const SignUpForm = () => {
 
 
   const demoLogin = async () => {
-    setCredential('demo@aa.io');
+    setEmail('demo@aa.io');
     setPassword('password');
+    setUsername('demo');
     return dispatch(
-      sessionActions.login({credential: 'demo@aa.io', password: 'password'})
+      sessionActions.login({username: 'demo',email: 'demo@aa.io', password: 'password'})
     );
   }
 

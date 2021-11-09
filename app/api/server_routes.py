@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import Server, PrivateServer
 
 server_routes = Blueprint('servers', __name__)
@@ -8,6 +8,7 @@ private_server_routes = Blueprint('private_servers', __name__)
 @server_routes.route('/')
 def servers():
     servers = Server.query.all()
+    print("hit", current_user)
     return {'servers': [server.to_dict() for server in servers]}
 
 

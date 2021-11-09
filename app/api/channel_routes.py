@@ -84,23 +84,7 @@ def channel_edit(id):
         return "Channel not found, could not edit"
 
 
-
-# PUT edit an existing channel
-@channel_routes.route("/edit/<int:id>", methods=['PUT'])
-def channel_edit(id):
-    channel_to_edit = Channel.query.get_or_404(id)
-    form = NewChannelForm()
-    if form.validate_on_submit():
-        channel_to_edit.name = request.form['name']
-        channel_to_edit.topic = request.form['topic']
-    try:
-        db.session.commit()
-        return redirect('')
-    except:
-        return "Channel not found, could not edit"
-
-
-@private_channel_routes.route("/edit/<int:id>", methods=['PUT'])
+@private_channel_routes.route("/private/edit/<int:id>", methods=['PUT'])
 def private_channel_edit(id):
     private_channel_to_edit = PrivateChannel.query.get_or_404(id)
     form = NewPrivateChannelForm()

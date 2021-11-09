@@ -27,5 +27,3 @@ def server(id):
 def private_message(id):
     private_message = PrivateMessage.query.get(id)
     return private_message.to_dict()
-
-

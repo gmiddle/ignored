@@ -29,6 +29,7 @@ def private_message(id):
     private_message = PrivateMessage.query.get(id)
     return private_message.to_dict()
 
+
 # POST a message
 @message_routes.route('/', methods=['POST'])
 def message_post():
@@ -116,3 +117,4 @@ def delete_private_message():
     return redirect('/')
   except:
     return "Message not found."
+

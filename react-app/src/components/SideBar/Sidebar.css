@@ -48,7 +48,12 @@
 
 }
 
-fas fa-plus{
+#serverDropDown{
+    cursor:pointer;
+}
+
+
+#addChannel{
     cursor:pointer;
 }
 
@@ -61,8 +66,9 @@ fas fa-plus:hover{
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    margin-left: 5px;
     background-color: #2f3135;
-    color: gray;
+    color: rgb(170, 170, 170);
 }
 
 .sideBarChannelNameText{
@@ -91,4 +97,8 @@ fas fa-plus:hover{
 
 .logoutIcon{
     padding:10px;
+}
+
+.logoutIcon:hover{
+    cursor:pointer;
 }

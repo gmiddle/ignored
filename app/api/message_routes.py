@@ -39,7 +39,10 @@ def message_post():
   form = MessageForm()
 
   if form.validate_on_submit():
-    message = Message(content=form.data["Content"])
+    message = Message(
+      content=form.data["Content"],
+      channelId=request.args.get('server_id')
+      )
     db.session.add(message)
     db.session.commit()
     return redirect('/')

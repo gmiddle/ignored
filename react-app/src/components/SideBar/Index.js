@@ -25,10 +25,9 @@ const Sidebar = () => {
             <div className="sideBarChannels">
                 <div className="sideBarChannelName">
                     <div className="sideBarChannelNameText">
-                    <i class="fas fa-chevron-circle-down"></i> {/* drop down for channels list */}
                         <h3>{'channels'}</h3>
                         </div>
-                        <i class="fas fa-plus"></i> {/* add channel button */}
+                        <i class="fas fa-plus" id="addChannel"></i> {/* add channel button */}
                     </div>
             <div className="sideBarChannelList">
                 <SidebarChannel />

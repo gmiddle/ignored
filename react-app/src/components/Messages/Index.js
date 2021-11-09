@@ -1,10 +1,15 @@
 import React from 'react'
 import './Messages.css'
+
+
+
+
 const Messages = () => {
 
 
     return (
         <div className='messages'>
+            {/* maybe an avatar? */}
             <div className="messageInfo">
                 <h4>{/* {UserName} */}
                 UserName
@@ -12,8 +17,11 @@ const Messages = () => {
                 Time Stamp
                 </span>
                 </h4>
-                <p>ACTUAL MESSAGE</p>
-                {/* {generate messages} */}
+                <div className="actualMessage">
+                    Actual Message
+                     {/* {generate messages} */}
+                    </div>
+
             </div>
         </div>
     )

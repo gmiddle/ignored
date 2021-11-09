@@ -13,5 +13,9 @@
 .timeStamp{
     margin-left: 20px;
     color: gray;
-    font-size:small;
+    font-size:x-small;
+}
+
+.actualMessage{
+    margin-top: -19px;
 }

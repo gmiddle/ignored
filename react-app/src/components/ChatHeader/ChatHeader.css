@@ -1,0 +1,52 @@
+.chatName{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: gray;
+    padding: 10px;
+}
+
+.chatHeader{
+    color: gray;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.chatIcons > h3{
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.chatIconsRight{
+    display: flex;
+    flex:.5;
+    align-items: center;
+   justify-content: space-between;
+}
+
+#friends{
+    padding: 5px;
+    cursor: pointer;
+}
+
+.fas fa-search{
+    padding: 5px;
+    cursor: pointer;
+}
+
+#search{
+    display: flex;
+    align-items: center;
+    color: gray;
+    background-color: #2f3135;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+.search > input{
+   background: transparent;
+   outline-width: 0;
+   color: white;
+   border: none;
+}

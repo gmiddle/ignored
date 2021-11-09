@@ -11,9 +11,11 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [credential, setCredential] = useState('');
+  // const [credential, setCredential] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  if (user) return <Redirect to="/dashboard" />;
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -37,10 +39,10 @@ const LoginForm = () => {
 
 
   const demoLogin = async () => {
-    setCredential('demo@aa.io');
+    setEmail('demo@aa.io');
     setPassword('password');
     return dispatch(
-      sessionActions.login({credential: 'demo@aa.io', password: 'password'})
+      sessionActions.login({email: 'demo@aa.io', password: 'password'})
     );
   }
 

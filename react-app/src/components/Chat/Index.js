@@ -15,6 +15,11 @@ const Chat = () => {
                 <Messages />
                 <Messages />
                 <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
                 </div>
 
                 <div className='chatArea'>

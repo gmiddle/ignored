@@ -1,9 +1,11 @@
 import React from 'react'
+import { useDispatch, useSelector } from "react-redux";
 import SidebarChannel from '../SidebarChannel/Index'
 import './Sidebar.css'
 
 
 const Sidebar = () => {
+    const {serverList} = useSelector((state) => state.session.user)
     return (
 
         <div className="sideBar">
@@ -11,6 +13,10 @@ const Sidebar = () => {
           <div className="sideBarTop">
                 {/* <h3>{servers}</h3>  render servers in h3*/}
                 <h3>{'servers'}</h3>
+                {console.log(serverList)}
+                {serverList.map((server)=>(
+                    <p>{server.name}</p>
+                ))}
                 <i class="fas fa-chevron-circle-down"></i> {/* drop down for servers list */}
             </div>
             <div className="sideBarChannels">

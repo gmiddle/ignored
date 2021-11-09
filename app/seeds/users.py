@@ -38,7 +38,7 @@ def seed_users():
             serverInviteKey=generate_password_hash('Demo Server2')[-7:-1].upper(),
             channels=[
                 Channel(
-                name="Channel 2",
+                name="Channel wahoo",
                 topic="test topic 2",
                 server_id=2,
                 messages=[
@@ -71,7 +71,7 @@ def seed_users():
             serverInviteKey=generate_password_hash('Demo Server')[-7:-1].upper(),
             channels=[
                 Channel(
-                name="Channel 1",
+                name="Channel special",
                 topic="test topic 1",
                 server_id=4,
                 messages=[

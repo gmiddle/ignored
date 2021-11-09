@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import SidebarChannel from '../SidebarChannel/Index'
+import dcordicon from '../../public/dcordicon.png'
 import './Sidebar.css'
 
 
@@ -10,14 +11,16 @@ const Sidebar = () => {
 
         <div className="sideBar">
              <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
-          <div className="sideBarTop">
-                {/* <h3>{servers}</h3>  render servers in h3*/}
-                <h3>{'servers'}</h3>
-                {console.log(serverList)}
+            <div className="sideBarTop">
+                <div id="serversHeader">
+                    <i class="fas fa-chevron-circle-down"></i> {/* drop down for servers list */}
+                    <h3>{'servers'}</h3>
+                </div>
                 {serverList.map((server)=>(
-                    <p>{server.name}</p>
+                <div className="serverCard">
+                   <div className="serverIcon"></div>
+                </div>
                 ))}
-                <i class="fas fa-chevron-circle-down"></i> {/* drop down for servers list */}
             </div>
             <div className="sideBarChannels">
                 <div className="sideBarChannelName">

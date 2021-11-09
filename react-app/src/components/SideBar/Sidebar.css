@@ -8,12 +8,39 @@
 
 .sideBarTop{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     background-color: #2f3135;
     color: white;
     border-bottom: 3px solid #26282c;
+}
+
+/* Server Container */
+#serversHeader{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.serverCard{
+    display:flex;
+    flex-direction:row;
+    height: 30px;
+    width: 100%;
+}
+
+.serverIcon{
+    height: 50px;
+    width: 50px;
+    background-color: blue;
+    border-radius: 50%;
+}
+
+.serverName{
+    height:10px;
+    width:100%
 }
 
 .sideBarChannels{

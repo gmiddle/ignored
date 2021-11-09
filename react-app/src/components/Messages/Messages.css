@@ -1,0 +1,26 @@
+.messages{
+    display: flex;
+    align-items: center;
+    padding:10px;
+    color: white;
+}
+
+.messageInfo{
+    margin-left: 20px;
+}
+
+
+.timeStamp{
+    margin-left: 20px;
+    color: gray;
+    font-size:x-small;
+}
+
+.actualMessage{
+    margin-top: -19px;
+}
+
+.messages:hover{
+    background-color: #474b53;
+    cursor: text;
+}

@@ -17,6 +17,7 @@
     margin: 20px;
     border-top: 1px solid gray;
     background-color: #474b53;
+    overflow-y: scroll;
 }
 
 .chatArea > form > input{
@@ -39,4 +40,6 @@
 
 .chatMessages{
     flex:1;
+    overflow-y: scroll;
 }
+

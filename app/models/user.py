@@ -1,3 +1,4 @@
+from enum import unique
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -27,6 +28,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    profilePic = db.Column(db.String(1000))
     serverOwnerId = db.relationship('Server', backref='user', lazy=True)
     serverList = db.relationship("Server", secondary=subs, backref=db.backref('subscribers', lazy="dynamic"))
     privateServerList = db.relationship("PrivateServer", secondary=privateSubs, backref=db.backref('privateSubscribers', lazy="dynamic"))
@@ -53,6 +55,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
+            "profilePic": self.profilePic,
             'serverList': [server.to_dict() for server in self.serverList],
             'privateServerList': [private_server.to_dict() for private_server in self.privateServerList],
             'friendships': [friendship.to_dict() for friendship in self.friendships]

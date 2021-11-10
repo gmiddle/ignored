@@ -1,17 +1,20 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import SidebarChannel from '../SidebarChannel/Index'
 import dcordicon from '../../public/dcordicon.png'
 import './Sidebar.css'
 
 
 const Sidebar = ({currentServerId, setCurrentServerId}) => {
+
     const {serverList} = useSelector((state) => state.session.user)
-    const currentServer = serverList.find(server=>server.id === currentServerId)
+    const currentServer = serverList.find(server=>`${server.id}` === localStorage.currentServerId)
 
-    useEffect(()=>{
 
-    },[currentServerId])
+    const handleClick = () => {
+        localStorage.setItem('currentServerId', currentServerId)
+    }
+
 
     return (
 
@@ -24,7 +27,7 @@ const Sidebar = ({currentServerId, setCurrentServerId}) => {
                 </div>
                 {serverList.map((server)=>(
                 <div className="serverCard">
-                   <div onClick={()=>setCurrentServerId(server.id)} className="serverIcon"></div>
+                   <div onClick={()=>handleClick(setCurrentServerId(server.id))} className="serverIcon"></div>
                 </div>
                 ))}
             </div>

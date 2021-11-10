@@ -22,9 +22,6 @@ class Server(db.Model):
             'serverImg': self.serverImg,
             'serverInviteKey': self.serverInviteKey,
             'ownerId': self.ownerId,
-            'channels': self.channels
+            'channels': [channels.to_dict() for channels in self.channels]
         }
 
-    def gen_server_key(self):
-       key = base64.b32encode(self.name)
-       return key

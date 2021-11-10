@@ -14,6 +14,7 @@ import './index.css'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const [currentServerId, setCurrentServerId] = useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -48,11 +49,11 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
-        <ProtectedRoute path='/dashboard' exact={true} >
-        <div className="app">
-        <Sidebar />
-        <Chat />
-        </div>
+        <ProtectedRoute exact path='/dashboard' exact={true} >
+          <div className="app">
+          <Sidebar currentServerId={currentServerId} setCurrentServerId={setCurrentServerId}/>
+          <Chat />
+          </div>
         </ProtectedRoute>
 
       </Switch>

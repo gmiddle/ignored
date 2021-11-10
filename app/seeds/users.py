@@ -9,6 +9,7 @@ def seed_users():
         username='demo',
         email='demo@aa.io',
         password='password',
+        profilePic="",
         serverList=[
             Server(
             name='Demo Server',
@@ -63,6 +64,7 @@ def seed_users():
         username='marnie',
         email='marnie@aa.io',
         password='password',
+        profilePic="",
         serverList=[
             Server(
             name='Demo Server4',
@@ -137,6 +139,7 @@ def seed_users():
         username='bobbie',
         email='bobbie@aa.io',
         password='password',
+        profilePic="",
         serverList=[Server(
             name='Demo Server7',
             description='This is a demo server',

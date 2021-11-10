@@ -55,6 +55,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
+            "profilePic": self.profilePic,
             'serverList': [server.to_dict() for server in self.serverList],
             'privateServerList': [private_server.to_dict() for private_server in self.privateServerList],
             'friendships': [friendship.to_dict() for friendship in self.friendships]

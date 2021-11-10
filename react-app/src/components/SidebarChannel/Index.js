@@ -8,9 +8,6 @@ const SidebarChannel = ({channelName}) => {
 
 
 
-
-   
-
     return (
         <div className="sidebarChannel">
             <h4><span className='sidebarChannelHash'>#</span>  {channelName}  </h4>

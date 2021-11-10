@@ -6,7 +6,6 @@ import './Sidebar.css'
 
 
 const Sidebar = ({currentServerId, setCurrentServerId}) => {
-
     const {serverList} = useSelector((state) => state.session.user)
     const currentServer = serverList.find(server=>`${server.id}` === localStorage.currentServerId)
 
@@ -14,7 +13,6 @@ const Sidebar = ({currentServerId, setCurrentServerId}) => {
     const handleClick = () => {
         localStorage.setItem('currentServerId', currentServerId)
     }
-
 
     return (
 

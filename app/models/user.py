@@ -18,7 +18,8 @@ friendship = db.Table(
     'friendships', db.metadata,
     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), index=True),
     db.Column('friend_id', db.Integer, db.ForeignKey('users.id')),
-    db.UniqueConstraint('user_id', 'friend_id', name='unique_friendships'))
+    db.UniqueConstraint('user_id', 'friend_id', name='unique_friendships')
+)
 
 
 class User(db.Model, UserMixin):

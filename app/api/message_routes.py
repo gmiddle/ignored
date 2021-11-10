@@ -39,11 +39,12 @@ def message_post():
   form = MessageForm()
 
   if form.validate_on_submit():
-    message = Message(
-      content=form.data["Content"],
-      channelId=request.args.get('server_id')
-      )
-    db.session.add(message)
+    new_message = Message(
+      content = form.data["Content"],
+      user_id = current_user.id,
+      profilePic = current_user.profilePic
+    )
+    db.session.add(new_message)
     db.session.commit()
     return redirect('/')
   else:
@@ -55,7 +56,7 @@ def message_post():
 @private_message_routes.route('/', methods=['POST'])
 def private_message_post():
   """
-  Creates a new message
+  Creates a new private message
   """
   form = MessageForm()
 

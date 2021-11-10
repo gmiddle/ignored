@@ -82,9 +82,9 @@ def servers_edit(id):
 @server_routes.route('/delete/<int:id>', methods=['DELETE'])
 def server_delete(id):
   server = Server.query.filter(Server.id == id).first()
+
   try:
     db.session.delete(server)
     db.session.commit()
-    return redirect('/')
-  except:
-    return "Server not found."
+    return "Server Deleted"
+

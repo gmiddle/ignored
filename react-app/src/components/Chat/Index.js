@@ -1,5 +1,6 @@
 import React from 'react'
 import './Chat.css'
+import Messages from '../Messages/Index'
 import ChatHeader from '../ChatHeader/Index'
 
 const Chat = () => {
@@ -8,6 +9,17 @@ const Chat = () => {
             <ChatHeader />
             <div className='chatMessages'>
                 {/* ADD MESSAGES */}
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
                 </div>
 
                 <div className='chatArea'>

@@ -11,7 +11,7 @@ class Server(db.Model):
     serverImg = db.Column(db.String(255))
     serverInviteKey = db.Column(db.String(255), nullable=False, unique=True)
     ownerId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    channels = db.relationship('Channel', backref='server', lazy=True)
+    channels = db.relationship('Channel', cascade = "all,delete", backref='server', lazy=True)
 
 
     def to_dict(self):
@@ -24,4 +24,3 @@ class Server(db.Model):
             'ownerId': self.ownerId,
             'channels': [channels.to_dict() for channels in self.channels]
         }
-

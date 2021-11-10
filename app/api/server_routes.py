@@ -56,7 +56,7 @@ def servers_post():
     print(form.errors)
     return "Bad data"
 
-      
+
 # POST a private_server
 # @private_server_routes.route('/', methods=['POST'])
 # def private_server_post():
@@ -71,7 +71,7 @@ def servers_edit(id):
     server_edit.name = form.data['Name'],
     server_edit.description = form.data['Description'],
     server_edit.serverImg = form.data['ServerImg']
-  try: 
+  try:
     db.session.commit()
     return redirect('/')
   except:
@@ -81,7 +81,7 @@ def servers_edit(id):
 
 @server_routes.route('/delete/<int:id>', methods=['DELETE'])
 def server_delete(id):
-  server = Server.query.get_or_404(id)
+  server = Server.query.filter(Server.id == id).first()
   try:
     db.session.delete(server)
     db.session.commit()

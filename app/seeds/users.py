@@ -13,6 +13,7 @@ def seed_users():
         username='demo',
         email='demo@aa.io',
         password='password',
+        profilePic="",
         serverList=[
             Server(
             name=f'{fake.name()}\'s Server',
@@ -132,6 +133,7 @@ def seed_users():
                     ),
                 ]
                 ),
+
                 Channel(
                 name='resources',
                 topic="test topic 1",

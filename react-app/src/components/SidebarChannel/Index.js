@@ -1,12 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import './SidebarChannel.css'
 
 
-const SidebarChannel = () => {
+const SidebarChannel = ({channelName}) => {
+
     return (
         <div className="sidebarChannel">
-            <h4><span className='sidebarChannelHash'>#</span>  {/* {channelName} */} channel name </h4>
-
+            <h4><span className='sidebarChannelHash'>#</span>  {channelName}  </h4>
         </div>
     )
 }

@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import SidebarChannel from '../SidebarChannel/Index'
 import dcordicon from '../../public/dcordicon.png'
 import './Sidebar.css'
 
 
-const Sidebar = () => {
+const Sidebar = ({currentServerId, setCurrentServerId}) => {
     const {serverList} = useSelector((state) => state.session.user)
+    const currentServer = serverList.find(server=>server.id === currentServerId)
+
+    useEffect(()=>{
+
+    },[currentServerId])
+
     return (
 
         <div className="sideBar">
@@ -18,7 +24,7 @@ const Sidebar = () => {
                 </div>
                 {serverList.map((server)=>(
                 <div className="serverCard">
-                   <div className="serverIcon"></div>
+                   <div onClick={()=>setCurrentServerId(server.id)} className="serverIcon"></div>
                 </div>
                 ))}
             </div>
@@ -30,11 +36,11 @@ const Sidebar = () => {
                         <i class="fas fa-plus" id="addChannel"></i> {/* add channel button */}
                     </div>
             <div className="sideBarChannelList">
-                <SidebarChannel />
-                <SidebarChannel />
-                <SidebarChannel />
-                <SidebarChannel />
-                <SidebarChannel />
+            {currentServer && currentServer.channels.map((channel)=>(
+                <SidebarChannel channelName={channel.name} />
+            ))}
+
+
             </div>
         </div>
         <div className="sideBarUser">

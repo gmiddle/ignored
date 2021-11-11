@@ -1,3 +1,4 @@
+
 const LOAD = "servers/LOAD";
 const LOAD_ONE = "servers/LOAD_ONE"
 const ADD_ONE = "servers/ADD_ONE";
@@ -7,13 +8,13 @@ const load = (server) => ({
     server,
   });
 
-  const addOneComment = (server) => ({
+  const addOneServer = (server) => ({
     type: ADD_ONE,
     server,
   });
 
   export const getServers = (id) => async (dispatch) => {
-    const response = await csrfFetch(`/api/servers/${id}`);
+    const response = await fetch(`/api/servers/${id}`);
     if (response.ok) {
       const allServersList = await response.json();
 
@@ -21,25 +22,25 @@ const load = (server) => ({
     }
   };
 
-  export const createServer = (newServer) => async (dispatch) => {
-    const response = await csrfFetch(`/api/servers/`, {
+  export const createServer = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/servers/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newServer),
+      body: JSON.stringify(payload),
     });
-
+    console.log(response, '----------------------')
     if (response.ok) {
       const newServer = await response.json();
+      console.log(newServer, 'uiopsjDfhjikolSdfHKJASDFG')
       dispatch(addOneServer(newServer));
       return newServer;
     }
   };
 
   export const deleteServer = (id) => async (dispatch) => {
-    let deleteId = id.serverId;
-    const response = await csrfFetch(`/api/servers/${deleteId}`, {
+    const response = await fetch(`/api/servers/delete/${id}`, {
       method: "DELETE",
     });
 
@@ -49,19 +50,19 @@ const load = (server) => ({
     }
   };
 
-  export const editComment = ({updatedServer}) => async (dispatch) => {
+  export const editServer = ({updatedServer}) => async (dispatch) => {
 
-    const Server_id = updatedServer.server_id;
-    const response = await csrfFetch(`/api/comments/${server_id}`, {
+    const server_id = updatedServer.server_id;
+    const response = await fetch(`/api/servers/${server_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({body}),
+      body: JSON.stringify(response),
     });
     if (response.ok) {
       const newServer = await response.json();
-      dispatch(addOneComment(newServer));
+      dispatch(addOneServer(newServer));
       return newServer
     }
   };

@@ -2,15 +2,17 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { createServer } from "../../store/server";
+import { updateUser } from "../../store/session";
 import "./AddServerForm.css";
 
-const ServerForm = ({ userId, showModal }) => {
+const ServerForm = ({ userId, showModal, setCurrentServerId }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [user_id] = useState(userId);
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newServer = {
@@ -19,12 +21,16 @@ const ServerForm = ({ userId, showModal }) => {
       description: description,
     };
 
-    const createdServer = dispatch(createServer(newServer));
+    const createdServer = await dispatch(createServer(newServer));
     if (createdServer) {
-      history.push(`/dashboard/`);
+      updateUser(userId)
+      setCurrentServerId(createdServer.id)
+      console.log(createdServer,'createdServer')
+      showModal(false)
+      // history.push(`/dashboard/`);
     }
   };
-
+  
   const handleCancelClick = (e) => {
     e.preventDefault();
     showModal(false);
@@ -37,7 +43,7 @@ const ServerForm = ({ userId, showModal }) => {
         value={name}
         required
         placeholder="Server Name"
-        onChange={setName}
+        onChange={(e) => setName(e.target.value)}
       />
       <input
         id="descriptionInput"
@@ -45,7 +51,7 @@ const ServerForm = ({ userId, showModal }) => {
         value={description}
         required
         placeholder="Server Description"
-        onChange={setDescription}
+        onChange={(e) => setDescription(e.target.value)}
       />
       <button id="serverSubmit" type="submit">
         Create New Server

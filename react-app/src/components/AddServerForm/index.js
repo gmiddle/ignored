@@ -1,24 +1,27 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { Modal } from "../../context/Modal";
-import AddServerForm from "./AddServerForm";
+import React, { useState } from "react";
+import ServerForm from "./AddServerForm"
 
-function AddServerModal() {
+function AddServerModal({userId, setCurrentServerId}) {
+  
   const [showModal, setShowModal] = useState(false);
   
   return (
-    <>
-      <button onClick={() => setShowModal(true)}>Edit Comment</button>
+    <div>
+      <button onClick={() => setShowModal(true)}>butto</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AddServerForm
+          <ServerForm
+            setCurrentServerId={setCurrentServerId}
             showModal={setShowModal}
             userId={userId}
-          />
+            />
         </Modal>
       )}
-    </>
+    </div>
   );
 }
 
 export default AddServerModal;
+
+{/* <i class="fas fa-plus" id="addChannel" ></i>  */}

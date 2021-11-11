@@ -2,7 +2,7 @@
 from flask import Blueprint, jsonify, Flask, redirect, request
 from flask_login import login_required, current_user
 from app.forms import ServerForm
-from app.models import Server, PrivateServer, db
+from app.models import Server, PrivateServer, db, User
 from werkzeug.security import generate_password_hash
 
 server_routes = Blueprint('servers', __name__)
@@ -39,19 +39,26 @@ def servers_post():
   """
   Creates a new server
   """
+
   form = ServerForm()
+
+  form['csrf_token'].data = request.cookies['csrf_token']
+
 
   if form.validate_on_submit():
     server = Server(
-      name=form.data['Name'],
-      description=form.data['Description'],
-      serverImg=form.data['ServerImg'],
-      serverInviteKey = generate_password_hash(f"{form.data['Name']}")[-7:-1].upper(),
+      name=form.data['name'],
+      description=form.data['description'],
+      serverImg=form.data['serverImg'],
+      serverInviteKey = generate_password_hash(f"{form.data['name']}")[-7:-1].upper(),
       ownerId = current_user.id
     )
+    user = User.query.get(server.ownerId)
     db.session.add(server)
+    user.serverList.append(server)
     db.session.commit()
-    return redirect('/')
+    print(server.to_dict(), '-------------------------------')
+    return server.to_dict()
   else:
     print(form.errors)
     return "Bad data"
@@ -87,4 +94,8 @@ def server_delete(id):
     db.session.commit()
     return "Server Deleted"
   except:
+<<<<<<< HEAD
     return "No Server Found"
+=======
+    return "Server not Found"
+>>>>>>> main

@@ -17,6 +17,8 @@ function App() {
   const [currentServerId, setCurrentServerId] = useState();
   const dispatch = useDispatch();
 
+  
+
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());

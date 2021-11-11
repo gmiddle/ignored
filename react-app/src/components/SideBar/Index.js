@@ -5,6 +5,7 @@ import dcordicon from '../../public/dcordicon.png'
 import './Sidebar.css'
 import { updateUser } from "../../store/session";
 import AddServerModal from '../AddServerForm';
+import EditServerModal from '../EditServerForm';
 import { deleteServer, getServers } from '../../store/server';
 
 const Sidebar = ({currentServerId, setCurrentServerId, currUser}) => {
@@ -34,16 +35,21 @@ const Sidebar = ({currentServerId, setCurrentServerId, currUser}) => {
            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
           <div className="sideBarTop">
               <div id="serversHeader">
-                  <i className="fas fa-chevron-circle-down"></i> {/* drop down for servers list */}                   
-                  <h3>{'servers'}</h3>
-                  <AddServerModal 
+                <i className="fas fa-chevron-circle-down"></i> {/* drop down for servers list */}                   
+                <h3>{'servers'}</h3>
+                <AddServerModal 
                     setCurrentServerId={setCurrentServerId}
                     userId={currUser.id} />
               </div>
               {serverList.map((server)=>(
               <div className="serverCard">
-                 <div onClick={()=>handleClick(setCurrentServerId(server.id))} className="serverIcon"></div>
-                 <button value={server.id} onClick={handleDeleteClick}>Delete</button>
+                <div onClick={()=>handleClick(setCurrentServerId(server.id))} className="serverIcon"></div>
+                <button value={server.id} onClick={handleDeleteClick}>Delete</button>
+                <EditServerModal 
+                    setCurrentServerId={setCurrentServerId}
+                    userId={currUser.id}
+                    serverToEdit={server}
+                />
               </div>
               ))}
           </div>

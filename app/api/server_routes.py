@@ -57,7 +57,6 @@ def servers_post():
     db.session.add(server)
     user.serverList.append(server)
     db.session.commit()
-    print(server.to_dict(), '-------------------------------')
     return server.to_dict()
   else:
     print(form.errors)
@@ -93,6 +92,6 @@ def server_delete(id):
   try:
     db.session.delete(server)
     db.session.commit()
-    return "Server Deleted"
+    return server.to_dict()
   except:
     return "Server not Found"

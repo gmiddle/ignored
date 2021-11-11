@@ -1,14 +1,16 @@
 import { Modal } from "../../context/Modal";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ServerForm from "./AddServerForm"
 
 function AddServerModal({userId, setCurrentServerId}) {
-  
+  useEffect(() => {
+
+  }, [])
   const [showModal, setShowModal] = useState(false);
   
   return (
     <div>
-      <button onClick={() => setShowModal(true)}>butto</button>
+      <button onClick={() => setShowModal(true)}>button</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <ServerForm
@@ -18,6 +20,7 @@ function AddServerModal({userId, setCurrentServerId}) {
             />
         </Modal>
       )}
+      
     </div>
   );
 }

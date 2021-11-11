@@ -93,6 +93,6 @@ def server_delete(id):
   try:
     db.session.delete(server)
     db.session.commit()
-    return "Server Deleted"
+    return server.to_dict()
   except:
     return "Server not Found"

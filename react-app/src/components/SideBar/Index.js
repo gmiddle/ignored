@@ -14,8 +14,8 @@ const Sidebar = ({currentServerId, setCurrentServerId}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      console.log('huit')
-    }, [currentServerId])
+      console.log('here')
+    }, [serverList])
 
     const handleDeleteClick = (e) => {
       e.preventDefault()

@@ -11,18 +11,14 @@ const Sidebar = ({currentServerId, setCurrentServerId, currUser}) => {
     // const user = useSelector((state) => state.session.user.id)
     const {serverList} = useSelector((state) => state.session.user)
     const currentServer = serverList.find(server=>`${server.id}` === localStorage.currentServerId)
-    const server = useSelector((state) => state)
     const dispatch = useDispatch();
 
-    console.log(currUser, 'dasdasdasdasd')
     useEffect(() => {
-      console.log('here')
     }, [serverList])
 
     const handleDeleteClick = async (e) => {
       e.preventDefault()
       let serverId = e.target.value
-      console.log(serverId, 'serverId')
       await dispatch(deleteServer(serverId))
       await dispatch(updateUser(currUser.id))
     }
@@ -31,7 +27,6 @@ const Sidebar = ({currentServerId, setCurrentServerId, currUser}) => {
         localStorage.setItem('currentServerId', currentServerId)
     }
     
-    console.log(server, '*********************')
 
     return (
 

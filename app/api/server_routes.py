@@ -2,7 +2,7 @@
 from flask import Blueprint, jsonify, Flask, redirect, request
 from flask_login import login_required, current_user
 from app.forms import ServerForm
-from app.models import Server, PrivateServer, db, User
+from app.models import Server, PrivateServer, db, User, Channel
 from werkzeug.security import generate_password_hash
 
 server_routes = Blueprint('servers', __name__)
@@ -50,6 +50,12 @@ def servers_post():
       name=form.data['name'],
       description=form.data['description'],
       serverImg=form.data['serverImg'],
+      channels=[Channel(
+          name='welcome-test',
+          topic="test topic 1",
+          server_id=0,
+          messages=[]
+      )],
       serverInviteKey = generate_password_hash(f"{form.data['name']}")[-7:-1].upper(),
       ownerId = current_user.id
     )
@@ -79,7 +85,7 @@ def servers_edit(id):
     server_edit.serverImg = form.data['ServerImg']
   try:
     db.session.commit()
-    return redirect('/')
+    return server_delete.to_dict()
   except:
     print(form.errors)
     return "Bad data"

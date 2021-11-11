@@ -10,7 +10,7 @@ function AddServerModal({userId, setCurrentServerId}) {
   
   return (
     <div>
-      <button onClick={() => setShowModal(true)}>button</button>
+      <button onClick={() => setShowModal(true)}><i className="fas fa-plus" id="addServer"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <ServerForm

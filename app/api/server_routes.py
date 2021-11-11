@@ -57,7 +57,6 @@ def servers_post():
     db.session.add(server)
     user.serverList.append(server)
     db.session.commit()
-    print(server.to_dict(), '-------------------------------')
     return server.to_dict()
   else:
     print(form.errors)

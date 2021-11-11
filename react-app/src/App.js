@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,  } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -13,11 +13,15 @@ import { authenticate } from './store/session';
 import './index.css'
 
 function App() {
+  const user = useSelector((state) => state.session.user)
   const [loaded, setLoaded] = useState(false);
   const [currentServerId, setCurrentServerId] = useState();
+  const [currUser, setCurrUser] = useState(user)
   const dispatch = useDispatch();
 
-  
+  useEffect(()=>{
+    setCurrUser(user);
+  }, [user]);
 
   useEffect(() => {
     (async() => {
@@ -53,7 +57,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute exact path='/dashboard' exact={true} >
           <div className="app">
-          <Sidebar currentServerId={currentServerId} setCurrentServerId={setCurrentServerId}/>
+          <Sidebar currUser={currUser} currentServerId={currentServerId} setCurrentServerId={setCurrentServerId}/>
           <Chat />
           </div>
         </ProtectedRoute>

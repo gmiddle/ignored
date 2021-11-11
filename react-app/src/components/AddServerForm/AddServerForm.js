@@ -23,7 +23,7 @@ const ServerForm = ({ userId, showModal, setCurrentServerId }) => {
 
     const createdServer = await dispatch(createServer(newServer));
     if (createdServer) {
-      updateUser(userId)
+      dispatch(updateUser(userId))
       setCurrentServerId(createdServer.id)
       console.log(createdServer,'createdServer')
       showModal(false)

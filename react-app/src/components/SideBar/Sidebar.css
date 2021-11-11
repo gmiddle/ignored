@@ -26,6 +26,7 @@
 
 .serverCard{
     display:flex;
+    align-items: center;
     flex-direction:row;
     align-items: center;
     height: 30px;
@@ -38,6 +39,7 @@
     width: 50px;
     background-color: blue;
     border-radius: 50%;
+    
 }
 
 .serverName{

@@ -117,6 +117,6 @@ def private_channel_delete(id):
     try:
         db.session.delete(private_channel_to_delete)
         db.session.commit()
-        return redirect('')
+        return 
     except:
         return "Channel not found, could not delete"

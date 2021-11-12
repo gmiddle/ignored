@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, redirect, request
 from flask_login import login_required
 from app.forms import NewChannelForm, NewPrivateChannelForm
-from app.models import db, Channel, PrivateChannel
+from app.models import db, Channel, PrivateChannel, Server
 
 channel_routes = Blueprint('channels', __name__)
 private_channel_routes = Blueprint('private_channels', __name__)
@@ -33,20 +33,27 @@ def private_channel(id):
 
 
 # POST add a new channel
-@channel_routes.route("/new", methods=['POST'])
-def new_channel_form():
+@channel_routes.route("server/<int:id>/new", methods=['POST'])
+def new_channel_form(id):
+    print("hit*(**********************>", id)
     form = NewChannelForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         usernames = []
+
         new_channel = Channel(name=data["name"],
                               topic=data["topic"],
-                              server_id=request.args.get('server_id'),
+                              server_id=id,
                               messages = []
                               )
+
+        server = Server.query.get(int(id))
         db.session.add(new_channel)
+        server.channels.append(new_channel)
         db.session.commit()
-        return redirect(f'/server/{new_channel.server_id}/')
+        return new_channel.to_dict()
     else:
             print(form.errors)
             return "Bad Data"
@@ -74,12 +81,14 @@ def new_private_channel_form():
 def channel_edit(id):
     channel_to_edit = Channel.query.get_or_404(id)
     form = NewChannelForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
-        channel_to_edit.name = request.form['name']
-        channel_to_edit.topic = request.form['topic']
+        channel_to_edit.name = form.data['name']
+        channel_to_edit.topic = form.data['topic']
     try:
         db.session.commit()
-        return redirect('')
+        return channel_to_edit.to_dict()
     except:
         return "Channel not found, could not edit"
 
@@ -117,6 +126,6 @@ def private_channel_delete(id):
     try:
         db.session.delete(private_channel_to_delete)
         db.session.commit()
-        return 
+        return
     except:
         return "Channel not found, could not delete"

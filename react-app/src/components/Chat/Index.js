@@ -2,7 +2,8 @@ import React from 'react'
 import './Chat.css'
 import Messages from '../Messages/Index'
 import ChatHeader from '../ChatHeader/Index'
-import { useSelector, useDispatch,useState } from "react-redux";
+import { useSelector, useDispatch,useState,useEffect } from "react-redux";
+import { useDispatch } from 'react';
 // import { getUsers } from '../../store/users';
 // import the socket
 import { io } from 'socket.io-client';
@@ -16,7 +17,10 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
     const channelList = currentServer ? currentServer.channels : []
     const currentChannel = channelList.find(channel=>`${channel.id}` === localStorage.currentChannelId)
     const [messages, setMessages] = useState([])
-    const [chatInput, setChatInput] = useState("");
+    const [chatInput, updateChatInput] = useState("");
+
+    const user = useSelector(state => state.session.user)
+
 
 
     const dispatch = useDispatch();
@@ -35,6 +39,14 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
         })
     }, [])
 
+    const sendChat = (e) => {
+        e.preventDefault()
+        // emit a message
+        socket.emit("chat", { user_id: user.id, content: chatInput });
+        // clear the input field after the message is sent
+        setChatInput("")
+    }
+
 
     return (
         <div className='chat'>
@@ -42,9 +54,12 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
             <div className='chatMessages'>
                 {currentChannel && currentChannel.messages.map((message) => (
                     <Messages message={message} />
-
                 ))}
-
+            <div>
+                {messages.map((message, ind) => (
+                <Messages key={ind} message={message}/>
+                ))}
+                </div>
             </div>
 
                 <div className='chatArea'>
@@ -53,7 +68,6 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
                         <button type='submit'className="chatSubmitBtn">
                         </button>
                     </form>
-
                 </div>
         </div>
     )

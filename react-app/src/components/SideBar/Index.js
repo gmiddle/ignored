@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import SidebarChannel from "../SidebarChannel/Index";
 import AddServerModal from "../AddServerForm";
+import AddChannelModal from "../AddChannelForm";
 import dcordicon from "../../public/dcordicon.png";
 import "./Sidebar.css";
 import { updateUser } from "../../store/session";
-import AddServerModal from "../AddServerForm";
 import EditServerModal from "../EditServerForm";
+import EditChannelModal from "../EditChannelForm";
 import { deleteServer, getServers } from "../../store/server";
 import { deleteChannel, editChannel } from "../../store/channel";
 
@@ -92,17 +93,28 @@ const Sidebar = ({
           <div className="sideBarChannelNameText">
             <h3>{"channels"}</h3>
           </div>
-          <i className="fas fa-plus" id="addChannel"></i>
+          <AddChannelModal
+            setCurrentChannelId={setCurrentChannelId}
+            userId={currUser.id}
+          />
         </div>
         <div className="sideBarChannelList">
           {currentServer &&
             currentServer.channels.map((channel) => (
+            <div className="channelCard">
               <SidebarChannel
                 channel={channel}
                 handleChannelClick={handleChannelClick}
                 setCurrentChannelId={setCurrentChannelId}
                 currentChannelId={currentChannelId}
               />
+              <EditChannelModal
+              setCurrentChannelId= {setCurrentChannelId}
+              userId= {currUser.id}
+              channelToEdit= {channel}
+              />
+              <button value={channel.id} onClick={handleChannelDeleteClick}>Delete</button>
+            </div>
             ))}
         </div>
       </div>

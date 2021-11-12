@@ -11,7 +11,6 @@ private_server_routes = Blueprint('private_servers', __name__)
 @server_routes.route('/')
 def servers():
     servers = Server.query.all()
-    print("hit", current_user)
     return {'servers': [server.to_dict() for server in servers]}
 
 

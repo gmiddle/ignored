@@ -42,11 +42,14 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
 
     const sendChat = (e) => {
         e.preventDefault()
+        dispatch()
         // emit a message
         socket.emit("chat", { user_id: user.id, content: chatInput });
         // clear the input field after the message is sent
         updateChatInput("")
     }
+
+
     const onChange = (event) => {
         updateChatInput(event.target.value);
       };

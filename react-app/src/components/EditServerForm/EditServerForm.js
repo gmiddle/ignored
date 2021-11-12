@@ -1,31 +1,28 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { createServer } from "../../store/server";
+import { editServer } from "../../store/server";
 import { updateUser } from "../../store/session";
-import "./AddServerForm.css";
+import "./EditServerForm.css";
 
-const ServerForm = ({ userId, showModal, setCurrentServerId }) => {
+const EditServerForm = ({ userId, showModal, setCurrentServerId, serverToEdit }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  // const history = useHistory();
+  const [name, setName] = useState(serverToEdit.name);
+  const [description, setDescription] = useState(serverToEdit.description);
   const [user_id] = useState(userId);
-
+  
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newServer = {
-      ownerId: user_id,
-      name: name,
-      description: description,
-    };
+    serverToEdit.name = name
+    serverToEdit.description = description  
 
-    const createdServer = await dispatch(createServer(newServer));
-    if (createdServer) {
-      dispatch(updateUser(userId))
-      setCurrentServerId(createdServer.id)
-      console.log(createdServer,'createdServer')
+    let editedServer = await dispatch(editServer(serverToEdit));
+    if (editedServer) {
+      await dispatch(updateUser(userId))
+      setCurrentServerId(editedServer.id)
+      // console.log(editedServer,'editedServer')
       showModal(false)
       // history.push(`/dashboard/`);
     }
@@ -53,12 +50,10 @@ const ServerForm = ({ userId, showModal, setCurrentServerId }) => {
         placeholder="Server Description"
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button id="serverSubmit" type="submit">
-        Create New Server
-      </button>
+      <button id="serverSubmit" type="submit">Submit Change</button>
       <button onClick={handleCancelClick}>Cancel</button>
     </form>
   );
 };
 
-export default ServerForm;
+export default EditServerForm;

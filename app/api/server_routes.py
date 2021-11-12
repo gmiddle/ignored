@@ -2,7 +2,7 @@
 from flask import Blueprint, jsonify, Flask, redirect, request
 from flask_login import login_required, current_user
 from app.forms import ServerForm
-from app.models import Server, PrivateServer, db
+from app.models import Server, PrivateServer, db, User, Channel
 from werkzeug.security import generate_password_hash
 
 server_routes = Blueprint('servers', __name__)
@@ -39,19 +39,31 @@ def servers_post():
   """
   Creates a new server
   """
+
   form = ServerForm()
+
+  form['csrf_token'].data = request.cookies['csrf_token']
+
 
   if form.validate_on_submit():
     server = Server(
-      name=form.data['Name'],
-      description=form.data['Description'],
-      serverImg=form.data['ServerImg'],
-      serverInviteKey = generate_password_hash(f"{form.data['Name']}")[-7:-1].upper(),
+      name=form.data['name'],
+      description=form.data['description'],
+      serverImg=form.data['serverImg'],
+      channels=[Channel(
+          name='welcome-test',
+          topic="test topic 1",
+          server_id=0,
+          messages=[]
+      )],
+      serverInviteKey = generate_password_hash(f"{form.data['name']}")[-7:-1].upper(),
       ownerId = current_user.id
     )
+    user = User.query.get(server.ownerId)
     db.session.add(server)
+    user.serverList.append(server)
     db.session.commit()
-    return redirect('/')
+    return server.to_dict()
   else:
     print(form.errors)
     return "Bad data"
@@ -67,13 +79,15 @@ def servers_post():
 def servers_edit(id):
   server_edit = Server.query.get_or_404(id)
   form = ServerForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
   if form.validate_on_submit():
-    server_edit.name = form.data['Name'],
-    server_edit.description = form.data['Description'],
-    server_edit.serverImg = form.data['ServerImg']
+    server_edit.name = form.data['name'],
+    server_edit.description = form.data['description'],
+    server_edit.serverImg = form.data['serverImg']
   try:
     db.session.commit()
-    return redirect('/')
+    return server_edit.to_dict()
   except:
     print(form.errors)
     return "Bad data"
@@ -85,6 +99,6 @@ def server_delete(id):
   try:
     db.session.delete(server)
     db.session.commit()
-    return "Server Deleted"
+    return server.to_dict()
   except:
     return "No Server Found"

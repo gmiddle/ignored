@@ -29,6 +29,20 @@ export const authenticate = () => async (dispatch) => {
   }
 }
 
+export const updateUser = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/users/${userId}`, {
+    method: 'GET'
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return;
+    }
+    dispatch(setUser(data));
+  }
+}
+
 export const login = (email, password) => async (dispatch) => {
   const response = await fetch('/api/auth/login', {
     method: 'POST',

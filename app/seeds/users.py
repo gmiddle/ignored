@@ -23,7 +23,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome1',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -218,7 +218,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome2',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -412,7 +412,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome3',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -606,7 +606,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome4',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -813,7 +813,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome5',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -1007,7 +1007,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome6',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -1201,7 +1201,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome7',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -1395,7 +1395,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome8',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -1589,7 +1589,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome9',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -1795,7 +1795,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome10',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -1989,7 +1989,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome11',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -2183,7 +2183,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome12',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -2377,7 +2377,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome13',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -2571,7 +2571,7 @@ def seed_users():
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome14',
                 topic="test topic 1",
                 server_id=1,
                 messages=[

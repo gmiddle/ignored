@@ -5,4 +5,4 @@ from wtforms.validators import DataRequired
 class NewChannelForm(FlaskForm):
     name = StringField("name", validators = [DataRequired()])
     topic = StringField("topic")
-    submit = SubmitField("Submit")
+    server_id = IntegerField("server_id")

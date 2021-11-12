@@ -1,8 +1,8 @@
 import { Modal } from "../../context/Modal";
 import React, { useState, useEffect } from "react";
-import ServerForm from "./AddServerForm"
+import EditChannelForm from "./EditChannelForm"
 
-function AddServerModal({userId, setCurrentServerId}) {
+function EditChannelModal({userId, setCurrentChannelId, channelToEdit}) {
   useEffect(() => {
 
   }, [])
@@ -10,14 +10,15 @@ function AddServerModal({userId, setCurrentServerId}) {
 
   return (
     <div>
-      <button onClick={() => setShowModal(true)}><i className="fas fa-plus" id="addServer"></i></button>
+      <button onClick={() => setShowModal(true)}>Edit</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <ServerForm
-            setCurrentServerId={setCurrentServerId}
+          <EditChannelForm
+            setCurrentChannelId={setCurrentChannelId}
             showModal={setShowModal}
             userId={userId}
-            />
+            channelToEdit={channelToEdit}
+          />
         </Modal>
       )}
 
@@ -25,6 +26,6 @@ function AddServerModal({userId, setCurrentServerId}) {
   );
 }
 
-export default AddServerModal;
+export default EditChannelModal;
 
 {/* <i class="fas fa-plus" id="addChannel" ></i>  */}

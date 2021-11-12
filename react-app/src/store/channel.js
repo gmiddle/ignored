@@ -32,17 +32,16 @@ export const getChannelbyId = (id) => async (dispatch) => {
 };
 
 export const createChannel = (payload) => async (dispatch) => {
-  const response = await fetch(`/api/channels/`, {
+  console.log(JSON.stringify(payload))
+  const response = await fetch(`/api/channels/server/${payload.server_id}/new`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
   });
-  console.log(response, '----------------------')
   if (response.ok) {
     const newChannel = await response.json();
-    console.log(newChannel, 'uiopsjDfhjikolSdfHKJASDFG')
     dispatch(addOneChannel(newChannel));
     return newChannel;
   }

@@ -79,13 +79,15 @@ def servers_post():
 def servers_edit(id):
   server_edit = Server.query.get_or_404(id)
   form = ServerForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
   if form.validate_on_submit():
-    server_edit.name = form.data['Name'],
-    server_edit.description = form.data['Description'],
-    server_edit.serverImg = form.data['ServerImg']
+    server_edit.name = form.data['name'],
+    server_edit.description = form.data['description'],
+    server_edit.serverImg = form.data['serverImg']
   try:
     db.session.commit()
-    return server_delete.to_dict()
+    return server_edit.to_dict()
   except:
     print(form.errors)
     return "Bad data"
@@ -99,8 +101,4 @@ def server_delete(id):
     db.session.commit()
     return server.to_dict()
   except:
-<<<<<<< HEAD
     return "No Server Found"
-=======
-    return "Server not Found"
->>>>>>> main

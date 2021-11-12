@@ -59,15 +59,15 @@ export const deleteServer = (id) => async (dispatch) => {
   }
 };
 
-export const editServer = ({updatedServer}) => async (dispatch) => {
+export const editServer = (updatedServer) => async (dispatch) => {
 
-  const server_id = updatedServer.server_id;
-  const response = await fetch(`/api/servers/${server_id}`, {
+  const server_id = updatedServer.id;
+  const response = await fetch(`/api/servers/edit/${server_id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(response),
+    body: JSON.stringify(updatedServer),
   });
   if (response.ok) {
     const newServer = await response.json();

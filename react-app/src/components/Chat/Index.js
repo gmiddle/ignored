@@ -26,9 +26,8 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
 
                 <div className='chatArea'>
                     <form>
-                        <input type='text' placeholder={currentChannel.name}  />
+                        <input type='text' placeholder={"Send a Message"}  />
                         <button type='submit'className="chatSubmitBtn">
-                            Send Message
                         </button>
                     </form>
 

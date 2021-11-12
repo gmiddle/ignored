@@ -72,7 +72,7 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
                 {currentChannel && currentChannel.messages.map((message) => (
                     <div className="messageCard">
                     <Messages message={message} />
-                    {message.user_id === user.id && <EditMessageModal message={message} />}
+                    {message.user_id === user.id && <EditMessageModal messageToEdit={message} />}
                     </div>
                 ))}
             <div>

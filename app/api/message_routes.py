@@ -87,7 +87,7 @@ def message_edit(id):
     message.content = form.data["Content"]
   try:
     db.session.commit()
-    return redirect('/')
+    return messages.to_dict()
   except:
     print(form.errors)
     return "Bad data"

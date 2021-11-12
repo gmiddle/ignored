@@ -13,6 +13,7 @@ from .api.channel_routes import channel_routes, private_channel_routes
 from .api.auth_routes import auth_routes
 from .api.dashboard_routes import dashboard_routes
 from .api.friendship_routes import friendship_routes
+from .api.message_routes import message_routes, private_message_routes
 
 from .seeds import seed_commands
 
@@ -47,6 +48,12 @@ app.register_blueprint(dashboard_routes, url_prefix='/dashboard')
 #Channel Routes
 app.register_blueprint(channel_routes, url_prefix='/api/channels')
 app.register_blueprint(private_channel_routes, url_prefix='/api/channels/private')
+
+#Message Routes
+app.register_blueprint(message_routes, url_prefix='/api/messages')
+app.register_blueprint(private_message_routes, url_prefix='/api/messages/private')
+
+
 
 db.init_app(app)
 Migrate(app, db)

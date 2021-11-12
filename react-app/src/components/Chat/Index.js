@@ -3,7 +3,7 @@ import './Chat.css'
 import Messages from '../Messages/Index'
 import ChatHeader from '../ChatHeader/Index'
 import { useSelector, useDispatch } from "react-redux";
-
+import { createMessage } from '../../store/message';
 // import { getUsers } from '../../store/users';
 // import the socket
 import { io } from 'socket.io-client';
@@ -42,10 +42,18 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
 
     const sendChat = (e) => {
         e.preventDefault()
-        dispatch()
+
+        const newMessage = {
+            content: chatInput,
+            channel_id: currentChannel.id,
+            user_id: user.id,
+        }
+
+        dispatch(createMessage(newMessage))
         // emit a message
         socket.emit("chat", { user_id: user.id, content: chatInput });
         // clear the input field after the message is sent
+
         updateChatInput("")
     }
 

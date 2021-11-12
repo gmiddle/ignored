@@ -3,13 +3,16 @@ from flask_login import login_required, current_user
 from app.forms import MessageForm
 from app.models import Message, PrivateMessage, channel, db, Channel
 
+
+
 message_routes = Blueprint('messages', __name__)
 private_message_routes = Blueprint('private_messages', __name__)
+
 # GET all routes
 @message_routes.route('/')
 def messages():
     messages = Message.query.all()
-    return {'messages': [message.to_dict() for message in messages]}
+    return {'Messages': [message.to_dict() for message in messages]}
 
 
 @private_message_routes.route('/')
@@ -31,12 +34,14 @@ def private_message(id):
 
 
 # POST a message
-@message_routes.route('/', methods=['POST'])
+@message_routes.route('/channel/<int:channelId>/new', methods=['POST'])
 def message_post():
   """
   Creates a new message
   """
   form = MessageForm()
+
+  form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
     new_message = Message(
@@ -118,4 +123,3 @@ def delete_private_message():
     return redirect('/')
   except:
     return "Message not found."
-

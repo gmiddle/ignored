@@ -30,4 +30,5 @@ RUN pip install psycopg2
 # Run flask environment
 # need this for multi threading because Flask can't handle on its own
 # first app is the app package, and the second is the app instance
-CMD gunicorn app:app
+CMD gunicorn --worker-class eventlet -w 1 app:app
+

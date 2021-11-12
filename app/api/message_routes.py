@@ -3,13 +3,16 @@ from flask_login import login_required, current_user
 from app.forms import MessageForm
 from app.models import Message, PrivateMessage, channel, db, Channel
 
+
+
 message_routes = Blueprint('messages', __name__)
 private_message_routes = Blueprint('private_messages', __name__)
+
 # GET all routes
 @message_routes.route('/')
 def messages():
     messages = Message.query.all()
-    return {'messages': [message.to_dict() for message in messages]}
+    return {'Messages': [message.to_dict() for message in messages]}
 
 
 @private_message_routes.route('/')
@@ -31,22 +34,28 @@ def private_message(id):
 
 
 # POST a message
-@message_routes.route('/', methods=['POST'])
-def message_post():
+@message_routes.route('/channel/<int:id>/new', methods=['POST'])
+def message_post(id):
+
   """
   Creates a new message
   """
   form = MessageForm()
 
+  form['csrf_token'].data = request.cookies['csrf_token']
+
   if form.validate_on_submit():
     new_message = Message(
-      content = form.data["Content"],
+      content = form.data["content"],
       user_id = current_user.id,
-      profilePic = current_user.profilePic
+      profilePic = current_user.profilePic,
+      channel_id = id
     )
+    channel = Channel.query.get(id)
     db.session.add(new_message)
+    channel.messages.append(new_message)
     db.session.commit()
-    return redirect('/')
+    return new_message.to_dict()
   else:
     print(form.errors)
     return "Bad data"
@@ -78,7 +87,7 @@ def message_edit(id):
     message.content = form.data["Content"]
   try:
     db.session.commit()
-    return redirect('/')
+    return messages.to_dict()
   except:
     print(form.errors)
     return "Bad data"
@@ -118,4 +127,3 @@ def delete_private_message():
     return redirect('/')
   except:
     return "Message not found."
-

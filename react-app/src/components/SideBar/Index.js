@@ -41,10 +41,6 @@ const Sidebar = ({
   };
 
   const handleChannelClick = () => {
-    console.log(
-      "--------------------SideBar-index-currentChannelId",
-      currentChannelId
-    );
     localStorage.setItem("currentChannelId", currentChannelId);
   };
 

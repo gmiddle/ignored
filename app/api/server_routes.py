@@ -1,4 +1,3 @@
-
 from flask import Blueprint, jsonify, Flask, redirect, request
 from flask_login import login_required, current_user
 from app.forms import ServerForm
@@ -7,6 +6,7 @@ from werkzeug.security import generate_password_hash
 
 server_routes = Blueprint('servers', __name__)
 private_server_routes = Blueprint('private_servers', __name__)
+
 # GET all routes
 @server_routes.route('/')
 def servers():

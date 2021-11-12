@@ -36,7 +36,7 @@ def private_message(id):
 # POST a message
 @message_routes.route('/channel/<int:id>/new', methods=['POST'])
 def message_post(id):
-  print("this is channel id ==================", id)
+
   """
   Creates a new message
   """

@@ -7,11 +7,13 @@ import { createMessage } from '../../store/message';
 // import { getUsers } from '../../store/users';
 // import the socket
 import { io } from 'socket.io-client';
+import EditMessageModal from '../EditMessageForm/index'
 
 // outside of your component, initialize the socket variable
 let socket;
 
 const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurrentChannelId, currUser}) => {
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
     const {serverList} = useSelector((state) => state.session.user)
     const currentServer = serverList.find(server=>`${server.id}` === localStorage.currentServerId)
     const channelList = currentServer ? currentServer.channels : []
@@ -21,7 +23,7 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
     const [chatInput, updateChatInput] = useState("");
 
     const user = useSelector(state => state.session.user)
-   
+
 
 
     const dispatch = useDispatch();
@@ -66,12 +68,19 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
         <div className='chat'>
             <ChatHeader />
             <div className='chatMessages'>
+
                 {currentChannel && currentChannel.messages.map((message) => (
+                    <div className="messageCard">
                     <Messages message={message} />
+                    {message.user_id === user.id && <EditMessageModal message={message} />}
+                    </div>
                 ))}
             <div>
                 {messages.map((message, ind) => (
-                <Messages key={ind} message={message}/>
+                <div className="messageCard">
+                    <Messages key={ind} message={message}/>
+                    <EditMessageModal userId={user.id} messageToEdit={message}/>
+                </div>
                 ))}
                 </div>
             </div>

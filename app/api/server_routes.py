@@ -85,6 +85,6 @@ def server_delete(id):
   try:
     db.session.delete(server)
     db.session.commit()
-    return redirect('/')
+    return "Server Deleted"
   except:
-    return "Server not found."
+    return "No Server Found"

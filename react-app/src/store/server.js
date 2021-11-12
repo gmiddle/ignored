@@ -7,13 +7,13 @@ const load = (server) => ({
     server,
   });
 
-  const addOneComment = (server) => ({
+  const addOneServer = (server) => ({
     type: ADD_ONE,
     server,
   });
 
   export const getServers = (id) => async (dispatch) => {
-    const response = await csrfFetch(`/api/servers/${id}`);
+    const response = await fetch(`/api/servers/${id}`);
     if (response.ok) {
       const allServersList = await response.json();
 
@@ -22,7 +22,7 @@ const load = (server) => ({
   };
 
   export const createServer = (newServer) => async (dispatch) => {
-    const response = await csrfFetch(`/api/servers/`, {
+    const response = await fetch(`/api/servers/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const load = (server) => ({
 
   export const deleteServer = (id) => async (dispatch) => {
     let deleteId = id.serverId;
-    const response = await csrfFetch(`/api/servers/${deleteId}`, {
+    const response = await fetch(`/api/servers/${deleteId}`, {
       method: "DELETE",
     });
 
@@ -51,17 +51,17 @@ const load = (server) => ({
 
   export const editComment = ({updatedServer}) => async (dispatch) => {
 
-    const Server_id = updatedServer.server_id;
-    const response = await csrfFetch(`/api/comments/${server_id}`, {
+    const server_id = updatedServer.server_id;
+    const response = await fetch(`/api/comments/${server_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({body}),
+      body: JSON.stringify(response),
     });
     if (response.ok) {
       const newServer = await response.json();
-      dispatch(addOneComment(newServer));
+      dispatch(addOneServer(newServer));
       return newServer
     }
   };

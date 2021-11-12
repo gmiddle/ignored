@@ -24,6 +24,10 @@
     align-items: center;
 }
 
+#addServer{
+    cursor: pointer;
+}
+
 .serverCard{
     display:flex;
     flex-direction:row;

@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import { Modal } from "../../context/Modal";
 import AddServerForm from "./AddServerForm";
 
-function AddServerModal() {
+function AddServerModal({userId}) {
   const [showModal, setShowModal] = useState(false);
-  
+
   return (
     <>
       <button onClick={() => setShowModal(true)}>Edit Comment</button>

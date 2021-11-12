@@ -1,17 +1,21 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import SidebarChannel from '../SidebarChannel/Index'
+import AddServerModal from '../AddServerForm'
 import dcordicon from '../../public/dcordicon.png'
 import './Sidebar.css'
 
 
 const Sidebar = ({currentServerId, setCurrentServerId}) => {
     const {serverList} = useSelector((state) => state.session.user)
-    const currentServer = serverList.find(server=>server.id === currentServerId)
+    const userId = useSelector((state)=> state.session.user.id)
+    const currentServer = serverList.find(server=>`${server.id}` === localStorage.currentServerId)
 
-    useEffect(()=>{
 
-    },[currentServerId])
+
+    const handleClick = () => {
+        localStorage.setItem('currentServerId', currentServerId)
+    }
 
     return (
 
@@ -21,10 +25,11 @@ const Sidebar = ({currentServerId, setCurrentServerId}) => {
                 <div id="serversHeader">
                     <i class="fas fa-chevron-circle-down"></i> {/* drop down for servers list */}
                     <h3>{'servers'}</h3>
+                    <i class="fas fa-plus" id="addServer" onClick={()=><AddServerModal userId={userId}/>}></i> {/* add channel button */}
                 </div>
                 {serverList.map((server)=>(
                 <div className="serverCard">
-                   <div onClick={()=>setCurrentServerId(server.id)} className="serverIcon"></div>
+                   <div onClick={()=>handleClick(setCurrentServerId(server.id))} className="serverIcon"></div>
                 </div>
                 ))}
             </div>

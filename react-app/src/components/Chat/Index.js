@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 
 const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurrentChannelId, currUser}) => {
-    const {serverList} = useSelector((state) => state.session.user) 
+    const {serverList} = useSelector((state) => state.session.user)
     const currentServer = serverList.find(server=>`${server.id}` === localStorage.currentServerId)
     const channelList = currentServer ? currentServer.channels : []
     const currentChannel = channelList.find(channel=>`${channel.id}` === localStorage.currentChannelId)
@@ -21,13 +21,12 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
                     <Messages message={message} />
 
                 ))}
-                
+
             </div>
 
                 <div className='chatArea'>
                     <form>
-                        <input type='text' placeholder={`Message #ChannelName `}  />
-                    {/* TODO ADD CHANNEL NAME */}
+                        <input type='text' placeholder={currentChannel.name}  />
                         <button type='submit'className="chatSubmitBtn">
                             Send Message
                         </button>

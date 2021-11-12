@@ -3,4 +3,6 @@ from wtforms import StringField, SubmitField, IntegerField
 from wtforms.validators import DataRequired
 
 class MessageForm(FlaskForm):
-  content = StringField("Content", validators=[DataRequired()])
+  content = StringField("content", validators=[DataRequired()])
+  channel_id = IntegerField("Channel ID", validators=[DataRequired()])
+  user_id = IntegerField("User ID", validators=[DataRequired()])

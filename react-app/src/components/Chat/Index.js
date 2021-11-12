@@ -21,7 +21,7 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
     const [chatInput, updateChatInput] = useState("");
 
     const user = useSelector(state => state.session.user)
-
+   
 
 
     const dispatch = useDispatch();
@@ -45,8 +45,8 @@ const Chat = ({ currentServerId, setCurrentServerId, currentChannelId, setCurren
 
         const newMessage = {
             content: chatInput,
-            channel_id: currentChannel.id,
             user_id: user.id,
+            channel_id: currentChannel.id,
         }
 
         dispatch(createMessage(newMessage))

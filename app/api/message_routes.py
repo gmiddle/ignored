@@ -34,8 +34,9 @@ def private_message(id):
 
 
 # POST a message
-@message_routes.route('/channel/<int:channelId>/new', methods=['POST'])
-def message_post():
+@message_routes.route('/channel/<int:id>/new', methods=['POST'])
+def message_post(id):
+  print("this is channel id ==================", id)
   """
   Creates a new message
   """
@@ -45,13 +46,16 @@ def message_post():
 
   if form.validate_on_submit():
     new_message = Message(
-      content = form.data["Content"],
+      content = form.data["content"],
       user_id = current_user.id,
-      profilePic = current_user.profilePic
+      profilePic = current_user.profilePic,
+      channel_id = id
     )
+    channel = Channel.query.get(id)
     db.session.add(new_message)
+    channel.messages.append(new_message)
     db.session.commit()
-    return redirect('/')
+    return new_message.to_dict()
   else:
     print(form.errors)
     return "Bad data"

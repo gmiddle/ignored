@@ -9,6 +9,7 @@ class Message(db.Model):
     channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     profilePic = ""
+    # TODO add createdAt?
 
     def to_dict(self):
         return {

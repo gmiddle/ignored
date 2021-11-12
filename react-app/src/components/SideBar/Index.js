@@ -76,7 +76,7 @@ const Sidebar = ({currentServerId, setCurrentServerId, currentChannelId, setCurr
                   </div>
           <div className="sideBarChannelList">
           {currentServer && currentServer.channels.map((channel)=>(
-              <SidebarChannel channel={channel} handleChannelClick={handleChannelClick} setCurrentChannelId={setCurrentChannelId}/>
+              <SidebarChannel channel={channel} handleChannelClick={handleChannelClick} setCurrentChannelId={setCurrentChannelId} currentChannelId={currentChannelId}/>
           ))}
 
 

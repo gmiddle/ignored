@@ -6,13 +6,15 @@ import { getUsers } from '../../store/users';
 
 const Messages = ({message, setCurrentChannelId}) => {
     const users = useSelector((state) => state.users.list)
-    const user = users.find((user) => user.id === message.user_id)
+    const user = users ? users.find((user) => user.id === message.user_id) : []
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    console.log("---these are the message(s)", message)
+
+    useEffect( async () => {
         console.log("inside dispatch for messages---------")
-        dispatch(getUsers())
-    }, [setCurrentChannelId])
+        await dispatch(getUsers())
+    }, [])
 
     console.log("---------this is the users that got dispatched here", users)
 
@@ -21,10 +23,10 @@ const Messages = ({message, setCurrentChannelId}) => {
             {/* maybe an avatar? */}
             <div className="messageInfo">
                 <h4>
-                {user.name}
-                <span className='timeStamp'>
+                {user.username}
+                {/* <span className='timeStamp'>
                     {message.createdAt.toDateString()}
-                </span>
+                </span> */}
                 </h4>
                 <div className="actualMessage">
                      {message.content}

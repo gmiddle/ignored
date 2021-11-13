@@ -1,10 +1,16 @@
 const LOAD = "Messages/LOAD";
 const LOAD_ONE = "Messages/LOAD_ONE"
 const ADD_ONE = "Messages/ADD_ONE";
+const REMOVE_ONE = "Messages/REMOVE_ONE"
 
 const load = (Channel) => ({
     type: LOAD,
     payload: Channel,
+});
+
+const removeOneMessage = (deletedMessage) => ({
+  type: REMOVE_ONE,
+  deletedMessage
 });
 
 const addOneMessage = (getMessages) => ({
@@ -50,6 +56,7 @@ export const deleteMessage = (id) => async (dispatch) => {
 
   if (response.ok) {
     const deletedMessage = await response.json();
+    dispatch(removeOneMessage(deletedMessage));
     return deletedMessage;
   }
 };
@@ -85,6 +92,14 @@ const MessagesReducer = (state = initialState, action) => {
     }
     case LOAD_ONE: {
     }
+    case REMOVE_ONE: {
+      newState=Object.assign({}, state)
+      console.log("newState===========>",newState)
+      const res = newState['existingMessages'].filter(
+        (message) => message.id !== action.deletedMessage.id
+      );
+      return {existingMessages:res}
+      };
     default:
       return state;
   }

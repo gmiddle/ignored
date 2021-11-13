@@ -53,9 +53,9 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
         return (() => {
             socket.disconnect()
         })
-    }, [])
+    }, [existingMessages])
 
-    const sendChat = (e) => {
+    const sendChat = async (e) => {
         e.preventDefault()
 
         const newMessage = {
@@ -64,9 +64,10 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
             channel_id: localStorage.currentChannelId,
         }
 
-        dispatch(createMessage(newMessage))
+        const uploadedMessage = await dispatch(createMessage(newMessage))
+        console.log("umessage++++++++++++++++++++++++++>", uploadedMessage)
         // emit a message
-        socket.emit("chat", { user_id: user.id, content: chatInput });
+        socket.emit("chat", {id:uploadedMessage.id, user_id: user.id, content: chatInput });
         // clear the input field after the message is sent
 
         updateChatInput("")
@@ -80,7 +81,7 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
     //  delete message
     const deleteMessages = async (e) => {
         await dispatch(deleteMessage(e.target.value))
-        await dispatch(getMessages(localStorage.currentChannelId));
+        // await dispatch(getMessages(localStorage.currentChannelId));
     }
 
     useEffect( async () => {

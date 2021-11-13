@@ -43,11 +43,9 @@ const Sidebar = ({
     await localStorage.setItem("currentServerId", currentServerId);
   };
 
+
   const handleChannelClick = async () => {
-    console.log(
-      "--------------------SideBar-index-currentChannelId",
-      currentChannelId
-    );
+    console.log("--------------------SideBar-index-currentChannelId", currentChannelId);
     await localStorage.setItem("currentChannelId", currentChannelId);
   };
 

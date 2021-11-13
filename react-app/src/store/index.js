@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import serversReducer from './server';
 import usersReducer from './users';
+import MessagesReducer from './message';
 
 const rootReducer = combineReducers({
   session,
   server: serversReducer,
-  users: usersReducer
+  users: usersReducer,
+  messages: MessagesReducer
 
 });
 

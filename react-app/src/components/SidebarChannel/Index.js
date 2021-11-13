@@ -6,13 +6,12 @@ import './SidebarChannel.css'
 
 
 const SidebarChannel = ({channel, handleChannelClick, setCurrentChannelId, currentChannelId}) => {
-    console.log('--------------------SideBarChannel-channel.id',channel.id)
+
 
     const channelClickAndIdHandler = () => {
         // handleChannelClick(channel.id)
         localStorage.setItem("currentChannelId", channel.id)
         setCurrentChannelId(channel.id)
-        console.log('-----------SidebarChannel - currentChannelId', currentChannelId)
     }
 
     return (

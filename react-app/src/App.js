@@ -60,18 +60,18 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute exact path='/dashboard' exact={true} >
           <div className="app">
-          <Sidebar 
-            currUser={currUser} 
-            currentServerId={currentServerId} 
-            setCurrentServerId={setCurrentServerId} 
-            currentChannelId={currentChannelId} 
+          <Sidebar
+            currUser={currUser}
+            currentServerId={currentServerId}
+            setCurrentServerId={setCurrentServerId}
+            currentChannelId={currentChannelId}
             setCurrentChannelId={setCurrentServerId}
           />
-          <Chat 
-            currUser={currUser} 
-            currentServerId={currentServerId} 
-            setCurrentServerId={setCurrentServerId} 
-            currentChannelId={currentChannelId} 
+          <Chat
+            currUser={currUser}
+            currentServerId={currentServerId}
+            setCurrentServerId={setCurrentServerId}
+            currentChannelId={currentChannelId}
             setCurrentChannelId={setCurrentChannelId}
           />
           </div>

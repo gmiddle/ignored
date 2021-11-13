@@ -4,6 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
+from .socketio import socketio
 
 from .models import db, Server, PrivateServer, User, Channel, PrivateChannel, Message, PrivateMessage
 from .api.user_routes import user_routes
@@ -12,12 +13,15 @@ from .api.channel_routes import channel_routes, private_channel_routes
 from .api.auth_routes import auth_routes
 from .api.dashboard_routes import dashboard_routes
 from .api.friendship_routes import friendship_routes
+from .api.message_routes import message_routes, private_message_routes
 
 from .seeds import seed_commands
 
 from .config import Config
 
 app = Flask(__name__)
+
+socketio.init_app(app)
 
 # Setup login manager
 login = LoginManager(app)
@@ -44,6 +48,12 @@ app.register_blueprint(dashboard_routes, url_prefix='/dashboard')
 #Channel Routes
 app.register_blueprint(channel_routes, url_prefix='/api/channels')
 app.register_blueprint(private_channel_routes, url_prefix='/api/channels/private')
+
+#Message Routes
+app.register_blueprint(message_routes, url_prefix='/api/messages')
+app.register_blueprint(private_message_routes, url_prefix='/api/messages/private')
+
+
 
 db.init_app(app)
 Migrate(app, db)
@@ -84,3 +94,7 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+
+if __name__ == '__main__':
+    socketio.run(app)

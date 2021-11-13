@@ -1,4 +1,3 @@
-
 const LOAD = "channels/LOAD";
 const LOAD_ONE = "channels/LOAD_ONE"
 const ADD_ONE = "channels/ADD_ONE";

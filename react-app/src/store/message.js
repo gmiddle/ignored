@@ -2,9 +2,9 @@ const LOAD = "Messages/LOAD";
 const LOAD_ONE = "Messages/LOAD_ONE"
 const ADD_ONE = "Messages/ADD_ONE";
 
-const load = (Messages) => ({
+const load = (Channel) => ({
     type: LOAD,
-    payload: Messages,
+    payload: Channel,
 });
 
 const addOneMessage = (getMessages) => ({
@@ -14,9 +14,8 @@ const addOneMessage = (getMessages) => ({
 
 export const getMessages = (channel_id) => async (dispatch) => {
   const response = await fetch(`api/channels/${channel_id}`);
-
   if (response.ok) {
-    const allMessagesList = await response.messages.json();
+    const allMessagesList = await response.json();
     dispatch(load(allMessagesList));
   }
 }
@@ -81,7 +80,7 @@ const MessagesReducer = (state = initialState, action) => {
     case LOAD: {
       return {
         ...state,
-        list: action.payload,
+        existingMessages: action.payload.messages,
       };
     }
     case LOAD_ONE: {

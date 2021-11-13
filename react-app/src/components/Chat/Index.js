@@ -3,7 +3,7 @@ import './Chat.css'
 import Messages from '../Messages/Index'
 import ChatHeader from '../ChatHeader/Index'
 import { useSelector, useDispatch } from "react-redux";
-import { createMessage, deleteMessage } from '../../store/message';
+import { createMessage, deleteMessage, getMessages } from '../../store/message';
 // import { getUsers } from '../../store/users';
 // import the socket
 import { io } from 'socket.io-client';
@@ -16,6 +16,8 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
 
     const {serverList} = useSelector((state) => state.session.user)
+
+    const {existingMessages} = useSelector((state) => state.messages)
 
     const [currentServer, setCurrentServer] = useState()
     const [channelList, setChannelList] = useState()
@@ -36,8 +38,6 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
     const [chatInput, updateChatInput] = useState("");
 
     const user = useSelector(state => state.session.user)
-
-    useEffect(() => {}, [serverList]);
 
     const dispatch = useDispatch();
 
@@ -61,7 +61,7 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
         const newMessage = {
             content: chatInput,
             user_id: user.id,
-            channel_id: currentChannel.id,
+            channel_id: localStorage.currentChannelId,
         }
 
         dispatch(createMessage(newMessage))
@@ -80,17 +80,20 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
     //  delete message
     const deleteMessages = async (e) => {
         await dispatch(deleteMessage(e.target.value))
-        await dispatch(updateUser(currUser.id));
+        await dispatch(getMessages(localStorage.currentChannelId));
     }
 
+    useEffect( async () => {
+    await dispatch(getMessages(localStorage.currentChannelId))
+    }, [])
 
 
-    return (
+   return existingMessages? (
+
         <div className='chat'>
             <ChatHeader />
             <div className='chatMessages'>
-
-                {currentChannel && currentChannel.messages.map((message) => (
+                {existingMessages && existingMessages.map((message) => (
                     <div className="messageCard">
                     <Messages message={message} />
                     {message.user_id === user.id && <EditMessageModal messageToEdit={message} />}
@@ -116,7 +119,9 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
                     </form>
                 </div>
         </div>
-    )
+    ): (<div>
+        <p>User Questions Not Found</p>
+      </div>)
 }
 
 export default Chat

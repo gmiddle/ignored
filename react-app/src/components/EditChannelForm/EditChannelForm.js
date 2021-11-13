@@ -9,7 +9,7 @@ const EditChannelForm = ({ userId, showModal, setCurrentChannelId, channelToEdit
   console.log("channel++++++++++++++++++>",channelToEdit)
   const [name, setName] = useState(channelToEdit.name);
   const [topic, setTopic] = useState(channelToEdit.topic);
-  const [user_id] = useState(userId);
+ 
 
 
   const handleSubmit = async (e) => {

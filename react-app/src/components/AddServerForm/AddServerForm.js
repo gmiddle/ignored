@@ -7,12 +7,11 @@ import "./AddServerForm.css";
 
 const ServerForm = ({ userId, showModal, setCurrentServerId }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [user_id] = useState(userId);
 
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newServer = {
@@ -27,10 +26,9 @@ const ServerForm = ({ userId, showModal, setCurrentServerId }) => {
       setCurrentServerId(createdServer.id)
       console.log(createdServer,'createdServer')
       showModal(false)
-      // history.push(`/dashboard/`);
     }
   };
-  
+
   const handleCancelClick = (e) => {
     e.preventDefault();
     showModal(false);

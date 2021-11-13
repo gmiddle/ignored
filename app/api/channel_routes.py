@@ -110,7 +110,6 @@ def private_channel_edit(id):
 @channel_routes.route("/delete/<int:id>", methods=['DELETE'])
 def channel_delete(id):
     channel_to_delete = Channel.query.get_or_404(id)
-
     try:
         db.session.delete(channel_to_delete)
         db.session.commit()

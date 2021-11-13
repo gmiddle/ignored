@@ -80,13 +80,15 @@ const Sidebar = ({
         </div>
         {serverList.map((server) => (
           <div className="serverCard">
-            <button
-            //  onClick={() => handleServerClick(setCurrentServerId(server.id))}
-                onClick={handleServerClick}
-                className="serverIcon"
-                value={server.id}
-            ></button>
-            <div><h2>{server.name}</h2></div>
+            <div className="server-icon">
+              <button
+              //  onClick={() => handleServerClick(setCurrentServerId(server.id))}
+                  onClick={handleServerClick}
+                  className="serverCard-clickable-button"
+                  value={server.id}
+              ></button>
+            </div>
+            <div><h3 className="h3-server-name">{server.name}</h3></div>
             <button value={server.id} onClick={handleServerDeleteClick}>
               Delete
             </button>

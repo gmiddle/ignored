@@ -47,12 +47,25 @@
 
 }
 
-.serverIcon{
+.server-icon{
     height: 50px;
     width: 50px;
-    background-color: blue;
     border-radius: 50%;
-    
+    background-image: url("https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png");
+    /* z-index: 0; */
+    background-position: center;
+    background-size: cover;
+    margin: 0 auto;
+    cursor: pointer; 
+}
+
+.serverCard-clickable-button{
+    height: 50px;
+    width: 50px;
+    /* background-color: blue; */
+    border-radius: 50%;
+    /* background-image: url("https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png"); */
+    /* z-index: 0; */
 }
 
 .serverName{

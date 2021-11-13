@@ -10,6 +10,7 @@ import EditServerModal from "../EditServerForm";
 import EditChannelModal from "../EditChannelForm";
 import { deleteServer, getServers } from "../../store/server";
 import { deleteChannel, editChannel } from "../../store/channel";
+import {logout} from '../../store/session'
 
 const Sidebar = ({
   currentServerId,
@@ -55,6 +56,12 @@ const Sidebar = ({
     await dispatch(deleteChannel(channelId));
     await dispatch(updateUser(currUser.id));
   };
+
+  // handle logout
+  const handleLogout = async () => {
+    await dispatch(logout())
+  }
+
 
   return (
     <div className="sideBar">
@@ -127,7 +134,9 @@ const Sidebar = ({
           <h3> {currUser.username}</h3>
         </div>
         <div className="logoutIcon">
+          <button onClick={handleLogout}>
           <i className="fas fa-cog"></i>
+          </button>
         </div>
       </div>
     </div>

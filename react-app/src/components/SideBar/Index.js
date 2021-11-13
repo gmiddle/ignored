@@ -57,7 +57,6 @@ const Sidebar = ({
     await dispatch(updateUser(currUser.id));
   };
 
-  // handle logout
   const handleLogout = async () => {
     await dispatch(logout())
   }

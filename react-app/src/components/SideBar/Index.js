@@ -10,6 +10,7 @@ import EditServerModal from "../EditServerForm";
 import EditChannelModal from "../EditChannelForm";
 import { deleteServer, getServers } from "../../store/server";
 import { deleteChannel, editChannel } from "../../store/channel";
+import {logout} from '../../store/session'
 
 const Sidebar = ({
   currentServerId,
@@ -38,14 +39,14 @@ const Sidebar = ({
 
   const handleServerClick = async (e) => {
     let serverId = e.target.value;
-    console.log("--------- sidebar-handleServerClick-e.target", e.target.value)
+
     setCurrentServerId(serverId)
     await localStorage.setItem("currentServerId", currentServerId);
   };
 
 
   const handleChannelClick = async () => {
-    console.log("--------------------SideBar-index-currentChannelId", currentChannelId);
+
     await localStorage.setItem("currentChannelId", currentChannelId);
   };
 
@@ -55,6 +56,11 @@ const Sidebar = ({
     await dispatch(deleteChannel(channelId));
     await dispatch(updateUser(currUser.id));
   };
+
+  const handleLogout = async () => {
+    await dispatch(logout())
+  }
+
 
   return (
     <div className="sideBar">
@@ -124,11 +130,12 @@ const Sidebar = ({
       </div>
       <div className="sideBarUser">
         <div className="sideBarUserName">
-          <h3> user name</h3>
-          {/* {userName} */}
+          <h3> {currUser.username}</h3>
         </div>
         <div className="logoutIcon">
-          <i className="fas fa-cog"></i>
+          <button onClick={handleLogout}>
+          <i class="fas fa-sign-out-alt"></i>
+          </button>
         </div>
       </div>
     </div>

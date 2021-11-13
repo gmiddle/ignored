@@ -135,7 +135,7 @@ const Sidebar = ({
         </div>
         <div className="logoutIcon">
           <button onClick={handleLogout}>
-          <i className="fas fa-cog"></i>
+          <i class="fas fa-sign-out-alt"></i>
           </button>
         </div>
       </div>

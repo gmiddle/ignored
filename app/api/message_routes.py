@@ -88,7 +88,6 @@ def message_edit(id):
     message.content = form.data["content"]
   try:
     db.session.commit()
-    print("""""", message.to_dict())
     return message.to_dict()
   except:
     print(form.errors)
@@ -110,14 +109,12 @@ def private_message_edit(id):
 
 # DELETE a message by id
 @message_routes.route('/delete/<int:id>', methods=['DELETE'])
-def delete_message():
+def delete_message(id):
   message = Message.query.get_or_404(id)
-  try:
-    db.session.delete(message)
-    db.session.commit()
-    return redirect('/')
-  except:
-    return "Message not found."
+  db.session.delete(message)
+  db.session.commit()
+  return message.to_dict()
+
 
 # DELETE a private message
 @private_message_routes.route('/delete/<int:id>', methods=['DELETE'])

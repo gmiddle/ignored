@@ -12,10 +12,11 @@ const addOneMessage = (getMessages) => ({
   getMessages,
 });
 
-export const getMessages = () => async (dispatch) => {
-  const response = await fetch('api/messages/')
+export const getMessages = (channel_id) => async (dispatch) => {
+  const response = await fetch(`api/channels/${channel_id}`);
+
   if (response.ok) {
-    const allMessagesList = await response.json();
+    const allMessagesList = await response.messages.json();
     dispatch(load(allMessagesList));
   }
 }
@@ -78,7 +79,10 @@ const MessagesReducer = (state = initialState, action) => {
   let newMessage;
   switch (action.type) {
     case LOAD: {
-      newState = Object.assign({}, state);
+      return {
+        ...state,
+        list: action.payload,
+      };
     }
     case LOAD_ONE: {
     }

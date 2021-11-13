@@ -73,6 +73,7 @@ const Sidebar = ({
               onClick={() => handleServerClick(setCurrentServerId(server.id))}
               className="serverIcon"
             ></div>
+            <div><h2>{server.name}</h2></div>
             <button value={server.id} onClick={handleServerDeleteClick}>
               Delete
             </button>

@@ -83,11 +83,13 @@ def private_message_post():
 def message_edit(id):
   message = Message.query.get_or_404(id)
   form = MessageForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    message.content = form.data["Content"]
+    message.content = form.data["content"]
   try:
     db.session.commit()
-    return messages.to_dict()
+    print("""""", message.to_dict())
+    return message.to_dict()
   except:
     print(form.errors)
     return "Bad data"

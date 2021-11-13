@@ -11,10 +11,9 @@ const Messages = ({message, setCurrentChannelId}) => {
 
 
 
-    useEffect( async () => {
-    await dispatch(getUsers())
+    useEffect( () => {
+        dispatch(getUsers())
     }, [])
-
 
 
     return (

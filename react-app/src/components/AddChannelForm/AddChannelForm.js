@@ -7,7 +7,6 @@ import "./AddChannelForm.css";
 
 const ChannelForm = ({ userId, showModal, setCurrentChannelId }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [name, setName] = useState("");
   const [topic, setTopic] = useState("");
 

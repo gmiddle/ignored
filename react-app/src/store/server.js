@@ -39,7 +39,7 @@ export const createServer = (payload) => async (dispatch) => {
     },
     body: JSON.stringify(payload),
   });
-  console.log(response, '----------------------')
+
   if (response.ok) {
     const newServer = await response.json();
     console.log(newServer, 'uiopsjDfhjikolSdfHKJASDFG')

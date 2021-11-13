@@ -11,10 +11,9 @@ const Messages = ({message, setCurrentChannelId}) => {
 
 
 
-    useEffect( async () => {
-    await dispatch(getUsers())
+    useEffect( () => {
+        dispatch(getUsers())
     }, [])
-
 
 
     return (
@@ -22,7 +21,6 @@ const Messages = ({message, setCurrentChannelId}) => {
             {/* maybe an avatar? */}
             <div className="messageInfo">
                 <h4>
-                {user.username}
                 {/* <span className='timeStamp'>
                     {message.createdAt.toDateString()}
                 </span> */}

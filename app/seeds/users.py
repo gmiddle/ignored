@@ -1,4 +1,4 @@
-from app.models import db, User, Server, Channel, Message
+from app.models import db, User, Server, Channel, Message, PrivateServer, PrivateChannel, PrivateMessage, private_channel
 from werkzeug.security import generate_password_hash
 from faker import Faker
 import random
@@ -16,14 +16,14 @@ def seed_users():
         profilePic="",
         serverList=[
             Server(
-            name=f'{fake.name()}\'s Server',
+            name="Demo's First Server",
             description='Description of server',
             ownerId=1,
-            serverImg='',
+            serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png',
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome1',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -211,14 +211,14 @@ def seed_users():
             ]
             ),
             Server(
-            name=f'{fake.name()}\'s Server',
+            name="Demo's Second Server",
             description='Description of server',
             ownerId=1,
-            serverImg='',
+            serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png',
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome2',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -405,14 +405,14 @@ def seed_users():
             ]
             ),
             Server(
-            name=f'{fake.name()}\'s Server',
+            name="Demo's Third Server",
             description='Description of server',
             ownerId=1,
-            serverImg='',
+            serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png',
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome3',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -599,14 +599,14 @@ def seed_users():
             ]
             ),
             Server(
-            name=f'{fake.name()}\'s Server',
+            name="Demo's Fourth Server",
             description='Description of server',
             ownerId=1,
-            serverImg='',
+            serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png',
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome4',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -793,7 +793,38 @@ def seed_users():
             ]
             ),
         ],
-        privateServerList=[],
+        privateServerList=[
+            PrivateServer(
+                name='Home - Demo',
+                description='Demo User Home / Private Server',
+                serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757202/ignored/discord_server_icons/regular_discord_server_icon_yctjzy.png',
+                serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
+                ownerId=1,
+                private_channels=[
+                    PrivateChannel(
+                    name="Demo's Private Channel",
+                    topic="test topic 1",
+                    private_server_id=1,
+                    private_messages=[
+                        PrivateMessage(
+                            content='Demo Home - This is a private test message 1',
+                            channel_id=1,
+                            user_id=random.randint(1,3),
+                        ),
+                        PrivateMessage(
+                            content='Demo Home - This is a private test message 2',
+                            channel_id=1,
+                            user_id=random.randint(1,3),
+                        ),
+                        PrivateMessage(
+                            content='Demo Home - This is a private test message 3',
+                            channel_id=1,
+                            user_id=random.randint(1,3)
+                        )
+                    ])
+                ]
+            )
+        ],
         messages=[],
         private_messages=[],
         friendships=[]
@@ -806,14 +837,14 @@ def seed_users():
         password='password',
         serverList=[
             Server(
-            name=f'{fake.name()}\'s Server',
+            name="Marnie's First Server",
             description='Description of server',
             ownerId=2,
-            serverImg='',
+            serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png',
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome5',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -1000,14 +1031,14 @@ def seed_users():
             ]
             ),
             Server(
-            name=f'{fake.name()}\'s Server',
+            name="Marnie's Second Server",
             description='Description of server',
             ownerId=2,
-            serverImg='',
+            serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png',
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome6',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -1194,402 +1225,14 @@ def seed_users():
             ]
             ),
             Server(
-            name=f'{fake.name()}\'s Server',
+            name="Marnie's Third Server",
             description='Description of server',
             ownerId=2,
-            serverImg='',
+            serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png',
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
-                topic="test topic 1",
-                server_id=1,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='general',
-                topic="test topic 1",
-                server_id=2,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='lounge',
-                topic="test topic 1",
-                server_id=3,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='resources',
-                topic="test topic 1",
-                server_id=4,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='the-memes',
-                topic="test topic 1",
-                server_id=5,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                )
-            ]
-            ),
-            Server(
-            name=f'{fake.name()}\'s Server',
-            description='Description of server',
-            ownerId=2,
-            serverImg='',
-            serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
-            channels=[
-                Channel(
-                name='welcome',
-                topic="test topic 1",
-                server_id=1,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='general',
-                topic="test topic 1",
-                server_id=2,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='lounge',
-                topic="test topic 1",
-                server_id=3,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='resources',
-                topic="test topic 1",
-                server_id=4,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='the-memes',
-                topic="test topic 1",
-                server_id=5,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                )
-            ]
-            ),
-            Server(
-            name=f'{fake.name()}\'s Server',
-            description='Description of server',
-            ownerId=2,
-            serverImg='',
-            serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
-            channels=[
-                Channel(
-                name='welcome',
+                name='welcome7',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -1776,7 +1419,38 @@ def seed_users():
             ]
             ),
         ],
-        privateServerList=[],
+        privateServerList=[
+            PrivateServer(
+                name='Home - Marnie',
+                description='Marnie Home / Private Server',
+                serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757202/ignored/discord_server_icons/regular_discord_server_icon_yctjzy.png',
+                serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
+                ownerId=2,
+                private_channels=[
+                    PrivateChannel(
+                    name="Marnie's Private Channel",
+                    topic="test topic 1",
+                    private_server_id=1,
+                    private_messages=[
+                        PrivateMessage(
+                            content='Marnie Home - This is a private test message 1',
+                            channel_id=1,
+                            user_id=random.randint(1,3),
+                        ),
+                        PrivateMessage(
+                            content='Marnie Home - This is a private test message 2',
+                            channel_id=1,
+                            user_id=random.randint(1,3),
+                        ),
+                        PrivateMessage(
+                            content='Marnie Home - This is a private test message 3',
+                            channel_id=1,
+                            user_id=random.randint(1,3)
+                        )
+                    ])
+                ]
+            )
+        ],
         messages=[],
         private_messages=[],
         friendships=[]
@@ -1788,14 +1462,14 @@ def seed_users():
         password='password',
         serverList=[
             Server(
-            name=f'{fake.name()}\'s Server',
+            name="Bobbie's First Server",
             description='Description of server',
             ownerId=3,
-            serverImg='',
+            serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png',
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome10',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -1982,14 +1656,14 @@ def seed_users():
             ]
             ),
             Server(
-            name=f'{fake.name()}\'s Server',
+            name="Bobbie's Second Server",
             description='Description of server',
             ownerId=3,
-            serverImg='',
+            serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png',
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
+                name='welcome11',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -2176,402 +1850,14 @@ def seed_users():
             ]
             ),
             Server(
-            name=f'{fake.name()}\'s Server',
+            name="Bobbie's Third Server",
             description='Description of server',
             ownerId=3,
-            serverImg='',
+            serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png',
             serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
             channels=[
                 Channel(
-                name='welcome',
-                topic="test topic 1",
-                server_id=1,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='general',
-                topic="test topic 1",
-                server_id=2,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='lounge',
-                topic="test topic 1",
-                server_id=3,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='resources',
-                topic="test topic 1",
-                server_id=4,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='the-memes',
-                topic="test topic 1",
-                server_id=5,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                )
-            ]
-            ),
-            Server(
-            name=f'{fake.name()}\'s Server',
-            description='Description of server',
-            ownerId=3,
-            serverImg='',
-            serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
-            channels=[
-                Channel(
-                name='welcome',
-                topic="test topic 1",
-                server_id=1,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='general',
-                topic="test topic 1",
-                server_id=2,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='lounge',
-                topic="test topic 1",
-                server_id=3,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='resources',
-                topic="test topic 1",
-                server_id=4,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                ),
-                Channel(
-                name='the-memes',
-                topic="test topic 1",
-                server_id=5,
-                messages=[
-                    Message(
-                        content='This is test message 1',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 2',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 3',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 4',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 5',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                    Message(
-                        content='This is test message 6',
-                        channel_id=1,
-                        user_id=random.randint(1,3),
-                    ),
-                ]
-                )
-            ]
-            ),
-            Server(
-            name=f'{fake.name()}\'s Server',
-            description='Description of server',
-            ownerId=3,
-            serverImg='',
-            serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
-            channels=[
-                Channel(
-                name='welcome',
+                name='welcome12',
                 topic="test topic 1",
                 server_id=1,
                 messages=[
@@ -2758,7 +2044,38 @@ def seed_users():
             ]
             ),
         ],
-        privateServerList=[],
+        privateServerList=[
+            PrivateServer(
+                name='Home - Bobbie',
+                description='Bobbie Home / Private Server',
+                serverImg='https://res.cloudinary.com/dxo7djnid/image/upload/v1636757202/ignored/discord_server_icons/regular_discord_server_icon_yctjzy.png',
+                serverInviteKey=generate_password_hash(f'{random.randint(1,10000)}')[-7:-1].upper(),
+                ownerId=3,
+                private_channels=[
+                    PrivateChannel(
+                    name="Bobbie's Private Channel",
+                    topic="test topic 1",
+                    private_server_id=1,
+                    private_messages=[
+                        PrivateMessage(
+                            content="Bobbie Channel - Hey, what's up!",
+                            channel_id=1,
+                            user_id=random.randint(1,3),
+                        ),
+                        PrivateMessage(
+                            content="Bobbie Channel - Not much!",
+                            channel_id=1,
+                            user_id=random.randint(1,3),
+                        ),
+                        PrivateMessage(
+                            content="Bobbie Channel - Can't wait for tomorrow!",
+                            channel_id=1,
+                            user_id=random.randint(1,3)
+                        )
+                    ])
+                ]
+            )
+        ],
         messages=[],
         private_messages=[],
         friendships=[]

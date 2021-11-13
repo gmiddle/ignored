@@ -31,6 +31,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profilePic = db.Column(db.String(1000))
     serverOwnerId = db.relationship('Server', backref='user', lazy=True)
+    privateServerOwnerId = db.relationship('PrivateServer', backref='user', lazy=True)
     serverList = db.relationship("Server", secondary=subs, backref=db.backref('subscribers', lazy="dynamic"))
     privateServerList = db.relationship("PrivateServer", secondary=privateSubs, backref=db.backref('privateSubscribers', lazy="dynamic"))
     messages = db.relationship('Message', backref='user', lazy=True)

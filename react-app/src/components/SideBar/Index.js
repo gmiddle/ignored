@@ -36,12 +36,17 @@ const Sidebar = ({
     await dispatch(updateUser(currUser.id));
   };
 
-  const handleServerClick = () => {
-    localStorage.setItem("currentServerId", currentServerId);
+  const handleServerClick = async (e) => {
+    let serverId = e.target.value;
+    console.log("--------- sidebar-handleServerClick-e.target", e.target.value)
+    setCurrentServerId(serverId)
+    await localStorage.setItem("currentServerId", currentServerId);
   };
 
-  const handleChannelClick = () => {
-    localStorage.setItem("currentChannelId", currentChannelId);
+
+  const handleChannelClick = async () => {
+    console.log("--------------------SideBar-index-currentChannelId", currentChannelId);
+    await localStorage.setItem("currentChannelId", currentChannelId);
   };
 
   const handleChannelDeleteClick = async (e) => {
@@ -69,10 +74,12 @@ const Sidebar = ({
         </div>
         {serverList.map((server) => (
           <div className="serverCard">
-            <div
-              onClick={() => handleServerClick(setCurrentServerId(server.id))}
-              className="serverIcon"
-            ></div>
+            <button
+            //  onClick={() => handleServerClick(setCurrentServerId(server.id))}
+                onClick={handleServerClick}
+                className="serverIcon"
+                value={server.id}
+            ></button>
             <div><h2>{server.name}</h2></div>
             <button value={server.id} onClick={handleServerDeleteClick}>
               Delete

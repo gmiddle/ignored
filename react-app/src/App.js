@@ -17,6 +17,7 @@ function App() {
   const user = useSelector((state) => state.session.user)
   const [loaded, setLoaded] = useState(false);
   const [currentServerId, setCurrentServerId] = useState();
+  // const [currentServerId, setCurrentServerId] = useState(localStorage.getItem("currentServerId") ? localStorage.getItem("currentServerId") : user.servers[0].id);
   const [currentChannelId, setCurrentChannelId] = useState();
   const [currUser, setCurrUser] = useState(user)
   const dispatch = useDispatch();

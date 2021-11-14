@@ -3,7 +3,7 @@ import './Chat.css'
 import Messages from '../Messages/Index'
 import ChatHeader from '../ChatHeader/Index'
 import { useSelector, useDispatch } from "react-redux";
-import { createMessage, deleteMessage, getMessages } from '../../store/message';
+import { createMessage, getMessagebyId, deleteMessage, getMessages } from '../../store/message';
 // import { getUsers } from '../../store/users';
 // import the socket
 import { io } from 'socket.io-client';
@@ -18,25 +18,14 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
     const {serverList} = useSelector((state) => state.session.user)
 
     const {existingMessages} = useSelector((state) => state.messages)
-
     const [currentServer, setCurrentServer] = useState()
     const [channelList, setChannelList] = useState()
     const [currentChannel, setCurrentChannel] = useState()
 
-
-    useEffect(()  => {
-        async function updateData() {
-            await setCurrentServer(serverList.find(server=>`${server.id}` === localStorage.currentServerId))
-            await setChannelList(currentServer ? currentServer.channels : [])
-            await setCurrentChannel(channelList?.find(channel=>`${channel.id}` === localStorage.currentChannelId))
-        }
-
-        updateData()
-    }, [serverList, localStorage.currentServerId, localStorage.currentChannelId])
-
     const [messages, setMessages] = useState([])
     const [chatInput, updateChatInput] = useState("");
-
+    const combinedMessages = new Set(existingMessages, messages)
+    console.log(combinedMessages)
     const user = useSelector(state => state.session.user)
 
     const dispatch = useDispatch();
@@ -53,9 +42,9 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
         return (() => {
             socket.disconnect()
         })
-    }, [])
+    }, [existingMessages])
 
-    const sendChat = (e) => {
+    const sendChat = async (e) => {
         e.preventDefault()
 
         const newMessage = {
@@ -64,12 +53,23 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
             channel_id: localStorage.currentChannelId,
         }
 
-        dispatch(createMessage(newMessage))
+        const uploadedMessage = await dispatch(createMessage(newMessage))
         // emit a message
-        socket.emit("chat", { user_id: user.id, content: chatInput });
+        socket.emit("chat", {id:uploadedMessage.id, user_id: user.id, content: chatInput });
         // clear the input field after the message is sent
 
         updateChatInput("")
+    }
+
+    const deleteChat = async (e) => {
+        e.preventDefault()
+        console.log(e.target.value)
+        const existingMessage = await dispatch(getMessagebyId(e.target.value))
+        console.log("E===================>",existingMessage)
+        const uploadedMessage = await dispatch(deleteMessage(existingMessage.id))
+        // emit a message
+        socket.emit("delete", {id:existingMessage.id, user_id: user.id, content: chatInput });
+        // clear the input field after the message is sent
     }
 
 
@@ -80,34 +80,33 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
     //  delete message
     const deleteMessages = async (e) => {
         await dispatch(deleteMessage(e.target.value))
-        await dispatch(getMessages(localStorage.currentChannelId));
+        // await dispatch(getMessages(localStorage.currentChannelId));
     }
 
     useEffect( async () => {
     await dispatch(getMessages(localStorage.currentChannelId))
     }, [])
-
-
+    const displayMessages= Array.from(combinedMessages)
    return existingMessages? (
 
         <div className='chat'>
             <ChatHeader />
             <div className='chatMessages'>
-                {existingMessages && existingMessages.map((message) => (
+                {displayMessages && displayMessages.map((message) => (
                     <div className="messageCard">
                     <Messages message={message} />
                     {message.user_id === user.id && <EditMessageModal messageToEdit={message} />}
                     {message.user_id === user.id && <button value={message.id} onClick={deleteMessages}>Delete</button>}
                     </div>
                 ))}
-            <div>
-                {messages.map((message, ind) => (
+           <div>
+                {/* {messages.map((message, ind) => (
                 <div className="messageCard">
                     <Messages key={ind} message={message}/>
                     <EditMessageModal userId={currUser.id} messageToEdit={message}/>
-                    {message.user_id === user.id && <button value={message.id} onClick={deleteMessages}>Delete</button>}
+                    {message.user_id === user.id && <button value={message.id} onClick={deleteChat}>Delete</button>}
                 </div>
-                ))}
+                ))} */}
                 </div>
             </div>
 

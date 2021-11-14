@@ -20,8 +20,6 @@ const EditMessageForm = ({ userId, showModal,messageToEdit }) => {
     let editedMessage = await dispatch(editMessage(messageToEdit));
 
     if (editedMessage) {
-      console.log("------",userId)
-      await dispatch(updateUser(user_id));
       showModal(false)
     }
   };

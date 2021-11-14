@@ -72,6 +72,10 @@
     padding-bottom: 15px;
 }
 
+.server-delete-button{
+    color: gray;
+}
+
 .sideBarChannels{
     flex:1;
     overflow-y: scroll;

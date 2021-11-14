@@ -89,7 +89,7 @@ const Sidebar = ({
               ></button>
             </div>
             <div><h3 className="h3-server-name">{server.name}</h3></div>
-            <button value={server.id} onClick={handleServerDeleteClick}>
+            <button className="server-delete-button" value={server.id} onClick={handleServerDeleteClick}>
               Delete
             </button>
             <EditServerModal

@@ -35,24 +35,24 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
     dispatch(getChannels())
     dispatch(getMessages(localStorage.currentChannelId))
   }, [currentServer, currentChannel]);
-  
-  
+
+
   const handleServerDeleteClick = async (e) => {
     e.preventDefault();
     let serverId = e.target.value;
     await dispatch(deleteServer(serverId));
   };
-  
+
   const handleServerClick = async (e) => {
     let serverId = e.target.value;
-  
+
     console.log(serverId, 'serverID')
     await localStorage.setItem("currentServerId", serverId);
     await dispatch(getServerbyId(serverId))
   };
-  
- 
-  
+
+
+
   const handleChannelClick = async (e) => {
     let channelId = e.target.value
     console.log(channelId, 'channelId')
@@ -100,7 +100,7 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
             </div>
             <div><h3 className="h3-server-name">{server.name}</h3></div>
             <button className="server-delete-button" value={server.id} onClick={handleServerDeleteClick}>
-              Delete
+            Delete
             </button>
             <EditServerModal
               userId={currUser.id}
@@ -131,7 +131,7 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
               userId= {currUser.id}
               channelToEdit= {channel}
               />
-              <button value={channel.id} onClick={handleChannelDeleteClick}>Delete</button>
+              <button value={channel.id} onClick={handleChannelDeleteClick} id="channelDelete">Delete</button>
             </div>
             ))}
         </div>

@@ -68,9 +68,7 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
 
     const deleteChat = async (e) => {
         e.preventDefault()
-        console.log(e.target.value)
         const existingMessage = await dispatch(getMessagebyId(e.target.value))
-        console.log("E===================>",existingMessage)
         const uploadedMessage = await dispatch(deleteMessage(existingMessage.id))
         // emit a message
         socket.emit("delete", {id:existingMessage.id, user_id: user.id, content: chatInput });
@@ -87,8 +85,8 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
         await dispatch(deleteMessage(e.target.value))
         // await dispatch(getMessages(localStorage.currentChannelId));
     }
-    
-    
+
+
     const displayMessages= Array.from(combinedMessages)
     useEffect( async () => {
       await dispatch(getMessages(localStorage.currentChannelId))
@@ -112,14 +110,15 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
 
                 <div className='chatArea'>
                     <form onSubmit={sendChat}>
-                        <input type='text' placeholder="send a message" value={chatInput} onChange={onChange} />
+                        <input type='text' placeholder={"send a message"} value={chatInput} onChange={onChange} />
                         <button type='submit'className="chatSubmitBtn">
                         </button>
                     </form>
                 </div>
         </div>
     ): (<div>
-        <p>User Questions Not Found</p>
+        <redirect to='/dashboard' />
+
       </div>)
 }
 

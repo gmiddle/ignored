@@ -10,7 +10,7 @@ const ServerForm = ({ userId, showModal, setCurrentServerId }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  
+
 
 
   const handleSubmit = async (e) => {
@@ -55,7 +55,7 @@ const ServerForm = ({ userId, showModal, setCurrentServerId }) => {
       <button id="serverSubmit" type="submit">
         Create New Server
       </button>
-      <button onClick={handleCancelClick}>Cancel</button>
+      <button onClick={handleCancelClick} id="serverCancel">Cancel</button>
     </form>
   );
 };

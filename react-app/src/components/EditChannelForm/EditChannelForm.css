@@ -1,0 +1,9 @@
+/* push channelEdit to right side of div */
+
+#editChannel{
+display: flex;
+flex-direction: row;
+justify-content: flex-end;
+align-items: flex-end;
+color: gray;
+}

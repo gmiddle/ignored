@@ -1,0 +1,22 @@
+#channelSubmit{
+color: black;
+margin-right: 20px ;
+}
+
+#channelCancel{
+color: black;
+}
+
+input{
+ color: black;
+}
+
+
+#messageEdit{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: absolute;
+    float: right;
+    right: 5px;
+}

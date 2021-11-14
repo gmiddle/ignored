@@ -8,7 +8,7 @@ const EditChannelForm = ({ userId, showModal, setCurrentChannelId, channelToEdit
   const dispatch = useDispatch();
   const [name, setName] = useState(channelToEdit.name);
   const [topic, setTopic] = useState(channelToEdit.topic);
- 
+
 
 
   const handleSubmit = async (e) => {
@@ -47,7 +47,7 @@ const EditChannelForm = ({ userId, showModal, setCurrentChannelId, channelToEdit
         onChange={(e) => setTopic(e.target.value)}
       />
       <button id="channelSubmit" type="submit">Submit Change</button>
-      <button onClick={handleCancelClick}>Cancel</button>
+      <button id="channelCancel" onClick={handleCancelClick}>Cancel</button>
     </form>
   );
 };

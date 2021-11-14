@@ -29,11 +29,16 @@
     flex-direction: row;
     align-items: center;
     padding-right: 10px;
+    color: gray;
 
 }
 
 #addServer{
     cursor: pointer;
+    margin-left: 20px;
+    justify-content: center;
+    align-items: center;
+    color: gray;
 }
 
 .serverCard{
@@ -73,7 +78,11 @@
 }
 
 .server-delete-button{
+    display: flex;
+    justify-content: space-between;
     color: gray;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .sideBarChannels{
@@ -154,4 +163,10 @@ fas fa-plus:hover{
 .sidebarChannelHash{
   font-size: 30px;
   padding:8px;
+}
+
+#channelDelete{
+    display: flex;
+    justify-content: flex-end;
+    color: gray;
 }

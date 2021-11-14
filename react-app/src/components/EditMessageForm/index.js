@@ -1,6 +1,7 @@
 import { Modal } from "../../context/Modal";
 import React, { useState, useEffect } from "react";
 import EditMessageForm from "./EditMessageForm";
+import "./EditMessageForm.css";
 
 function EditMessageModal({userId,  messageToEdit}) {
   useEffect(() => {
@@ -10,7 +11,7 @@ function EditMessageModal({userId,  messageToEdit}) {
 
   return (
     <div>
-      <button onClick={() => setShowModal(true)}><i class="far fa-edit"></i></button>
+      <button onClick={() => setShowModal(true)}><i class="far fa-edit" id="messageEdit"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditMessageForm

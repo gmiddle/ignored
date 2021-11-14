@@ -5,7 +5,7 @@ import { createChannel } from "../../store/channel";
 import { updateUser } from "../../store/session";
 import "./AddChannelForm.css";
 
-const ChannelForm = ({ userId, showModal, setCurrentChannelId }) => {
+const ChannelForm = ({ userId, showModal, }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [topic, setTopic] = useState("");
@@ -23,7 +23,7 @@ const ChannelForm = ({ userId, showModal, setCurrentChannelId }) => {
     const createdChannel = await dispatch(createChannel(newChannel));
     if (createdChannel) {
       dispatch(updateUser(userId))
-      setCurrentChannelId(createdChannel.id)
+      localStorage.setItem('currentServerId', createdChannel.id)
       showModal(false)
     }
   };

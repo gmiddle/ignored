@@ -1,15 +1,26 @@
 const LOAD = "channels/LOAD";
 const LOAD_ONE = "channels/LOAD_ONE"
 const ADD_ONE = "channels/ADD_ONE";
+const DELETE_ONE = "channels/DELETE_ONE";
 
 const load = (channels) => ({
     type: LOAD,
     payload: channels,
 });
 
+const loadOne = (channel) => ({
+  type: LOAD_ONE,
+  payload: channel
+})
+
+const removeChannel = (channel) => ({
+  type: DELETE_ONE,
+  payload: channel
+})
+
 const addOneChannel = (channel) => ({
   type: ADD_ONE,
-  channel,
+  payload: channel,
 });
 
 export const getChannels = () => async (dispatch) => {
@@ -24,9 +35,9 @@ export const getChannels = () => async (dispatch) => {
 export const getChannelbyId = (id) => async (dispatch) => {
   const response = await fetch(`/api/channels/${id}`);
   if (response.ok) {
-    const allChannelsList = await response.json();
+    const channel = await response.json();
 
-    dispatch(load(allChannelsList));
+    dispatch(loadOne(channel));
   }
 };
 
@@ -53,6 +64,7 @@ export const deleteChannel = (id) => async (dispatch) => {
 
   if (response.ok) {
     const deletedChannel = await response.json();
+    dispatch(removeChannel(deletedChannel))
     return deletedChannel;
   }
 };
@@ -76,17 +88,30 @@ export const editChannel = (updatedChannel) => async (dispatch) => {
 
 const initialState = {};
 
-const channelsReducer = (state = initialState, action) => {
+const ChannelsReducer = (state = initialState, action) => {
   let newState;
   let newChannel;
   switch (action.type) {
     case LOAD: {
-      newState = Object.assign({}, state);
+      return {
+        ...state,
+        allChannels:action.payload
+      }
     }
     case LOAD_ONE: {
+      return  {
+        ...state,
+        currentChannel:action.payload
+      }
+    }
+    case ADD_ONE: {
+      newState = Object.assign({}, state)
+      newState.allChannels.channels.push(action.payload)
+      console.log(newState, 'adding channel')
+      return  newState
     }
     default:
       return state;
   }
 };
-export default channelsReducer;
+export default ChannelsReducer;

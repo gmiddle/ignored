@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { editServer } from "../../store/server";
+import { editServer, getServerbyId } from "../../store/server";
 import { updateUser } from "../../store/session";
 import "./EditServerForm.css";
 
-const EditServerForm = ({ userId, showModal, setCurrentServerId, serverToEdit }) => {
+const EditServerForm = ({ userId, showModal, serverToEdit }) => {
   const dispatch = useDispatch();
   // const history = useHistory();
   const [name, setName] = useState(serverToEdit.name);
@@ -20,8 +20,8 @@ const EditServerForm = ({ userId, showModal, setCurrentServerId, serverToEdit })
 
     let editedServer = await dispatch(editServer(serverToEdit));
     if (editedServer) {
-      await dispatch(updateUser(userId))
-      setCurrentServerId(editedServer.id)
+      await dispatch(getServerbyId(editedServer.id))
+      localStorage.setItem('currentServerId', editedServer.id)
       // console.log(editedServer,'editedServer')
       showModal(false)
       // history.push(`/dashboard/`);

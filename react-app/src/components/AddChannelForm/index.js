@@ -2,7 +2,7 @@ import { Modal } from "../../context/Modal";
 import React, { useState, useEffect } from "react";
 import ChannelForm from "./AddChannelForm"
 
-function AddChannelModal({userId, setCurrentChannelId}) {
+function AddChannelModal({userId, }) {
   useEffect(() => {
 
   }, [])
@@ -14,7 +14,6 @@ function AddChannelModal({userId, setCurrentChannelId}) {
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <ChannelForm
-            setCurrentChannelId={setCurrentChannelId}
             showModal={setShowModal}
             userId={userId}
             />

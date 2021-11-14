@@ -6,7 +6,6 @@ import "./EditChannelForm.css";
 
 const EditChannelForm = ({ userId, showModal, setCurrentChannelId, channelToEdit }) => {
   const dispatch = useDispatch();
-  console.log("channel++++++++++++++++++>",channelToEdit)
   const [name, setName] = useState(channelToEdit.name);
   const [topic, setTopic] = useState(channelToEdit.topic);
  

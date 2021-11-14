@@ -2,7 +2,7 @@ import { Modal } from "../../context/Modal";
 import React, { useState, useEffect } from "react";
 import EditServerForm from "./EditServerForm"
 
-function EditServerModal({userId, setCurrentServerId, serverToEdit}) {
+function EditServerModal({userId, serverToEdit}) {
   useEffect(() => {
 
   }, [])
@@ -14,7 +14,6 @@ function EditServerModal({userId, setCurrentServerId, serverToEdit}) {
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditServerForm
-            setCurrentServerId={setCurrentServerId}
             showModal={setShowModal}
             userId={userId}
             serverToEdit={serverToEdit} 

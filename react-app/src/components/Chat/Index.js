@@ -63,9 +63,7 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
 
     const deleteChat = async (e) => {
         e.preventDefault()
-        console.log(e.target.value)
         const existingMessage = await dispatch(getMessagebyId(e.target.value))
-        console.log("E===================>",existingMessage)
         const uploadedMessage = await dispatch(deleteMessage(existingMessage.id))
         // emit a message
         socket.emit("delete", {id:existingMessage.id, user_id: user.id, content: chatInput });
@@ -96,7 +94,7 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
                     <div className="messageCard">
                     <Messages message={message} />
                     {message.user_id === user.id && <EditMessageModal messageToEdit={message} />}
-                    {message.user_id === user.id && <button value={message.id} onClick={deleteMessages}>Delete</button>}
+                    {message.user_id === user.id && <button value={message.id} onClick={deleteMessages}><i class="fas fa-trash-alt" id="chatDelete"></i></button>}
                     </div>
                 ))}
            <div>
@@ -112,7 +110,7 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
 
                 <div className='chatArea'>
                     <form onSubmit={sendChat}>
-                        <input type='text' placeholder="send a message" value={chatInput} onChange={onChange} />
+                        <input type='text' placeholder={"send a message"} value={chatInput} onChange={onChange} />
                         <button type='submit'className="chatSubmitBtn">
                         </button>
                     </form>

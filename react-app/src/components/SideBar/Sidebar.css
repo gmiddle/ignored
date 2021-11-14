@@ -52,11 +52,8 @@
     width: 50px;
     border-radius: 50%;
     background-image: url("https://res.cloudinary.com/dxo7djnid/image/upload/v1636757375/ignored/discord_server_icons/minecraft_discord_server_icon_nsp4a4.png");
-    /* z-index: 0; */
-    background-position: center;
     background-size: cover;
-    margin: 0 auto;
-    cursor: pointer; 
+    /* z-index: 0; */
 }
 
 .serverCard-clickable-button{
@@ -68,9 +65,11 @@
     /* z-index: 0; */
 }
 
-.serverName{
+.h3-server-name{
     height:10px;
-    width:100%
+    width:100%;
+    padding-left: 5px;
+    padding-bottom: 15px;
 }
 
 .sideBarChannels{

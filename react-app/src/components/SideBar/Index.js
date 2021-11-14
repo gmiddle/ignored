@@ -80,7 +80,7 @@ const Sidebar = ({
         </div>
         {serverList.map((server) => (
           <div className="serverCard">
-            <div className="server-icon">
+            <div className="server-icon" value={server.serverImg}>
               <button
               //  onClick={() => handleServerClick(setCurrentServerId(server.id))}
                   onClick={handleServerClick}

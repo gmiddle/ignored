@@ -16,13 +16,13 @@ const ChatHeader = () => {
         {/* channelName */}
     </h3>
 </div>
-<div className="chatIconsRight">
+{/* <div className="chatIconsRight">
 <i class="fas fa-user-friends" id="friends"></i>
         <div className="search" id="search">
             <input type="text" placeholder="Search" />
             <i class="fas fa-search"></i>
             </div>
-     </div>
+     </div> */}
 </div>
     )
 }

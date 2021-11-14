@@ -125,7 +125,7 @@ const Sidebar = ({
               userId= {currUser.id}
               channelToEdit= {channel}
               />
-              <button value={channel.id} onClick={handleChannelDeleteClick}><i class="fas fa-trash-alt"></i></button>
+              <button value={channel.id} onClick={handleChannelDeleteClick}>Delete</button>
             </div>
             ))}
         </div>

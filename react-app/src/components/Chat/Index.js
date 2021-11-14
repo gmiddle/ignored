@@ -94,7 +94,7 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
                     <div className="messageCard">
                     <Messages message={message} />
                     {message.user_id === user.id && <EditMessageModal messageToEdit={message} />}
-                    {message.user_id === user.id && <button value={message.id} onClick={deleteMessages}><i class="fas fa-trash-alt" id="chatDelete"></i></button>}
+                    {message.user_id === user.id && <button value={message.id} onClick={deleteMessages}>Delete</button>}
                     </div>
                 ))}
            <div>

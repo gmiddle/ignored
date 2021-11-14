@@ -20,7 +20,7 @@ const Messages = ({message, setCurrentChannelId}) => {
         <div className='messages'>
             {/* maybe an avatar? */}
             <div className="messageInfo">
-                <h4>{user.username}</h4>
+                <h4 className="userName">{user.username}</h4>
                 <div className="actualMessage">
                      {message.content}
                 </div>

@@ -20,7 +20,8 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
     const {existingMessages} = useSelector((state) => state.messages)
     const [currentServer, setCurrentServer] = useState()
     const [channelList, setChannelList] = useState()
-    const [currentChannel, setCurrentChannel] = useState()
+    const currentChannel = useSelector((state) => state.channels.currentChannel)
+
 
     const [messages, setMessages] = useState([])
     const [chatInput, updateChatInput] = useState("");
@@ -29,6 +30,10 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
     const user = useSelector(state => state.session.user)
 
     const dispatch = useDispatch();
+
+    useEffect(()=> {
+
+    },[currentChannel])
 
     useEffect(() => {
         // create websocket
@@ -82,11 +87,13 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
         await dispatch(deleteMessage(e.target.value))
         // await dispatch(getMessages(localStorage.currentChannelId));
     }
-
-    useEffect( async () => {
-    await dispatch(getMessages(localStorage.currentChannelId))
-    }, [])
+    
+    
     const displayMessages= Array.from(combinedMessages)
+    useEffect( async () => {
+      await dispatch(getMessages(localStorage.currentChannelId))
+      console.log('hit-----------------------------', currentChannel)
+    }, [currentChannel])
    return existingMessages? (
 
         <div className='chat'>
@@ -100,13 +107,6 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
                     </div>
                 ))}
            <div>
-                {/* {messages.map((message, ind) => (
-                <div className="messageCard">
-                    <Messages key={ind} message={message}/>
-                    <EditMessageModal userId={currUser.id} messageToEdit={message}/>
-                    {message.user_id === user.id && <button value={message.id} onClick={deleteChat}>Delete</button>}
-                </div>
-                ))} */}
                 </div>
             </div>
 

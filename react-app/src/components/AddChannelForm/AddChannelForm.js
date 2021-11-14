@@ -3,9 +3,10 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { createChannel } from "../../store/channel";
 import { updateUser } from "../../store/session";
+import { getChannels, getChannelbyId } from "../../store/channel";
 import "./AddChannelForm.css";
 
-const ChannelForm = ({ userId, showModal, setCurrentChannelId }) => {
+const ChannelForm = ({ userId, showModal, }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [topic, setTopic] = useState("");
@@ -21,9 +22,10 @@ const ChannelForm = ({ userId, showModal, setCurrentChannelId }) => {
     };
 
     const createdChannel = await dispatch(createChannel(newChannel));
+    console.log(createChannel, 'createdCahnnel')
     if (createdChannel) {
-      dispatch(updateUser(userId))
-      setCurrentChannelId(createdChannel.id)
+      localStorage.setItem('currentChannelId', createdChannel.id)
+      await dispatch(getChannelbyId(localStorage.currentChanelId))
       showModal(false)
     }
   };

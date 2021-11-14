@@ -73,7 +73,11 @@
 }
 
 .server-delete-button{
+    display: flex;
+    justify-content: space-between;
     color: gray;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .sideBarChannels{

@@ -35,24 +35,24 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
     dispatch(getChannels())
     dispatch(getMessages(localStorage.currentChannelId))
   }, [currentServer, currentChannel]);
-  
-  
+
+
   const handleServerDeleteClick = async (e) => {
     e.preventDefault();
     let serverId = e.target.value;
     await dispatch(deleteServer(serverId));
   };
-  
+
   const handleServerClick = async (e) => {
     let serverId = e.target.value;
-  
+
     console.log(serverId, 'serverID')
     await localStorage.setItem("currentServerId", serverId);
     await dispatch(getServerbyId(serverId))
   };
-  
- 
-  
+
+
+
   const handleChannelClick = async (e) => {
     let channelId = e.target.value
     console.log(channelId, 'channelId')

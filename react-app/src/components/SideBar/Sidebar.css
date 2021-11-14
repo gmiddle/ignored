@@ -29,11 +29,16 @@
     flex-direction: row;
     align-items: center;
     padding-right: 10px;
+    color: gray;
 
 }
 
 #addServer{
     cursor: pointer;
+    margin-left: 20px;
+    justify-content: center;
+    align-items: center;
+    color: gray;
 }
 
 .serverCard{

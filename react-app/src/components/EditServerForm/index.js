@@ -7,21 +7,21 @@ function EditServerModal({userId, setCurrentServerId, serverToEdit}) {
 
   }, [])
   const [showModal, setShowModal] = useState(false);
-  
+
   return (
     <div>
-      <button onClick={() => setShowModal(true)}>Edit</button>
+      <button onClick={() => setShowModal(true)}><i class="fas fa-edit"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditServerForm
             setCurrentServerId={setCurrentServerId}
             showModal={setShowModal}
             userId={userId}
-            serverToEdit={serverToEdit} 
+            serverToEdit={serverToEdit}
           />
         </Modal>
       )}
-      
+
     </div>
   );
 }

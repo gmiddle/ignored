@@ -90,7 +90,7 @@ const Sidebar = ({
             </div>
             <div><h3 className="h3-server-name">{server.name}</h3></div>
             <button className="server-delete-button" value={server.id} onClick={handleServerDeleteClick}>
-              Delete
+            <i class="fas fa-trash-alt"></i>
             </button>
             <EditServerModal
               setCurrentServerId={setCurrentServerId}
@@ -125,7 +125,7 @@ const Sidebar = ({
               userId= {currUser.id}
               channelToEdit= {channel}
               />
-              <button value={channel.id} onClick={handleChannelDeleteClick}>Delete</button>
+              <button value={channel.id} onClick={handleChannelDeleteClick}><i class="fas fa-trash-alt"></i></button>
             </div>
             ))}
         </div>

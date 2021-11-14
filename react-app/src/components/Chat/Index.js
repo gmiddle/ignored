@@ -85,8 +85,8 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
         await dispatch(deleteMessage(e.target.value))
         // await dispatch(getMessages(localStorage.currentChannelId));
     }
-    
-    
+
+
     const displayMessages= Array.from(combinedMessages)
     useEffect( async () => {
       await dispatch(getMessages(localStorage.currentChannelId))
@@ -117,7 +117,8 @@ const Chat = ({ currUser, currentChannelId,messageToEdit}) => {
                 </div>
         </div>
     ): (<div>
-        <p>User Questions Not Found</p>
+        <redirect to='/dashboard' />
+
       </div>)
 }
 

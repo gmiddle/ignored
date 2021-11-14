@@ -58,7 +58,7 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
-        <ProtectedRoute exact path='/dashboard' exact={true} >
+        <ProtectedRoute exact path='/dashboard' >
           <div className="app">
           <Sidebar
             currUser={currUser}

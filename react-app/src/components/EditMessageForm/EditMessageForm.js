@@ -39,7 +39,7 @@ const EditMessageForm = ({ userId, showModal,messageToEdit }) => {
         onChange={(e) => setContent(e.target.value)}
       />
       <button id="channelSubmit" type="submit">Submit Change</button>
-      <button onClick={handleCancelClick}>Cancel</button>
+      <button id="channelCancel" onClick={handleCancelClick}>Cancel</button>
     </form>
   );
 };

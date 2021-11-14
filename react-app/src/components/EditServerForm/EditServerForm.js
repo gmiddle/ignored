@@ -11,12 +11,12 @@ const EditServerForm = ({ userId, showModal, serverToEdit }) => {
   const [name, setName] = useState(serverToEdit.name);
   const [description, setDescription] = useState(serverToEdit.description);
   const [user_id] = useState(userId);
-  
-  
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     serverToEdit.name = name
-    serverToEdit.description = description  
+    serverToEdit.description = description
 
     let editedServer = await dispatch(editServer(serverToEdit));
     if (editedServer) {
@@ -25,7 +25,7 @@ const EditServerForm = ({ userId, showModal, serverToEdit }) => {
       showModal(false)
     }
   };
-  
+
   const handleCancelClick = (e) => {
     e.preventDefault();
     showModal(false);
@@ -49,7 +49,7 @@ const EditServerForm = ({ userId, showModal, serverToEdit }) => {
         onChange={(e) => setDescription(e.target.value)}
       />
       <button id="serverSubmit" type="submit">Submit Change</button>
-      <button onClick={handleCancelClick}>Cancel</button>
+      <button id="serverCancel"onClick={handleCancelClick}>Cancel</button>
     </form>
   );
 };

@@ -28,6 +28,7 @@ const EditChannelForm = ({ userId, showModal, setCurrentChannelId, channelToEdit
     e.preventDefault();
     showModal(false);
   };
+  
   return (
     <form id="channel-form" onSubmit={handleSubmit}>
       <input

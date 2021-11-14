@@ -10,7 +10,7 @@ const EditServerForm = ({ userId, showModal, serverToEdit }) => {
   // const history = useHistory();
   const [name, setName] = useState(serverToEdit.name);
   const [description, setDescription] = useState(serverToEdit.description);
-  const [user_id] = useState(userId);
+  // const [user_id] = useState(userId);
 
 
   const handleSubmit = async (e) => {

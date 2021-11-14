@@ -4,6 +4,7 @@ import Messages from '../Messages/Index'
 import ChatHeader from '../ChatHeader/Index'
 import { useSelector, useDispatch } from "react-redux";
 import { createMessage, deleteMessage, getMessages } from '../../store/message';  //removed getMessagebyId
+import  { Redirect } from 'react-router-dom'
 // import { getUsers } from '../../store/users';
 // import the socket
 import { io } from 'socket.io-client';
@@ -13,7 +14,7 @@ import EditMessageModal from '../EditMessageForm/index'
 let socket;
 
 const Chat = () => {  // old props: { currUser, currentChannelId,messageToEdit}
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossOrigin="anonymous" />
 
     // const {serverList} = useSelector((state) => state.session.user)
 
@@ -117,7 +118,7 @@ const Chat = () => {  // old props: { currUser, currentChannelId,messageToEdit}
                 </div>
         </div>
     ): (<div>
-        <redirect to='/dashboard' />
+        <Redirect to='/dashboard' />
 
       </div>)
 }

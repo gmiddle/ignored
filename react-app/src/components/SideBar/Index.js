@@ -79,7 +79,7 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       />
       <div className="sideBarTop">
         <div id="serversHeader">
@@ -124,7 +124,7 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
             currentServer.channels.map((channel) => (
             <div className="channelCard" >
                 <span  className='sidebarChannelHash'>#</span>
-                <button value={channel.id}  onClick={handleChannelClick} className="sidebarChannel" >
+                <button value={channel.id} onClick={handleChannelClick} className="sidebarChannel" >
                   {channel.name}
                 </button>
               <EditChannelModal
@@ -143,7 +143,7 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
         </div>
         <div className="logoutIcon">
           <button onClick={handleLogout}>
-          <i class="fas fa-sign-out-alt"></i>
+          <i className="fas fa-sign-out-alt"></i>
           </button>
         </div>
       </div>

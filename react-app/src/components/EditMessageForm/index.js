@@ -11,7 +11,7 @@ function EditMessageModal({userId,  messageToEdit}) {
 
   return (
     <div>
-      <button onClick={() => setShowModal(true)}><i class="far fa-edit" id="messageEdit"></i></button>
+      <button onClick={() => setShowModal(true)}><i className="far fa-edit" id="messageEdit"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditMessageForm

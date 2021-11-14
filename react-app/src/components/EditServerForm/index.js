@@ -10,7 +10,7 @@ function EditServerModal({userId, serverToEdit}) {
 
   return (
     <div>
-      <button onClick={() => setShowModal(true)}><i class="fas fa-edit" id="serverEdit"></i></button>
+      <button onClick={() => setShowModal(true)}><i className="fas fa-edit" id="serverEdit"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditServerForm

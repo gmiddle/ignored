@@ -90,7 +90,7 @@ const Sidebar = ({
             </div>
             <div><h3 className="h3-server-name">{server.name}</h3></div>
             <button className="server-delete-button" value={server.id} onClick={handleServerDeleteClick}>
-            <i class="fas fa-trash-alt"></i>
+            Delete
             </button>
             <EditServerModal
               setCurrentServerId={setCurrentServerId}

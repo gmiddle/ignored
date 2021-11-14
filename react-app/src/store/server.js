@@ -52,6 +52,7 @@ export const createServer = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const newServer = await response.json();
+    console.log(newServer, 'stoernererwer')
     dispatch(addOneServer(newServer));
     return newServer;
   }
@@ -111,11 +112,9 @@ const serversReducer = (state = initialState, action) => {
     }
     case REMOVE_ONE: {
       newState=Object.assign({}, state)
-      console.log(newState, 'ererererererereererererer')
       const res = newState.allServers.servers.filter(
         (server) => server.id !== action.deletedServer.id
       );
-      console.log(res, 'rerererrerererererererererererererer')
       return {allServers:{servers:res}}
       };
     default:

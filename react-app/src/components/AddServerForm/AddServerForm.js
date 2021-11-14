@@ -22,6 +22,7 @@ const ServerForm = ({ userId, showModal, setCurrentServerId }) => {
     };
 
     const createdServer = await dispatch(createServer(newServer));
+    console.log(createdServer, 'createdServer')
     if (createdServer) {
       localStorage.setItem('currentServerId',createdServer.id)
       await dispatch(getServerbyId(localStorage.currentServerId))

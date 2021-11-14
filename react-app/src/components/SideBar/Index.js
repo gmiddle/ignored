@@ -63,8 +63,8 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
   const handleChannelDeleteClick = async (e) => {
     e.preventDefault();
     let channelId = e.target.value;
+    console.log(channelId)
     await dispatch(deleteChannel(channelId));
-    await dispatch(getChannelbyId(channelId));
   };
 
   const handleLogout = async () => {

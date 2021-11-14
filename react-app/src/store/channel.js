@@ -27,7 +27,6 @@ export const getChannels = () => async (dispatch) => {
   const response = await fetch('api/channels/')
   if (response.ok) {
     const allChannelsList = await response.json();
-    console.log(allChannelsList, 'allChannelList')
     dispatch(load(allChannelsList));
   }
 }
@@ -42,7 +41,6 @@ export const getChannelbyId = (id) => async (dispatch) => {
 };
 
 export const createChannel = (payload) => async (dispatch) => {
-  console.log(JSON.stringify(payload))
   const response = await fetch(`/api/channels/server/${payload.server_id}/new`, {
     method: "POST",
     headers: {
@@ -51,7 +49,9 @@ export const createChannel = (payload) => async (dispatch) => {
     body: JSON.stringify(payload),
   });
   if (response.ok) {
+    console.log('asdasdafgsdgadfgh')
     const newChannel = await response.json();
+    console.log(newChannel,'storerchane')
     dispatch(addOneChannel(newChannel));
     return newChannel;
   }
@@ -61,9 +61,13 @@ export const deleteChannel = (id) => async (dispatch) => {
   const response = await fetch(`/api/channels/delete/${id}`, {
     method: "DELETE",
   });
-
+  console.log('here', id)
   if (response.ok) {
+    console.log('ok')
     const deletedChannel = await response.json();
+    console.log('ok')
+
+    console.log(deleteChannel,'dedededed')
     dispatch(removeChannel(deletedChannel))
     return deletedChannel;
   }
@@ -106,8 +110,9 @@ const ChannelsReducer = (state = initialState, action) => {
     }
     case ADD_ONE: {
       newState = Object.assign({}, state)
+      console.log(newState, 'addingl') 
       newState.allChannels.channels.push(action.payload)
-      console.log(newState, 'adding channel')
+      console.log(newState, 'adding channel') 
       return  newState
     }
     default:

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
-import { editServer, getServerbyId, getServers } from "../../store/server";
-import { updateUser } from "../../store/session";
+// import { useHistory } from "react-router";
+import { editServer, getServers } from "../../store/server";
+// import { updateUser } from "../../store/session";
 import "./EditServerForm.css";
 
 const EditServerForm = ({ userId, showModal, serverToEdit }) => {

@@ -17,8 +17,6 @@ export const getUsers = () => async (dispatch) => {
 const initialState = {};
 
 const usersReducer = (state = initialState, action) => {
-  let newState;
-  let newUser;
   switch (action.type) {
     case LOAD: {
         return {

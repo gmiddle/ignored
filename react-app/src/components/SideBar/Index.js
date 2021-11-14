@@ -2,21 +2,22 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddServerModal from "../AddServerForm";
 import AddChannelModal from "../AddChannelForm";
-import dcordicon from "../../public/dcordicon.png";
+// import dcordicon from "../../public/dcordicon.png";
 import "./Sidebar.css";
-import { updateUser } from "../../store/session";
+// import { updateUser } from "../../store/session";
 import EditServerModal from "../EditServerForm";
 import EditChannelModal from "../EditChannelForm";
 import { deleteServer, getServers, getServerbyId } from "../../store/server";
-import { deleteChannel, editChannel, getChannelbyId, getChannels } from "../../store/channel";
+import { deleteChannel, getChannelbyId, getChannels } from "../../store/channel";
 import {logout} from '../../store/session'
 import { getMessages } from "../../store/message";
+
 
 const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
 
   const serverList = useSelector((state) => state.server.allServers?.servers);
   const currentServer = useSelector((state) => state.server.currentServer)
-  const channelList = useSelector((state) => state.channels.allChannels?.channels)
+  // const channelList = useSelector((state) => state.channels.allChannels?.channels)
   const currentChannel = useSelector((state) => state.channels.currentChannel)
 
 

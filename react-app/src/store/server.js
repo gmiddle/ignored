@@ -9,6 +9,11 @@ const load = (servers) => ({
   payload: servers,
 });
 
+const loadOne = (server) => ({
+  type: LOAD_ONE,
+  payload: server,
+});
+
 const removeOneServer = (deletedServer) => ({
   type: REMOVE_ONE,
   deletedServer
@@ -16,11 +21,6 @@ const removeOneServer = (deletedServer) => ({
 
 const addOneServer = (server) => ({
   type: ADD_ONE,
-  payload: server,
-});
-
-const loadOne = (server) => ({
-  type: LOAD_ONE,
   payload: server,
 });
 
@@ -91,7 +91,7 @@ const initialState = {};
 
 const serversReducer = (state = initialState, action) => {
   let newState;
-  let newServer;
+  // let newServer;
   switch (action.type) {
     case LOAD: {
       return {

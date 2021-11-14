@@ -94,7 +94,7 @@ const initialState = {};
 
 const ChannelsReducer = (state = initialState, action) => {
   let newState;
-  let newChannel;
+  // let newChannel;
   switch (action.type) {
     case LOAD: {
       return {

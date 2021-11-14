@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateUser } from "../../store/session";
+// import { updateUser } from "../../store/session";
 import { editMessage } from "../../store/message";
 
 import "./EditMessageForm.css";
@@ -9,7 +9,7 @@ const EditMessageForm = ({ userId, showModal,messageToEdit }) => {
   const dispatch = useDispatch();
 
   const [content, setContent] = useState(messageToEdit.content);
-  const [user_id] = useState(userId);
+  // const [user_id] = useState(userId);
 
 
   const handleSubmit = async (e) => {

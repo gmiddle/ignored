@@ -2,22 +2,32 @@
 const LOAD = "servers/LOAD";
 const LOAD_ONE = "servers/LOAD_ONE"
 const ADD_ONE = "servers/ADD_ONE";
+const REMOVE_ONE = "servers/REMOVE_ONE"
 
 const load = (servers) => ({
-    type: LOAD,
-    payload: servers,
+  type: LOAD,
+  payload: servers,
+});
+
+const removeOneServer = (deletedServer) => ({
+  type: REMOVE_ONE,
+  deletedServer
 });
 
 const addOneServer = (server) => ({
   type: ADD_ONE,
-  server,
+  payload: server,
+});
+
+const loadOne = (server) => ({
+  type: LOAD_ONE,
+  payload: server,
 });
 
 export const getServers = () => async (dispatch) => {
   const response = await fetch('api/servers/')
   if (response.ok) {
     const allServersList = await response.json();
-    console.log(allServersList, 'allServerList')
     dispatch(load(allServersList));
   }
 }
@@ -25,9 +35,9 @@ export const getServers = () => async (dispatch) => {
 export const getServerbyId = (id) => async (dispatch) => {
   const response = await fetch(`/api/servers/${id}`);
   if (response.ok) {
-    const allServersList = await response.json();
+    const server = await response.json();
 
-    dispatch(load(allServersList));
+    dispatch(loadOne(server));
   }
 };
 
@@ -42,7 +52,7 @@ export const createServer = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const newServer = await response.json();
-    console.log(newServer, 'uiopsjDfhjikolSdfHKJASDFG')
+    console.log(newServer, 'stoernererwer')
     dispatch(addOneServer(newServer));
     return newServer;
   }
@@ -55,6 +65,7 @@ export const deleteServer = (id) => async (dispatch) => {
 
   if (response.ok) {
     const deletedServer = await response.json();
+    dispatch(removeOneServer(deletedServer))
     return deletedServer;
   }
 };
@@ -83,10 +94,29 @@ const serversReducer = (state = initialState, action) => {
   let newServer;
   switch (action.type) {
     case LOAD: {
-      newState = Object.assign({}, state);
+      return {
+        ...state,
+        allServers:action.payload
+      }
     }
     case LOAD_ONE: {
+      return  {
+        ...state,
+        currentServer:action.payload
+      }
     }
+    case ADD_ONE: {
+      newState = Object.assign({}, state)
+      newState.allServers.servers.push(action.payload)
+      return  newState
+    }
+    case REMOVE_ONE: {
+      newState=Object.assign({}, state)
+      const res = newState.allServers.servers.filter(
+        (server) => server.id !== action.deletedServer.id
+      );
+      return {allServers:{servers:res}}
+      };
     default:
       return state;
   }

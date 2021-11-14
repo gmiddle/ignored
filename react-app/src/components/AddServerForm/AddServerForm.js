@@ -3,28 +3,29 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { createServer } from "../../store/server";
 import { updateUser } from "../../store/session";
+import { getServerbyId } from "../../store/server";
 import "./AddServerForm.css";
 
 const ServerForm = ({ userId, showModal, setCurrentServerId }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [user_id] = useState(userId);
+  
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newServer = {
-      ownerId: user_id,
+      ownerId: userId,
       name: name,
       description: description,
     };
 
     const createdServer = await dispatch(createServer(newServer));
+    console.log(createdServer, 'createdServer')
     if (createdServer) {
-      dispatch(updateUser(userId))
-      setCurrentServerId(createdServer.id)
-      console.log(createdServer,'createdServer')
+      localStorage.setItem('currentServerId',createdServer.id)
+      await dispatch(getServerbyId(localStorage.currentServerId))
       showModal(false)
     }
   };

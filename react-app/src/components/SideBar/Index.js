@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import SidebarChannel from "../SidebarChannel/Index";
 import AddServerModal from "../AddServerForm";
 import AddChannelModal from "../AddChannelForm";
 import dcordicon from "../../public/dcordicon.png";
@@ -8,53 +7,64 @@ import "./Sidebar.css";
 import { updateUser } from "../../store/session";
 import EditServerModal from "../EditServerForm";
 import EditChannelModal from "../EditChannelForm";
-import { deleteServer, getServers } from "../../store/server";
-import { deleteChannel, editChannel } from "../../store/channel";
+import { deleteServer, getServers, getServerbyId } from "../../store/server";
+import { deleteChannel, editChannel, getChannelbyId, getChannels } from "../../store/channel";
 import {logout} from '../../store/session'
+import { getMessages } from "../../store/message";
 
-const Sidebar = ({
-  currentServerId,
-  setCurrentServerId,
-  currentChannelId,
-  setCurrentChannelId,
-  currUser,
-}) => {
-  // const user = useSelector((state) => state.session.user.id)
-  const { serverList } = useSelector((state) => state.session.user);
-  const currentServer = serverList.find(
-    (server) => `${server.id}` === localStorage.currentServerId
-  );
-  // const channelList = currentServer.channels
-  // const currentChannel = channelList.find(channel=>`${channel.id}` === localStorage.currentChannelId)
+const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
+
+  const serverList = useSelector((state) => state.server.allServers?.servers);
+  const currentServer = useSelector((state) => state.server.currentServer)
+  const channelList = useSelector((state) => state.channels.allChannels?.channels)
+  const currentChannel = useSelector((state) => state.channels.currentChannel)
+
+
+
   const dispatch = useDispatch();
 
-  useEffect(() => {}, [serverList]);
+  useEffect(() => {
+    dispatch(getServers())
+    if(localStorage.currentServerId) dispatch(getServerbyId(localStorage.currentServerId))
+    dispatch(getChannels())
+    if(localStorage.currentChannelId) dispatch(getChannelbyId(localStorage.currentChannelId))
+  }, []);
 
+  useEffect(() => {
+    dispatch(getServers())
+    dispatch(getChannels())
+    dispatch(getMessages(localStorage.currentChannelId))
+  }, [currentServer, currentChannel]);
+  
+  
   const handleServerDeleteClick = async (e) => {
     e.preventDefault();
     let serverId = e.target.value;
     await dispatch(deleteServer(serverId));
-    await dispatch(updateUser(currUser.id));
   };
-
+  
   const handleServerClick = async (e) => {
     let serverId = e.target.value;
-
-    setCurrentServerId(serverId)
-    await localStorage.setItem("currentServerId", currentServerId);
+  
+    console.log(serverId, 'serverID')
+    await localStorage.setItem("currentServerId", serverId);
+    await dispatch(getServerbyId(serverId))
   };
-
-
-  const handleChannelClick = async () => {
-
-    await localStorage.setItem("currentChannelId", currentChannelId);
+  
+ 
+  
+  const handleChannelClick = async (e) => {
+    let channelId = e.target.value
+    console.log(channelId, 'channelId')
+    await localStorage.setItem("currentChannelId", e.target.value);
+    await dispatch(getChannelbyId(channelId))
   };
 
   const handleChannelDeleteClick = async (e) => {
     e.preventDefault();
     let channelId = e.target.value;
+    console.log(channelId)
     await dispatch(deleteChannel(channelId));
-    await dispatch(updateUser(currUser.id));
   };
 
   const handleLogout = async () => {
@@ -78,7 +88,7 @@ const Sidebar = ({
             userId={currUser.id}
           />
         </div>
-        {serverList.map((server) => (
+        {serverList?.filter(server => server.ownerId == currUser.id).map((server) => (
           <div className="serverCard">
             <div className="server-icon" value={server.serverImg}>
               <button
@@ -93,7 +103,6 @@ const Sidebar = ({
             Delete
             </button>
             <EditServerModal
-              setCurrentServerId={setCurrentServerId}
               userId={currUser.id}
               serverToEdit={server}
             />
@@ -106,20 +115,17 @@ const Sidebar = ({
             <h3>{"channels"}</h3>
           </div>
           <AddChannelModal
-            setCurrentChannelId={setCurrentChannelId}
             userId={currUser.id}
           />
         </div>
         <div className="sideBarChannelList">
           {currentServer &&
             currentServer.channels.map((channel) => (
-            <div className="channelCard">
-              <SidebarChannel
-                channel={channel}
-                handleChannelClick={handleChannelClick}
-                setCurrentChannelId={setCurrentChannelId}
-                currentChannelId={currentChannelId}
-              />
+            <div className="channelCard" >
+                <span  className='sidebarChannelHash'>#</span>
+                <button value={channel.id}  onClick={handleChannelClick} className="sidebarChannel" >
+                  {channel.name}
+                </button>
               <EditChannelModal
               setCurrentChannelId= {setCurrentChannelId}
               userId= {currUser.id}

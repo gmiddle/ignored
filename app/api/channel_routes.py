@@ -33,30 +33,30 @@ def private_channel(id):
 
 
 # POST add a new channel
+
 @channel_routes.route("server/<int:id>/new", methods=['POST'])
 def new_channel_form(id):
-    print("hit*(**********************>", id)
+
     form = NewChannelForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        data = form.data
-        usernames = []
+      data = form.data
+      usernames = []
 
-        new_channel = Channel(name=data["name"],
-                              topic=data["topic"],
-                              server_id=id,
-                              messages = []
-                              )
-
-        server = Server.query.get(int(id))
-        db.session.add(new_channel)
-        server.channels.append(new_channel)
-        db.session.commit()
-        return new_channel.to_dict()
+      new_channel = Channel(name=data["name"],
+                            topic=data["topic"],
+                            server_id=id,
+                            messages = []
+                            )
+      server = Server.query.get(int(id))
+      db.session.add(new_channel)
+      server.channels.append(new_channel)
+      db.session.commit()
+      return new_channel.to_dict()
     else:
-            print(form.errors)
-            return "Bad Data"
+      print(form.errors)
+      return "Bad Data"
 
 
 @private_channel_routes.route("/new", methods=['POST'])
@@ -109,11 +109,13 @@ def private_channel_edit(id):
 # DELETE remove an exisiting channel
 @channel_routes.route("/delete/<int:id>", methods=['DELETE'])
 def channel_delete(id):
-    channel_to_delete = Channel.query.get_or_404(id)
+    print(id,'fuckkkkkkkkkkkkkkkkkkkkkk')
+    channel_to_delete = Channel.query.filter(Channel.id == id).first()
+    print(channel_delete,'---------------')
     try:
         db.session.delete(channel_to_delete)
         db.session.commit()
-        return redirect('')
+        return channel_delete.to_dict()
     except:
         return "Channel not found, could not delete"
 

@@ -131,7 +131,7 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
               userId= {currUser.id}
               channelToEdit= {channel}
               />
-              <button value={channel.id} onClick={handleChannelDeleteClick}>Delete</button>
+              <button value={channel.id} onClick={handleChannelDeleteClick} id="channelDelete">Delete</button>
             </div>
             ))}
         </div>

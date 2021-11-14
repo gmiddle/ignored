@@ -164,3 +164,9 @@ fas fa-plus:hover{
   font-size: 30px;
   padding:8px;
 }
+
+#channelDelete{
+    display: flex;
+    justify-content: flex-end;
+    color: gray;
+}

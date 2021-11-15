@@ -19,10 +19,7 @@ input{
     /* position: absolute; */
     float: right;
     right: 5px;
-    color:red;
+    padding-left: 500px;
 }
 
-.far{
-    /* color:red; */
-    /* margin-right:100px; */
-}
+

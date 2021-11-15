@@ -54,3 +54,7 @@
     background-color: #474b53;
     cursor: text;
 }
+
+.delete-button{
+    padding-right: 25px;
+}

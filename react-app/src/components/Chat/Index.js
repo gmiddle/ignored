@@ -103,7 +103,7 @@ const Chat = () => {  // old props: { currUser, currentChannelId,messageToEdit}
                     <div className="messageCard" key={message.id}>
                     <Messages message={message} />
                     {message.user_id === user.id && <EditMessageModal messageToEdit={message} />}
-                    {message.user_id === user.id && <button value={message.id} onClick={deleteMessages}>Delete</button>}
+                    {message.user_id === user.id && <button className="delete-button" value={message.id} onClick={deleteMessages}>Delete</button>}
                     </div>
                 ))}
            <div>

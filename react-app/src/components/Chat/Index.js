@@ -98,8 +98,8 @@ const Chat = () => {  // old props: { currUser, currentChannelId,messageToEdit}
         <div className='chat'>
             <ChatHeader />
             <div className='chatMessages'>
-                {displayMessages && displayMessages.map((message) => (
-                    <div className="messageCard">
+                {displayMessages && displayMessages.map((message) => ( 
+                    <div className="messageCard" key={message.id}>
                     <Messages message={message} />
                     {message.user_id === user.id && <EditMessageModal messageToEdit={message} />}
                     {message.user_id === user.id && <button value={message.id} onClick={deleteMessages}>Delete</button>}

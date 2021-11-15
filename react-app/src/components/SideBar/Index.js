@@ -90,7 +90,7 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
           />
         </div>
         {serverList?.filter(server => server.ownerId == currUser.id).map((server) => (
-          <div className="serverCard">
+          <div className="serverCard" key={server.id}>
             <div className="server-icon" value={server.serverImg}>
               <button
               //  onClick={() => handleServerClick(setCurrentServerId(server.id))}
@@ -120,9 +120,8 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
           />
         </div>
         <div className="sideBarChannelList">
-          {currentServer &&
-            currentServer.channels.map((channel) => (
-            <div className="channelCard" >
+          {currentServer && currentServer.channels.map((channel) => (
+            <div className="channelCard" key={channel.id}>
                 <span  className='sidebarChannelHash'>#</span>
                 <button value={channel.id} onClick={handleChannelClick} className="sidebarChannel" >
                   {channel.name}

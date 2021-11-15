@@ -27,7 +27,7 @@ const Chat = () => {  // old props: { currUser, currentChannelId,messageToEdit}
     const [messages, setMessages] = useState([])
     const [chatInput, updateChatInput] = useState("");
     const combinedMessages = new Set(existingMessages, messages)
-    console.log(combinedMessages)
+    // console.log(combinedMessages)
     const user = useSelector(state => state.session.user)
 
     const dispatch = useDispatch();
@@ -92,7 +92,7 @@ const Chat = () => {  // old props: { currUser, currentChannelId,messageToEdit}
     const displayMessages= Array.from(combinedMessages)
     useEffect( async () => {
       await dispatch(getMessages(localStorage.currentChannelId))
-      console.log('hit-----------------------------', currentChannel)
+    //   console.log('hit-----------------------------', currentChannel)
     }, [currentChannel])
    return existingMessages? (
 

@@ -100,7 +100,7 @@ const MessagesReducer = (state = initialState, action) => {
     }
     case ADD_ONE: {
       newState = newState=Object.assign({}, state)
-      console.log("newState===========>",newState)
+      // console.log("newState===========>",newState)
       newState['existingMessages'].push(action.message)
       return newState
     }

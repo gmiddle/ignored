@@ -1,7 +1,7 @@
-from flask import Blueprint, jsonify, redirect, request
+from flask import Blueprint, redirect, request
 from flask_login import login_required, current_user
 from app.forms import MessageForm
-from app.models import Message, PrivateMessage, channel, db, Channel
+from app.models import Message, PrivateMessage, db, Channel
 
 
 
@@ -10,24 +10,28 @@ private_message_routes = Blueprint('private_messages', __name__)
 
 # GET all routes
 @message_routes.route('/')
+@login_required
 def messages():
     messages = Message.query.all()
     return {'Messages': [message.to_dict() for message in messages]}
 
 
 @private_message_routes.route('/')
+@login_required
 def private_messages():
     private_messages = PrivateMessage.query.all()
     return {'messages': [private_message.to_dict() for private_message in private_messages]}
 
 # GET by Id routes
 @message_routes.route('/<int:id>')
+@login_required
 def server(id):
     message = Message.query.get(id)
     return message.to_dict()
 
 
 @private_message_routes.route('/<int:id>')
+@login_required
 def private_message(id):
     private_message = PrivateMessage.query.get(id)
     return private_message.to_dict()
@@ -35,6 +39,7 @@ def private_message(id):
 
 # POST a message
 @message_routes.route('/channel/<int:id>/new', methods=['POST'])
+@login_required
 def message_post(id):
 
   """
@@ -63,6 +68,7 @@ def message_post(id):
 
 # POST a private message
 @private_message_routes.route('/', methods=['POST'])
+@login_required
 def private_message_post():
   """
   Creates a new private message
@@ -80,6 +86,7 @@ def private_message_post():
 
 # PUT edit message
 @message_routes.route('/edit/<int:id>', methods=['PUT'])
+@login_required
 def message_edit(id):
   message = Message.query.get_or_404(id)
   form = MessageForm()
@@ -95,6 +102,7 @@ def message_edit(id):
 
 # PUT edit private message
 @private_message_routes.route('/edit/<int:id>', methods=['PUT'])
+@login_required
 def private_message_edit(id):
   private_message = PrivateMessage.query.get_or_404(id)
   form = MessageForm()
@@ -109,6 +117,7 @@ def private_message_edit(id):
 
 # DELETE a message by id
 @message_routes.route('/delete/<int:id>', methods=['DELETE'])
+@login_required
 def delete_message(id):
   message = Message.query.get_or_404(id)
   db.session.delete(message)
@@ -118,6 +127,7 @@ def delete_message(id):
 
 # DELETE a private message
 @private_message_routes.route('/delete/<int:id>', methods=['DELETE'])
+@login_required
 def delete_private_message():
   private_message = PrivateMessage.query.get_or_404(id)
   try:

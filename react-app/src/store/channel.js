@@ -49,9 +49,9 @@ export const createChannel = (payload) => async (dispatch) => {
     body: JSON.stringify(payload),
   });
   if (response.ok) {
-    console.log('asdasdafgsdgadfgh')
+    // console.log('asdasdafgsdgadfgh')
     const newChannel = await response.json();
-    console.log(newChannel,'storerchane')
+    // console.log(newChannel,'storerchane')
     dispatch(addOneChannel(newChannel));
     return newChannel;
   }
@@ -61,13 +61,13 @@ export const deleteChannel = (id) => async (dispatch) => {
   const response = await fetch(`/api/channels/delete/${id}`, {
     method: "DELETE",
   });
-  console.log('here', id)
+  // console.log('here', id)
   if (response.ok) {
-    console.log('ok')
+    // console.log('ok')
     const deletedChannel = await response.json();
-    console.log('ok')
+    // console.log('ok')
 
-    console.log(deleteChannel,'dedededed')
+    // console.log(deleteChannel,'dedededed')
     dispatch(removeChannel(deletedChannel))
     return deletedChannel;
   }
@@ -110,11 +110,11 @@ const ChannelsReducer = (state = initialState, action) => {
     }
     case ADD_ONE: {
       newState = Object.assign({}, state)
-      console.log(newState, 'addingl')
+      // console.log(newState, 'addingl')
       // newState.allChannels.channels[action.payload.id] = action.payload 
       newState.allChannels.channels.push(action.payload)
       // console.log(newState, 'adding channel') 
-      console.log(newState, "newState")
+      // console.log(newState, "newState")
       return  newState
     }
     case DELETE_ONE: {

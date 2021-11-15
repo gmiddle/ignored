@@ -64,7 +64,7 @@ def servers_post():
     db.session.commit()
     return server.to_dict()
   else:
-    print(form.errors)
+    # print(form.errors)
     return "Bad data"
 
 
@@ -88,7 +88,7 @@ def servers_edit(id):
     db.session.commit()
     return server_edit.to_dict()
   except:
-    print(form.errors)
+    # print(form.errors)
     return "Bad data"
 
 

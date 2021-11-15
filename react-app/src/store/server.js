@@ -52,7 +52,7 @@ export const createServer = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const newServer = await response.json();
-    console.log(newServer, 'stoernererwer')
+    // console.log(newServer, 'stoernererwer')
     dispatch(addOneServer(newServer));
     return newServer;
   }

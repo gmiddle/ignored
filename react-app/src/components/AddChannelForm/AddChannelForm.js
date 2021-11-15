@@ -24,7 +24,7 @@ const ChannelForm = ({ userId, showModal, }) => {
     const createdChannel = await dispatch(createChannel(newChannel))
     // .then
     // dispatch(getChannelbyId(localStorage.currentChannelId))
-    console.log(createChannel, 'createdChannel')
+    // console.log(createChannel, 'createdChannel')
     if (createdChannel) {
       localStorage.setItem('currentChannelId', createdChannel.id)
       await dispatch(getChannelbyId(localStorage.currentChannelId))

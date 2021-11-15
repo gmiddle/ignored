@@ -57,7 +57,7 @@ def message_post(id):
     db.session.commit()
     return new_message.to_dict()
   else:
-    print(form.errors)
+    # print(form.errors)
     return "Bad data"
 
 
@@ -75,7 +75,7 @@ def private_message_post():
     db.session.commit()
     return redirect('/')
   else:
-    print(form.errors)
+    # print(form.errors)
     return "Bad data"
 
 # PUT edit message
@@ -90,7 +90,7 @@ def message_edit(id):
     db.session.commit()
     return message.to_dict()
   except:
-    print(form.errors)
+    # print(form.errors)
     return "Bad data"
 
 # PUT edit private message
@@ -104,7 +104,7 @@ def private_message_edit(id):
     db.session.commit()
     return redirect('/')
   except:
-    print(form.errors)
+    # print(form.errors)
     return "Bad data"
 
 # DELETE a message by id

@@ -140,10 +140,10 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
         </div>
         <div className="sideBarChannelList">
           {/* {currentServer && currentServer.channels.map((channel) => ( */}
-          {console.log("allChannels-----------", allChannels)}
+          {/* {console.log("allChannels-----------", allChannels)} */}
           {allChannels?.channels?.filter((channel) => channel.server_id == localStorage.currentServerId).map((channel) => (
             <div className="channelCard" key={channel.id}>
-                {console.log(channel)}
+                {/* {console.log(channel)} */}
                   <span  className='sidebarChannelHash'>#</span>
                   <button value={channel.id} onClick={handleChannelClick} className="sidebarChannel" >
                     {channel.name}

@@ -41,9 +41,10 @@ const Chat = () => {  // old props: { currUser, currentChannelId,messageToEdit}
         socket = io();
         // listen for chat events
         socket.on("chat", (chat) => {
-            // when we recieve a chat, add it into our messages array in state
+            // when we receive a chat, add it into our messages array in state
             setMessages(messages => [...messages, chat])
         })
+
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()

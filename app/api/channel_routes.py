@@ -106,16 +106,16 @@ def private_channel_edit(id):
     except:
         return "Channel not found, could not edit"
 
-# DELETE remove an exisiting channel
+# DELETE remove an existing channel
 @channel_routes.route("/delete/<int:id>", methods=['DELETE'])
 def channel_delete(id):
-    print(id,'fuckkkkkkkkkkkkkkkkkkkkkk')
+   
     channel_to_delete = Channel.query.filter(Channel.id == id).first()
-    print(channel_delete,'---------------')
+
     try:
         db.session.delete(channel_to_delete)
         db.session.commit()
-        return channel_delete.to_dict()
+        return channel_to_delete.to_dict()
     except:
         return "Channel not found, could not delete"
 

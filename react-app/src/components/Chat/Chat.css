@@ -49,3 +49,8 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.messageCard:hover{
+    background-color: #474b53;
+    cursor: text;
+}

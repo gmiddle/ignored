@@ -116,7 +116,7 @@ const serversReducer = (state = initialState, action) => {
         (server) => server.id !== action.deletedServer.id
       );
       return {allServers:{servers:res}}
-      };
+    };
     default:
       return state;
   }

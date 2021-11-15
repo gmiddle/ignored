@@ -19,6 +19,7 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
   const currentServer = useSelector((state) => state.server.currentServer)
   // const channelList = useSelector((state) => state.channels.allChannels?.channels)
   const currentChannel = useSelector((state) => state.channels.currentChannel)
+  const allChannels = useSelector((state) => state.channels.allChannels)
 
 
 
@@ -46,8 +47,6 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
 
   const handleServerClick = async (e) => {
     let serverId = e.target.value;
-
-    console.log(serverId, 'serverID')
     await localStorage.setItem("currentServerId", serverId);
     await dispatch(getServerbyId(serverId))
   };
@@ -56,7 +55,6 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
 
   const handleChannelClick = async (e) => {
     let channelId = e.target.value
-    console.log(channelId, 'channelId')
     await localStorage.setItem("currentChannelId", e.target.value);
     await dispatch(getChannelbyId(channelId))
   };
@@ -64,13 +62,34 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
   const handleChannelDeleteClick = async (e) => {
     e.preventDefault();
     let channelId = e.target.value;
-    console.log(channelId)
     await dispatch(deleteChannel(channelId));
+    localStorage.setItem("currentChannelId", "");
+    await getChannels()
   };
 
   const handleLogout = async () => {
     await dispatch(logout())
   }
+
+  // const userChannelMap = allChannels.allChannels?.channels?.map((channel) => {
+            
+  //   if (channel.ownerId == currUser.id) {
+  //     return (
+  //       <div className="channelCard" key={channel.id}>
+  //           <span  className='sidebarChannelHash'>#</span>
+  //           <button value={channel.id} onClick={handleChannelClick} className="sidebarChannel" >
+  //             {channel.name}
+  //           </button>
+  //         <EditChannelModal
+  //         setCurrentChannelId= {setCurrentChannelId}
+  //         userId= {currUser.id}
+  //         channelToEdit= {channel}
+  //         />
+  //         <button value={channel.id} onClick={handleChannelDeleteClick} id="channelDelete">Delete</button>
+  //       </div>
+  //     )
+  //   }
+  // })
 
 
   return (
@@ -120,20 +139,25 @@ const Sidebar = ({ setCurrentServerId, setCurrentChannelId, currUser, }) => {
           />
         </div>
         <div className="sideBarChannelList">
-          {currentServer && currentServer.channels.map((channel) => (
+          {/* {currentServer && currentServer.channels.map((channel) => ( */}
+          {console.log("allChannels-----------", allChannels)}
+          {allChannels?.channels?.filter((channel) => channel.server_id == localStorage.currentServerId).map((channel) => (
             <div className="channelCard" key={channel.id}>
-                <span  className='sidebarChannelHash'>#</span>
-                <button value={channel.id} onClick={handleChannelClick} className="sidebarChannel" >
-                  {channel.name}
-                </button>
-              <EditChannelModal
-              setCurrentChannelId= {setCurrentChannelId}
-              userId= {currUser.id}
-              channelToEdit= {channel}
-              />
-              <button value={channel.id} onClick={handleChannelDeleteClick} id="channelDelete">Delete</button>
-            </div>
-            ))}
+                {console.log(channel)}
+                  <span  className='sidebarChannelHash'>#</span>
+                  <button value={channel.id} onClick={handleChannelClick} className="sidebarChannel" >
+                    {channel.name}
+                  </button>
+                <EditChannelModal
+                setCurrentChannelId= {setCurrentChannelId}
+                userId= {currUser.id}
+                channelToEdit= {channel}
+                />
+                <button value={channel.id} onClick={handleChannelDeleteClick} id="channelDelete">Delete</button>
+              </div>
+          ))}
+          {/* <userChannelMap/> */}
+
         </div>
       </div>
       <div className="sideBarUser">

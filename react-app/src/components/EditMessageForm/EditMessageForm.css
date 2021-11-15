@@ -16,7 +16,13 @@ input{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    position: absolute;
+    /* position: absolute; */
     float: right;
     right: 5px;
+    color:red;
+}
+
+.far{
+    /* color:red; */
+    /* margin-right:100px; */
 }

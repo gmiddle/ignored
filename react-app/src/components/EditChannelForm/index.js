@@ -11,7 +11,7 @@ function EditChannelModal({userId, setCurrentChannelId, channelToEdit}) {
   return (
     <div>
       <div className="channelEdit">
-      <button onClick={() => setShowModal(true)}><i class="fas fa-edit" id="editChannel"></i></button>
+      <button onClick={() => setShowModal(true)}><i className="fas fa-edit" id="editChannel"></i></button>
       </div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

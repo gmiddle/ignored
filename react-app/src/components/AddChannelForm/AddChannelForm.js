@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 import { createChannel } from "../../store/channel";
-import { updateUser } from "../../store/session";
-import { getChannels, getChannelbyId } from "../../store/channel";
+// import { updateUser } from "../../store/session";
+import {  getChannelbyId } from "../../store/channel";
 import "./AddChannelForm.css";
 
 const ChannelForm = ({ userId, showModal, }) => {
@@ -21,11 +21,13 @@ const ChannelForm = ({ userId, showModal, }) => {
       server_id:localStorage.getItem('currentServerId')
     };
 
-    const createdChannel = await dispatch(createChannel(newChannel));
-    console.log(createChannel, 'createdCahnnel')
+    const createdChannel = await dispatch(createChannel(newChannel))
+    // .then
+    // dispatch(getChannelbyId(localStorage.currentChannelId))
+    console.log(createChannel, 'createdChannel')
     if (createdChannel) {
       localStorage.setItem('currentChannelId', createdChannel.id)
-      await dispatch(getChannelbyId(localStorage.currentChanelId))
+      await dispatch(getChannelbyId(localStorage.currentChannelId))
       showModal(false)
     }
   };

@@ -10,8 +10,8 @@ function EditMessageModal({userId,  messageToEdit}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div>
-      <button onClick={() => setShowModal(true)}><i class="far fa-edit" id="messageEdit"></i></button>
+    <div className="edit-button-div">
+      <button onClick={() => setShowModal(true)}><i className="far fa-edit" id="messageEdit"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditMessageForm

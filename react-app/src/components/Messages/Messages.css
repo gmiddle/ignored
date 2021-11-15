@@ -20,12 +20,12 @@
     margin-top: -19px;
 }
 
-.messages:hover{
+/* .messages:hover{
     background-color: #474b53;
     cursor: text;
-}
+} */
 
 .userName{
-    color: #474b53;
+    color: lightgray
     
 }

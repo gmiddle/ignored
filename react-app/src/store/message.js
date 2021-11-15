@@ -90,7 +90,7 @@ const initialState = {};
 
 const MessagesReducer = (state = initialState, action) => {
   let newState;
-  let newMessage;
+  // let newMessage;
   switch (action.type) {
     case LOAD: {
       return {

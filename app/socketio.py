@@ -1,12 +1,12 @@
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit, join_room
 import os
 
 
 # configure cors_allowed_origins
 if os.environ.get('FLASK_ENV') == 'production':
     origins = [
-        'http://actual-app-url.herokuapp.com',
-        'https://actual-app-url.herokuapp.com'
+        'http://ignored-group4.herokuapp.com',
+        'https://ignored-group4.herokuapp.com'
     ]
 else:
     origins = "*"
@@ -23,3 +23,11 @@ def handle_chat(data):
 @socketio.on("delete")
 def handle_chat(data):
     emit("delete", data, broadcast=False)
+
+# # handle joining chat rooms
+# @socketio.on("join")
+# def join_chat(data):
+#     username = data["user"] 
+#     server_room = data["room"] # passing in info on room
+#     join_room(server_room)
+#     emit("broadcast_message", data, room=server_room, broadcast=True)

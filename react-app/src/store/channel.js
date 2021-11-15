@@ -94,7 +94,7 @@ const initialState = {};
 
 const ChannelsReducer = (state = initialState, action) => {
   let newState;
-  let newChannel;
+  // let newChannel;
   switch (action.type) {
     case LOAD: {
       return {
@@ -110,11 +110,20 @@ const ChannelsReducer = (state = initialState, action) => {
     }
     case ADD_ONE: {
       newState = Object.assign({}, state)
-      console.log(newState, 'addingl') 
+      console.log(newState, 'addingl')
+      // newState.allChannels.channels[action.payload.id] = action.payload 
       newState.allChannels.channels.push(action.payload)
-      console.log(newState, 'adding channel') 
+      // console.log(newState, 'adding channel') 
+      console.log(newState, "newState")
       return  newState
     }
+    case DELETE_ONE: {
+      newState=Object.assign({}, state)
+      const res = newState.allChannels.channels.filter(
+        (channel) => channel.id !== action.payload.id
+      );
+      return {allChannels:{channels:res}}
+    };
     default:
       return state;
   }

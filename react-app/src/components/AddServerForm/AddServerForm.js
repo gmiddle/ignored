@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 import { createServer } from "../../store/server";
-import { updateUser } from "../../store/session";
+// import { updateUser } from "../../store/session";
 import { getServerbyId } from "../../store/server";
 import "./AddServerForm.css";
 

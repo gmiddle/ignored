@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { editChannel } from "../../store/channel";
-import { updateUser } from "../../store/session";
+import { editChannel, getChannelbyId } from "../../store/channel";
+// import { updateUser } from "../../store/session";
 import "./EditChannelForm.css";
 
-const EditChannelForm = ({ userId, showModal, setCurrentChannelId, channelToEdit }) => {
+const EditChannelForm = ({ showModal, channelToEdit }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState(channelToEdit.name);
   const [topic, setTopic] = useState(channelToEdit.topic);
@@ -18,8 +18,8 @@ const EditChannelForm = ({ userId, showModal, setCurrentChannelId, channelToEdit
 
     let editedChannel = await dispatch(editChannel(channelToEdit));
     if (editedChannel) {
-      await dispatch(updateUser(userId))
-      setCurrentChannelId(editedChannel.id)
+      localStorage.setItem("currentChannelId", editedChannel.id)
+      await dispatch(getChannelbyId(localStorage.currentChannelId))
       showModal(false)
     }
   };
@@ -28,6 +28,7 @@ const EditChannelForm = ({ userId, showModal, setCurrentChannelId, channelToEdit
     e.preventDefault();
     showModal(false);
   };
+  
   return (
     <form id="channel-form" onSubmit={handleSubmit}>
       <input
